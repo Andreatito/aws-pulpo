@@ -1,0 +1,39 @@
+<div>
+
+    <div class="row">
+
+        {{#each cuentas}}
+        
+        <div>
+
+            <a href="{{nombre}}">
+                    
+                    
+
+                <table>
+                    
+                   
+                    
+                    <tr>
+                    <td> {{nombre}}</td>
+                    <br>
+                    <td> {{plan}}</td>
+                    <td><a href="/crud/delete/{{id}}">Borrar cuenta</a></td>
+                    <td> <a href="/crud/edit/{{id}}">Editar cuenta</a></td>
+                    <td>{{timeago created_at}}</td>
+                    </tr>
+                </table>
+         
+          </a>
+           
+        </div>
+        {{else}}
+            <div>
+
+                <p>No hay cuentas asociadas a este usuario</p>
+                <a href="/crud/add">Agregar cuenta</a>
+            </div>
+        {{/each}}
+
+    </div>
+</div>

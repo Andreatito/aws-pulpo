@@ -1,0 +1,62 @@
+
+<html>
+<head>
+<meta charset="UTF-8">
+<title>index</title>
+	<link rel="stylesheet" href="/css/styles.css">
+</head>
+
+<body>
+	
+	<div class="principal">
+
+
+		<header class="header">
+			<div>
+					
+			<img src="/img/logo.png">
+			<h1 class="titulo">Pulpo BackOffice</h1>
+
+			</div>
+			
+			
+			
+		
+			
+		</header>
+
+		<nav class="navegacion">
+
+			<ul>
+			{{#if user}}
+
+				<li><a class="active" href="/">Home</a></li>
+				<li><a class="active" href="/signin">Login</a></li>
+				<li><a class="active" href="/crud">Cuentas</a></li>
+				<li><a class="active" href="#inicio">Usuarios</a></li>
+				<li><a class="active" href="#inicio">Atributos</a></li>
+				<li><a class="active" href="#inicio">Auditoria</a></li>
+				<li><a class="active" href="profile">Perfil</a></li>
+				<li><a class="active" href="/logout">Cerrar sesión</a></li>
+
+				{{else}}
+
+				<li><a class="active" href="/signup">Registrarse</a></li>
+				<li><a class="active" href="/signin">Ingresar</a></li>
+
+			{{/if}}	
+
+
+
+				
+				
+
+			</ul>
+
+
+		</nav>
+
+    
+</body>
+</html>
+</head>
