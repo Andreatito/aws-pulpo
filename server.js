@@ -2,7 +2,7 @@ const express= require ('express');
 
 const app=express();
 
-app.get('/', (req, res) => res.send ('hello world con express'))
+app.get('/', (req, res) => res.send ('index'))
 
 
 
