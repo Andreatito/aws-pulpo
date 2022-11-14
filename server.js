@@ -6,7 +6,7 @@ const app=express();
 
 
 
-app.get('/index', function(req, res) {
+app.get('index', function(req, res) {
 
 
 res.render('index',{layout:false})
