@@ -6,7 +6,7 @@ const app=express();
 
 
 
-app.get('./cuentas', (req, res) => {
+app.get('/views/index', (req, res) => {
 
 
 res.render('index')   
