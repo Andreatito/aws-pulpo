@@ -6,7 +6,7 @@ const app=express();
 
 
 
-app.get('/', (req, res) => {
+app.get('./cuentas', (req, res) => {
 
 
 res.render('index')   
@@ -21,5 +21,5 @@ app.listen(app.get('port'),() =>{
     
     });
 
-
+ 
 

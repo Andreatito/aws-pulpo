@@ -3,17 +3,18 @@
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
- 
+
   "engines": {
     "node": "18.x"
   },
 
-
+  
   "scripts": {
     "dev": "nodemon src/",
     "start": "node server.js"
-    
+
   },
+
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -33,6 +34,7 @@
     "passport": "^0.6.0",
     "passport-local": "^1.0.0",
     "postgresql-client": "^2.5.1",
+    "pug": "^3.0.2",
     "server.js": "^1.0.0",
     "timeago.js": "^4.0.2"
   },
