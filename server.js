@@ -6,17 +6,19 @@ const app=express();
 
 
 
-app.get('./routes', (req, res) => {
+app.get('/', (req, res) => {
 
 
 res.render('index')
 
 });
 
+app.set('port', process.env.PORT || 4000 , '0.0.0.0');
 
+app.listen(app.get('port'),() =>{
 
-app.listen('port', process.env.PORT || 4000 , '0.0.0.0')
-
-    console.log('server on port 4000')
+    console.log('Server on port', app.get('port'));
+    
+    });
 
 
