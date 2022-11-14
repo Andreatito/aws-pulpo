@@ -2,13 +2,13 @@
   "name": "login",
   "version": "1.0.0",
   "description": "",
-  "main": "server.js",
+  "main": "src/index.js",
   "engines": {
     "node": "18.x"
   },
   "scripts": {
     "dev": "nodemon src/",
-    "start": "node server.js"
+    "start": "node src/index.js"
   },
   "keywords": [],
   "author": "",
