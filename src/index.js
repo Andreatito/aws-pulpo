@@ -29,7 +29,7 @@ helpers: require('./lib/handlebars')
 }));
 
 app.set('view engine', '.hbs');
-app.engine('hbs', hbs.__express);
+
 
 //Funciones de petición al servidor(Middlewares)
 
