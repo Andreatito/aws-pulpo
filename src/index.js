@@ -16,7 +16,7 @@ const passport= require('passport');
 const app= express();//definir puerto de conexión- settings
 require('./lib/passport');
 app.set('port', process.env.PORT || 4000 , '0.0.0.0');
-app.set('views', path.join(__dirname,'./views')); //ubicación de carpeta views
+app.set('views', path.join(__dirname,'views')); //ubicación de carpeta views
 
 app.engine('.hbs', exphbs.engine({
 
@@ -29,6 +29,7 @@ helpers: require('./lib/handlebars')
 }));
 
 app.set('view engine', '.hbs');
+app.engine('hbs', hbs.__express);
 
 //Funciones de petición al servidor(Middlewares)
 
