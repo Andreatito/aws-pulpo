@@ -6,7 +6,7 @@ const app=express();
 
 
 
-app.get('/', (req, res) => {
+app.get('./routes', (req, res) => {
 
 
 res.render('index')
