@@ -6,7 +6,7 @@ const app=express();
 
 
 
-app.get('/crud/index', (req, res) => {
+app.get('/', (req, res) => {
 
 
 res.render('/crud/index')   
