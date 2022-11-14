@@ -6,7 +6,7 @@ const app=express();
 
 
 
-app.get('/', (req, res) => {
+app.get('./routes/crud', (req, res) => {
 
 
 res.render('/crud/index')   
@@ -20,5 +20,6 @@ app.listen(app.get('port'),() =>{
     console.log('Server on port', app.get('port'));
     
     });
+
 
 
