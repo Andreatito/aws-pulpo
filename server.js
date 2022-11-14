@@ -15,5 +15,8 @@ res.render('index')
 
 
 
-app.listen('port')
-console.log('server on port 4000')
+app.listen(port, ()=>{
+
+    console.log('server on port 4000')
+})
+
