@@ -6,7 +6,7 @@ const app=express();
 
 
 
-app.get('./cuentas/add', function(req, res, next) {
+app.get('/', function(req, res, next) {
 
 
 res.render('index')   
