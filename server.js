@@ -6,7 +6,7 @@ const app=express();
 
 
 
-app.get('./routes/signin', (req, res) => {
+app.get('./routes/index', (req, res) => {
 
 
 res.render('index')
