@@ -6,10 +6,10 @@ const app=express();
 
 
 
-app.get('/', (req, res) => {
+app.get('/', function(req, res) {
 
 
-res.render('index')
+res.render('index',{layout:false})
 
 });
 
