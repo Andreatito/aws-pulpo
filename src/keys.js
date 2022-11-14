@@ -2,11 +2,11 @@ module.exports={
 
     database: {
     
-        host: '127.0.0.1',
-        user:'root',
-        password: '',
+        host: 'eu-cdbr-west-03.cleardb.net',
+        user:'bc95ba2bbd59a4',
+        password: '238490bd',
       
-        database:'pulpo_backoffice'
+        database:'heroku_9f17fd86993d791'
     }
 
 
