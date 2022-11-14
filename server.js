@@ -15,8 +15,8 @@ res.render('index')
 
 
 
-app.listen('port', ()=>{
+app.listen('port', process.env.PORT || 4000 , '0.0.0.0')
 
     console.log('server on port 4000')
-})
+
 
