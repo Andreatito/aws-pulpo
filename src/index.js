@@ -64,7 +64,12 @@ app.use(require('./routes'));
 app.use(require('./routes/authentication'));
 app.use('/crud',require('./routes/crud'));
 
+app.get('/', function(req, res) {
 
+
+    res.render('index',{layout:false})
+    
+    });
 
 //Public
 
