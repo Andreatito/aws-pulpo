@@ -15,11 +15,14 @@ router.get('/add',isLoggedIn, (req, res) =>{
 //Agregar cuenta
     router.post('/add', isLoggedIn,  async (req, res) => {
 
-            const {nombre,plan}= req.body;
+            const {nombre,plan,status_c,pais,timezone}= req.body;
             const newAcount = {
 
                 nombre,
                 plan,
+                status_c,
+                pais,
+                timezone,
                 user_id: req.user.id
 
             };
@@ -54,17 +57,29 @@ router.get('/edit/:id', isLoggedIn, async(req,res) => {
     res.render('./cuentas/edit', {cuentas: cuenta[0]} );
    
 
+}); 
+
+router.get("/show",( req, res) =>{
+
+
+    
+res.render('./cuentas/show');
+
 });
 
 
 router.post('/edit/:id', isLoggedIn, async(req,res) => {
 
   const {id} = req.params;
-  const {nombre,plan} = req.body;
+  const {nombre,plan,status_c,pais,timezone} = req.body;
   const newcta={
 
     nombre,
-    plan
+                plan,
+                status_c,
+                pais,
+                timezone,
+              
 
   };
 

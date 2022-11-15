@@ -38,3 +38,9 @@ DESCRIBE cuentas;
 DESCRIBE users;
 
 DELETE FROM users WHERE username ='Pablo';
+
+ALTER TABLE cuentas 
+ADD status_c VARCHAR(15) ;
+
+ALTER TABLE cuentas 
+ADD timezone VARCHAR(30) ;

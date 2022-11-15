@@ -1,39 +1,98 @@
+<html>
+
+
+
 <div>
+ 
+  
+                    <form>
+         <button type="submit" formaction="/crud/add">Agregar cuenta</button>
+      </form>
+
+     
+    </div>
+
+
+    <br>
+    
+
+        <table class="table">
+
+            <thead>
+
+      
+                </tr>
+
+                <tr>
+                    
+                     <th>Cuenta</th>
+                        <th>Plan</th>
+                        <th>Fecha de creación</th>
+                        
+                        <th>Status</th>
+                        <th>País</th>
+                        <th>Zona horaria</th>
+                        <th>Acciones</th>
+                    
+
+                </tr>
+            </thead>
+
+            <tbody>
+
+                {{#each cuentas}}
+
+                <tr>
+
+                    <td>{{nombre}}</td>
+
+                    <td>{{plan}}</td>
+
+
+                    <td>{{timeago created_at}}</td>
+
+                    <td>{{status_c}}</td>
+
+                    <td>{{pais}}</td>
+
+                    <td>{{timezone}}</td>
+
+                    <td>
+
+                      
+                        <a href="/crud/delete/{{id}}">Borrar</a>
+                         <a href="/crud/edit/{{id}}">Editar</a>
+                         <a href="/crud/show/">Ver </a>
+                    </td>
+                </tr>
+
+                 {{/each}}
+            </tbody>
+        </table>
+
+    
+  
+
 
     <div class="row">
+        
+        
 
         {{#each cuentas}}
         
-        <div>
-
-            <a href="{{nombre}}">
-                    
-                    
-
-                <table>
-                    
-                   
-                    
-                    <tr>
-                    <td> {{nombre}}</td>
-                    <br>
-                    <td> {{plan}}</td>
-                    <td><a href="/crud/delete/{{id}}">Borrar cuenta</a></td>
-                    <td> <a href="/crud/edit/{{id}}">Editar cuenta</a></td>
-                    <td>{{timeago created_at}}</td>
-                    </tr>
-                </table>
-         
-          </a>
-           
-        </div>
+     
+       
+            
         {{else}}
             <div>
 
                 <p>No hay cuentas asociadas a este usuario</p>
+
+
                 <a href="/crud/add">Agregar cuenta</a>
             </div>
         {{/each}}
 
     </div>
-</div>
+
+    </html>
