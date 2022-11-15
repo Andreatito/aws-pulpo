@@ -3,11 +3,17 @@
 
         <div class="column">
             
-            <div class="card">
+            <div >
 
-                <form action= "/crud/edit/{{cuentas.id}}" method="POST">
+                <h3>Editar cuenta</h3>
+
+                 <br>
+                 <br>
+
+                <form  class = "edit" action= "/crud/edit/{{cuentas.id}}" method="POST">
 
                 <div class="form-g">
+                    <br>
                     <label >Nombre de la cuenta:</label>
                     <input type="text" value="{{cuentas.nombre}}" class="text" name="nombre" placeholder="nombre" autofocus>
 
@@ -46,12 +52,12 @@
                         Guardar
                     </button>
 
-               
+                
 
                 </form>
 
                 <button type="submit" formaction="./crud">Cancelar</button>
-
+                    <br>
             </div>
 
 

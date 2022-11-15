@@ -5,12 +5,29 @@
 	margin: 0;
 	padding: 0;
 	font-family: Arial, Helvetica, sans-serif;
+	
 		
 		
 		
 	}
 
+	.add{
 
+			background-color: #f1f3f5;
+			padding-left: 15px;
+			color: #515050;
+
+	}
+
+
+
+	.edit{
+
+		background-color: #f1f3f5;
+			padding-left: 15px;
+			color: #515050;
+
+	}
 .principal {
 
 	
@@ -112,6 +129,7 @@ table {
 	background-color:white;
 	text-align: left;
 	border-collapse: collapse;
+	 
  }
 
  thead{
@@ -129,5 +147,34 @@ table {
 	color:#515050;
 	
  }
+
+ a {
+	outline: none;
+	text-decoration: none;
+	padding: 2px 1px 0;
+  }
+  
+  a:link {
+	color: #268ceb;
+  }
+  
+  a:visited {
+	color: #515050;
+  }
+  
+  a:focus {
+	border-bottom: 1px solid;
+	background: #b7def4;
+  }
+  
+  a:hover {
+	border-bottom: 1px solid;
+	background: #b7d9f8;
+  }
+  
+  a:active {
+	
+	color: #268ceb;
+  }
 
  
