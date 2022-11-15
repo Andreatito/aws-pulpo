@@ -29,11 +29,11 @@ passport.use('local.signin', new LocalStrategy({
             done(null, user, req.flash( 'success','welcome' + user.username)); //Ingreso correcto
         } else {
 
-            done(null, false, req.flash('message','contraseña invalida')); //Password incorrecto
+            done(null, false, req.flash('message','*contraseña invalida')); //Password incorrecto
         }
     }else {
 
-        return done(null,false, req.flash('message','El usuario ingresado no existe'));//El usuario no existe
+        return done(null,false, req.flash('message','*El usuario ingresado no existe'));//El usuario no existe
     }
 
 

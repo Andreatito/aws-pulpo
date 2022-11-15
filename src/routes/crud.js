@@ -28,7 +28,7 @@ router.get('/add',isLoggedIn, (req, res) =>{
 
             };
             await pool.query('INSERT INTO cuentas set ?', [newAcount]);
-            req.flash('success','Cuenta creada correctamente');
+            req.flash('success','**Cuenta creada correctamente**');
             res.redirect('/crud');
         });
 //listar cuentas
