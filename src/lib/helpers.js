@@ -3,6 +3,7 @@ const bcrypt = require('bcryptjs');
 const helpers = {};
 
 
+
 // cifrado de contraseña cuando se realiza el registro de usuario
 
 helpers.encryptPassword = async (password) => {
@@ -28,5 +29,9 @@ helpers.matchPassword = async (password, savedPassword) => {
         console.log(e);
     }
 };
+
+
+
+
 
 module.exports=helpers;

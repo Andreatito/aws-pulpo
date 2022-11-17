@@ -7,6 +7,10 @@ const session= require('express-session');
 const MySQLStore= require('express-mysql-session');
 const { database }=require('./keys');
 const passport= require('passport');
+const helpers = require('./lib/helpers');
+
+
+
 
 
 //inicializar
@@ -17,6 +21,8 @@ const app= express();//definir puerto de conexión- settings
 require('./lib/passport');
 app.set('port', process.env.PORT || 4000 , '0.0.0.0');
 app.set('views', path.join(__dirname,'views')); //ubicación de carpeta views
+
+//helpers
 
 app.engine('.hbs', exphbs.engine({
 
@@ -81,4 +87,7 @@ app.listen(app.get('port'),() =>{
 console.log('Server on port', app.get('port'));
 
 });
+
+
+
 

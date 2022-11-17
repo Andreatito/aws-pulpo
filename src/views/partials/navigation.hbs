@@ -30,18 +30,29 @@
 			<ul>
 			{{#if user}}
 
-				<li><a class="active" href="/signin">Home</a></li>
-				<li><a class="active" href="/signin">Login</a></li>
+				<li><a class="active" href="/profile">Home</a></li>
+				
+
+				
+
 				<li><a class="active" href="/crud">Cuentas</a></li>
-				<li><a class="active" href="#inicio">Usuarios</a></li>
+				
+			{{#if user.is_admin}}
+				<li><a class="active" href="./crud/usuarios">Alta de usuarios de cuenta</a></li>
+				{{/if}}
 				<li><a class="active" href="#inicio">Atributos</a></li>
 				<li><a class="active" href="#inicio">Auditoria</a></li>
-				<li><a class="active" href="profile">Perfil</a></li>
+				<li><a class="active" href="/profile">Perfil</a></li>
+				{{#if user.is_admin}}
+				<li><a class="active" href="/signup">Registrar usuario</a></li>
+				{{/if}}
 				<li><a class="active" href="/logout">Cerrar sesión</a></li>
+				
+
 
 				{{else}}
 
-				<li><a class="active" href="/signup">Registrarse</a></li>
+				
 				<li><a class="active" href="/signin">Ingresar</a></li>
 
 			{{/if}}	

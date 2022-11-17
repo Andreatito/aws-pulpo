@@ -10,13 +10,16 @@
 
 
  
-  
-     <form class="btnA">
+  <div style=" position:absolute; margin-left:700px;">
+     <form >
+        {{#if user.is_admin}}
          <button  type="submit" formaction="/crud/add">Agregar cuenta</button>
+         {{/if}}
       </form>
 
      
-  
+  </div>
+  <br>
 
     <br>
     
@@ -57,7 +60,7 @@
 
                     <td>{{timeago created_at}}</td>
 
-                    <td>{{status_c}}</td>
+                    <td>{{status}}</td>
 
                     <td>{{pais}}</td>
 
@@ -68,7 +71,7 @@
                       
                         <a href="/crud/delete/{{id}}">Borrar</a>
                          <a href="/crud/edit/{{id}}">Editar</a>
-                         <a href="/crud/show/">Ver </a>
+                         <a href="/crud/show/{{id}}">Ver </a>
                     </td>
                 </tr>
 
@@ -94,8 +97,8 @@
 
                 <p>No hay cuentas asociadas a este usuario</p>
 
-
-                <a href="/crud/add">Agregar cuenta</a>
+                 
+                <a href="/crud/usuarios">Agregar cuenta</a>
             </div>
         {{/each}}
 

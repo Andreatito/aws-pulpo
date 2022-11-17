@@ -1,24 +1,272 @@
 <html>
 
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cuentas</title>
-     {{!-- STYLES--}}
-     <link rel="stylesheet" href="/css/styles.css">
+<meta charset="UTF-8">
+<title>index</title>
+	<link rel="stylesheet" href="/css/styles.css">
 </head>
 
 
-<h3>Aplicación en construcción</h3>
+  <div >
+
+    {{#if user.is_admin}}
+     <form>
+         <button  type="submit" formaction="/crud/usuarios">Agregar usuario</button>
+      </form>
+
+      {{/if}}
+        <br>
+
+</div>
+
+ <div style="float:left; position:absolute; left:730px;">
+
+  <table class="table">
+
+            <thead>
+
+      
+                </tr>
+
+                <tr>
+                    
+                     <th>Datos de la Cuenta</th>
+                        
+
+                </tr>
+            </thead>
+
+            <tbody>
+
+                
+
+                <tr>
+
+                     <th>Nombre de cuenta</th>
+
+                    <td>{{cuenta.nombre}}</td>
+
+                </tr>
 
 
-    <div>
+                        <tr>
+
+                            <th>Status</th>
+
+                            <td>{{cuenta.status}}</td>
+
+                        </tr>
 
 
+                      <tr>
+
+                            <th>País</th>
+
+                            <td>{{cuenta.pais}}</td>
+
+                        </tr>
+
+                         <tr>
+
+                            <th>Timezone</th>
+
+                            <td>{{cuenta.timezone}}</td>
+
+                        </tr>
+                   
+
+                
+
+                    <td>
+
+                     {{#if user.is_admin}}
+                        
+                         <a href="/crud/edit/{{id}}">Editar</a>
+
+                          {{/if}}
+                         
+                    </td>
+                </tr>
+
+                
+            </tbody>
+        </table>
 
     </div>
+  
+    
+{{!-- {{tabla plan contratado}} --}}
 
+
+<div style="float: right; position:absolute; right:750px;">
+
+         <table class="table">
+
+            <thead>
+
+      
+                </tr>
+
+                <tr>
+                    
+                     <th>Plan contratado</th>
+                        
+
+                </tr>
+            </thead>
+
+            <tbody>
+
+                
+
+                <tr>
+
+                     <th>Vehículos</th>
+
+                    <td>{{plan.nombre}}</td>
+
+                </tr>
+
+
+                        <tr>
+
+                            <th>Usuarios de la cuenta</th>
+
+                            <td>{{plan.marca}}</td>
+
+                        </tr>
+
+
+                      <tr>
+
+                            <th>Conductores</th>
+
+                            <td>{{cpais}}</td>
+
+                        </tr>
+
+                         <tr>
+
+                            <th>Usuarios de inventario</th>
+
+                            <td>{{timezone}}</td>
+
+                        </tr>
+                   
+
+                
+
+                    <td> 
+
+                      
+                        
+                         <a href="/crud/edit/{{id}}">Gestionar módulos</a>
+                         
+                    </td>
+                </tr>
+
+                
+            </tbody>
+        </table>
+
+    
+  
+
+    <br>
+
+    <br>
+    
+    </div>
+
+    <div class="row">
+        
+     {{#if usuarios}}
+
+
+
+     {{!-- {{Tabla de usuarios}} --}}
+
+<div  style="  margin-top: 300px;">
+        <table class="table">
+
+            <thead>
+
+      
+                
+                    <th>Usuarios de la cuenta</th>
+                <tr>
+                    
+                     <th>Role</th>
+                        <th>Usuario</th>
+                        <th>Email</th>
+                        <th>Timezone</th>
+                        <th>Deleted at</th>
+                        <th>Acciones</th>
+                        
+                    
+
+                </tr>
+            </thead>
+            
+
+            <tbody> 
+                 
+                 {{#each usuarios}}
+                
+                <tr>
+                    
+
+                    <td>{{rol_id}}</td>
+
+                    <td>{{nombre}}</td>
+
+
+                    <td>{{email}}</td>
+
+                    <td>{{timezone}}</td>
+
+                    <td>{{acciones}}</td>
+
+                    
+
+                    <td>
+
+                    
+                        <a href="/crud/delete/{{id}}">Reset password</a>
+
+                        
+                         
+                    </td>
+                </tr>
+
+                {{/each}}
+            </tbody>
+
+        </table>
+
+   
+ </div>
+
+
+  
+        {{else}}
+
+
+<div  style="float:inline-end; position:absolute; top:700px;">
+
+ 
+
+        <p>No hay usuarios asociados a esta cuenta</p>
+
+</div>
+        
+                
+               
+
+                
+            
+        {{/if}}
 
     </div>
 

@@ -15,7 +15,6 @@
 
 		padding: 10px;
 		width: max-content;
-		
 		background-color: #f1f3f5;
 		padding-left: 15px;
 		color: #515050;
@@ -137,7 +136,7 @@ nav ul li a{
 table {
 	margin: 0 auto;
 	width: max-content;
-	border: 1px solid rgb(255, 255, 255);
+	border: 1px solid rgb(120, 116, 116);
 	background-color:white;
 	text-align: left;
 	border-collapse: collapse;
@@ -147,9 +146,9 @@ table {
 
  thead{
 
-	background-color:#e0e2e4;
-	color:rgb(71, 72, 72);
-	border-bottom: solid 5px #31a0f5;
+	background-color:#fbfcfe;
+	color:rgb(205, 212, 212);
+	border-bottom: solid 2px #31a0f5;
 
 	
 	 }

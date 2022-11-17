@@ -4,12 +4,13 @@
         <div class="column">
             
             <div class="card">
-                    <h3>Registrarse</h3>
+                    <h3>Registrar usuario</h3>
                     <br>
                 <form action="/signup" method="POST">
 
                 <div class="form-g">
 
+                     <label >Ingrese un usuario:</label>
                     <input type="text" class="text" name="username" placeholder="usuario" autofocus required>
                     
                 </div>
@@ -17,7 +18,7 @@
                 <br>
                  <div class="form-g">
 
-                
+                     <label >Password:</label>
                     <input type="password" class="text" name="password" placeholder="contrasena" autofocus required>
                 </div>
 
@@ -26,10 +27,16 @@
                 <br>
                  <div class="form-g">
 
-                
+                     <label >Nombre completo:</label>
                     <input type="text" class="text" name="fullname" placeholder="Nombre completo" autofocus required>
                 </div>
 
+                    <br>
+                 <div class="form-g">
+
+                     <label >Tipo de usuario:</label>
+                    <input type="text" class="text" name="role" placeholder="Rol de usuario" autofocus required>
+                </div>
 
                     <div class="form-g">
 
