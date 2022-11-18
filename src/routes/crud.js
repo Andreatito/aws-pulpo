@@ -63,7 +63,12 @@ router.get('/add',isLoggedIn, async(req, res) =>{
             
             const {id}=req.params;
             const cuentas= await pool.query(`SELECT 
-            cuentas.*,timezone.timezone AS tz,status.nombre AS status_nombre,paises.nombre AS pais_nombre, planes.plan AS plan_nombre
+            cuentas.*,
+            timezone.timezone
+             AS tz,status.nombre 
+             AS status_nombre,paises.nombre 
+             AS pais_nombre, planes.plan 
+             AS plan_nombre
           FROM 
             cuentas 
             LEFT JOIN timezone ON timezone.id_timezone = cuentas.timezone_id 
