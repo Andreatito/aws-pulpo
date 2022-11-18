@@ -24,14 +24,24 @@
                     <br>
                     <br>
                      <label >Nombre de la cuenta:</label>
-                    <input type="text" class="text" name="nombre" placeholder="nombre" autofocus>
+                    <input type="text" class="text" name="nombre" placeholder="nombre" autofocus required>
 
                 </div>
                 <br>
                 <br>
                 <div class="form-g">
                     <label >Plan contratado:</label>
-                    <input type="text" class="text1" name="plan" placeholder="plan" autofocus>
+                   <select name="plan_id" id="plan_id">
+
+                             
+                                <option value="">--Plan--</option>
+
+                              {{#each plan}} 
+
+                                <option value="{{id_plan}}">{{plan}}</option>
+                                
+                                 {{/each}}
+                     </select>
 
                 </div>
                 <br>
@@ -40,19 +50,17 @@
 
                     <label >Status:</label>
                    
-                          <select name="status" id="status">
+                          <select name="status_id" id="status_id">
 
-                            
                              
                                 <option value="">-- Status--</option>
-                                <option value="Activa">Activa</option>
-                                <option value="Pendiente">Pendiente</option>
-                                <option value="Suspendida">Suspendida</option>
 
+                              {{#each status}} 
 
-                            
+                                <option value="{{id}}">{{nombre}}</option>
+                                
+                                 {{/each}}
                      </select>
-
 
 
                 </div>
@@ -60,7 +68,18 @@
                 <br>
                 <div class="form-g">
                     <label >País:</label>
-                    <input type="text" class="text1" name="pais" placeholder="País" autofocus>
+
+                       <select name="pais_id" id="pais_id">
+
+                            <option value="">--País--</option>
+
+                            {{#each pais}} 
+
+                                
+                                <option value="{{id}}">{{nombre}}</option>
+                          
+                            {{/each}}
+                     </select>
 
                 </div>
                  <br>
@@ -68,19 +87,42 @@
                 <div class="form-g">
                     <label >Zona horaria:</label>
                     
-                    <select name="timezone" id="timezone">
+                       <select name="timezone_id" id="timezone_id">
 
-                                <option value="0">-- Timezone--</option>
-                                <option value="America/México">America/México</option>
-                                <option value="Europa/España">Europa/España</option>
-                             
-                            
-                    </select>
+                            <option value="">-- Zona horaria--</option>
+
+                            {{#each timezones}} 
+
+                                
+                                <option value="{{id_timezone}}">{{timezone}}</option>
+                          
+                            {{/each}}
+                     </select>
+                        
+                </div>
+
+                
+                <br>
+                <br>
+
+                <div class="form-g">
+                    <label >Asignar cuenta a usuario:</label>
+                    
+                       <select name="user_id" id="user_id">
+
+                            <option value="">-- Usuarios--</option>
+
+                            {{#each usercta}} 
+
+                                
+                                <option value="{{id}}">{{username}}</option>
+                          
+                            {{/each}}
+                     </select>
                         
                 </div>
                 <br>
                 <br>
-
                 <div class="form-g">
 
                     <button class="boton">

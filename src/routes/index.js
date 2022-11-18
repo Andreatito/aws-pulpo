@@ -10,4 +10,27 @@ router.get('/',(req, res) => {
 
 
 
+//mostrar audit
+
+router.get("/audit",( req, res) =>{
+
+
+    
+    res.render('audit');
+    
+    });
+
+
+    //mostrar atributos
+
+    router.get("/atributos",( req, res) =>{
+
+
+    
+        res.render('atributos');
+        
+        });
+
+
+
 module.exports = router;

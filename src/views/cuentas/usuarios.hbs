@@ -35,7 +35,19 @@
                 <br>
                 <div >
                     <label >Role:</label>
-                    <input type="text" class="text1" name="rol_id" placeholder="rol" autofocus>
+
+                     <select name="rol_id" id="rol_id">
+
+                            <option value="">-- Roles--</option>
+
+                            {{#each roles}} 
+
+                                
+                                <option value="{{id_rol}}">{{rol}}</option>
+                          
+                            {{/each}}
+
+                     </select>
 
                 </div>
                 <br>
@@ -50,14 +62,28 @@
                 <br>
                 <div>
                     <label >Zona horaria:</label>
-                    <input type="text" class="text1" name="timezone" placeholder="timezone" autofocus>
+                    
+                       <select name="timezone" id="timezone">
+
+                            <option value="">-- Zona horaria--</option>
+
+                            {{#each timezones}} 
+
+                                
+                                <option value="{{id_timezone}}">{{timezone}}</option>
+                          
+                            {{/each}}
+
+                     </select>
+                        
+                      
 
                 </div>
                  <br>
                  <br>
                 <div>
                     <label >Cuenta:</label>
-                    <input type="text" class="text1" name="cuenta_id" placeholder="timezone" autofocus>
+                    <input type="text" class="text1" name="cuenta_id" placeholder="Id de la cuenta" autofocus>
 
                 </div>
                 <br>
@@ -74,7 +100,7 @@
                 </div>
 
                 </form>
-                
+
                 </table>
 
             </div>

@@ -31,26 +31,67 @@
                 <br>
                 <div class="form-g">
                     <label >Plan contratado:</label>
-                    <input type="text" value="{{cuentas.plan}}" class="text1" name="plan" placeholder="plan" autofocus>
+                    <select name="plan_id" id="plan_id">
+
+                             
+                                <option value="">-- Plan contratado--</option>
+
+                              {{#each plan}} 
+
+                                <option value="{{id_plan}}" {{#if selected}}selected{{/if}}>{{plan}}</option>
+                                
+                                 {{/each}}
+                     </select>
 
                 </div>
                 <br>
                 <div class="form-g">
 
                     <label >Status:</label>
-                    <input type="text" value="{{cuentas.status}}" class="text1" name="status" placeholder="Status" autofocus>
+                     <select name="status_id" id="status_id">
+
+                             
+                                <option value="">-- Status--</option>
+
+                              {{#each status}} 
+
+                                <option value="{{id}}" {{#if selected}}selected{{/if}}>{{nombre}}</option>
+                                
+                                 {{/each}}
+                     </select>
+
 
                 </div>
                 <br>
                 <div class="form-g">
                     <label >País:</label>
-                    <input type="text"  value="{{cuentas.pais}}" class="text1" name="pais" placeholder="País" autofocus>
+                       <select name="pais_id" id="pais_id">
+
+                             
+                                <option value="">-- Pais--</option>
+
+                              {{#each pais}} 
+
+                                <option value="{{id}}" {{#if selected}}selected{{/if}}>{{nombre}}</option>
+                                
+                                 {{/each}}
+                     </select>
 
                 </div>
                  <br>
                 <div class="form-g">
                     <label >Zona horaria:</label>
-                    <input type="text"  value="{{cuentas.timezone}}" class="text1" name="timezone" placeholder="Zona horaria" autofocus>
+                      <select name="timezone_id" id="timezone_id">
+
+                             
+                                <option value="">-- timezone--</option>
+
+                              {{#each timezones}} 
+
+                                <option value="{{id_timezone}}" {{#if selected}}selected{{/if}}>{{timezone}}</option>
+                                
+                                 {{/each}}
+                     </select>
 
                 <br>
                 <br>

@@ -10,13 +10,7 @@
 
   <div >
 
-    {{#if user.is_admin}}
-     <form>
-         <button  type="submit" formaction="/crud/usuarios">Agregar usuario</button>
-      </form>
-
-      {{/if}}
-        <br>
+  
 
 </div>
 
@@ -40,6 +34,11 @@
             <tbody>
 
                 
+                     <th>Id de cuenta</th>
+
+                    <td>{{cuenta.id}}</td>
+
+                </tr>
 
                 <tr>
 
@@ -54,7 +53,7 @@
 
                             <th>Status</th>
 
-                            <td>{{cuenta.status}}</td>
+                            <td>{{cuenta.status_nombre}}</td>
 
                         </tr>
 
@@ -63,7 +62,7 @@
 
                             <th>País</th>
 
-                            <td>{{cuenta.pais}}</td>
+                            <td>{{cuenta.pais_nombre}}</td>
 
                         </tr>
 
@@ -71,7 +70,7 @@
 
                             <th>Timezone</th>
 
-                            <td>{{cuenta.timezone}}</td>
+                            <td>{{cuenta.tz}}</td>
 
                         </tr>
                    
@@ -124,7 +123,7 @@
 
                      <th>Vehículos</th>
 
-                    <td>{{plan.nombre}}</td>
+                    <td>{{vehiculos.total}}</td>
 
                 </tr>
 
@@ -133,7 +132,7 @@
 
                             <th>Usuarios de la cuenta</th>
 
-                            <td>{{plan.marca}}</td>
+                            <td>{{usuariosTotal.total}}</td>
 
                         </tr>
 
@@ -217,14 +216,14 @@
                 <tr>
                     
 
-                    <td>{{rol_id}}</td>
+                    <td>{{rl}}</td>
 
                     <td>{{nombre}}</td>
 
 
                     <td>{{email}}</td>
 
-                    <td>{{timezone}}</td>
+                    <td>{{tz}}</td>
 
                     <td>{{acciones}}</td>
 
