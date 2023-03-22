@@ -7,15 +7,125 @@ const pool = require('../database');
 
 const {isLoggedIn} = require('../lib/auth');
 const helpers = require('../lib/helpers');
+const {validateCreate} = require('../routes/validation');
 
 
 
+
+
+
+//Agregar vehiculo
+
+router.get('/atributos',isLoggedIn, async(req, res) =>{
+  console.log("cuentas get add")
+  const brand= await pool.query('SELECT * FROM brand');
+  console.log (brand);
+  const modelo= await pool.query('SELECT * FROM modelo');
+  console.log (modelo);
+  const year= await pool.query('SELECT * FROM year');
+  console.log (year);
+  const color= await pool.query('SELECT * FROM color');
+  console.log (color);
+  const vehiculo_status= await pool.query('SELECT * FROM vehiculo_status');
+  console.log (vehiculo_status);
+  const cuentas= await pool.query('SELECT * FROM cuentas');
+  console.log (cuentas);
+
+  res.render('./atributos',{brand,modelo,year,color,vehiculo_status,cuentas});
+  
+} );
+
+
+router.post('/atributos', isLoggedIn, async (req, res) => {
+
+  console.log("cuentas post add")
+ 
+  var errors= {}
+  var nombrePattern=new RegExp(/^[a-zA-ZÑñÁáÉéÍíÓóÚúÜü\s]+$/);
+  
+  if(!req.body.nombreV){
+
+    errors.nombreV="*El nombre es requerido"
+
+  }else if(!nombrePattern.test(req.body.nombreV)){
+    errors.nombreV="*Ingrese un nombre válido"
+}
+  
+  if(!req.body.brand){
+
+    errors.brand="*Ingrese la marca del vehículo"
+}
+
+  if(!req.body.model){
+
+    errors.model="*Debe ingresar el modelo del vehículo"
+
+  }
+
+  if(!req.body.year){
+
+    errors.year="*El año del vehículo es requerido"
+
+  }
+
+  if(!req.body.color){
+
+    errors.color="*El color es requerido"
+
+  }
+  
+  if(!req.body.vehiculo_status){
+
+    errors.vehiculo_status="*Ingrese el status del vehículo"
+
+  }
+
+  if(!req.body.cuenta){
+
+    errors.cuenta="*La cuenta es requerida"
+    
+  }
+  console.log ("andrea",Object.keys(errors).length)
+  if(Object.keys(errors).length !== 0){
+
+    res.json(
+      {
+        status:"error",
+        message:"Error al agregar el vehículo",
+        errors: errors
+      }
+    )
+
+  }else{
+    
+    await pool.query('INSERT INTO vehiculos set ?', [req.body]);
+
+    res.json(
+    {
+      status:"ok",
+      message:"Automóvil agregado correctamente"
+    }
+    )
+  }
+  
+});
+
+
+//Eliminar cuenta
+router.get('/delete/:id', isLoggedIn, async(req,res) => {
+
+  const {id}=req.params;
+  await pool.query('UPDATE vehiculos SET deleted_at=now() WHERE ID=?',[id]);
+  req.flash('success','Vehiculo eliminado correctamente');
+  res.redirect('/crud');
+
+});
 
 
 //Agregar cuenta
 
 router.get('/add',isLoggedIn, async(req, res) =>{
-
+    console.log("cuentas get add")
     const timezones= await pool.query('SELECT * FROM timezone');
     console.log (timezones);
     const status= await pool.query('SELECT * FROM status');
@@ -29,28 +139,77 @@ router.get('/add',isLoggedIn, async(req, res) =>{
 
     res.render('./cuentas/add',{timezones,status,plan,pais,usercta});
     
-    } );
+} );
     
+    
+    
+router.post('/add', isLoggedIn, async (req, res) => {
 
-    router.post('/add', isLoggedIn,  async (req, res) => {
+            console.log("cuentas post add")
+           
+            var errors= {}
+            var nombrePattern=new RegExp(/^[a-zA-ZÑñÁáÉéÍíÓóÚúÜü\s]+$/);
+            
+            if(!req.body.nombre){
 
-            const {nombre,user_id,timezone_id,status_id,plan_id,pais_id}= req.body;
-            const newAcount = {
+              errors.nombre="*El nombre es requerido"
 
-                nombre,
-                user_id,
-                timezone_id, 
-                status_id,
-                plan_id,
-                pais_id,
-                
+            }else if(!nombrePattern.test(req.body.nombre)){
+              errors.nombre="*Ingrese un nombre válido"
+          }
 
-            };
-            await pool.query('INSERT INTO cuentas set ?', [newAcount]);
+            if(!req.body.plan_id){
 
-            req.flash('success','**Cuenta creada correctamente**');
+              errors.plan_id="*El plan es requerido"
 
-            res.redirect('/crud');
+            }
+
+            if(!req.body.status_id){
+
+              errors.status_id="*El status es requerido"
+
+            }
+
+            if(!req.body.pais_id){
+
+              errors.pais_id="*El país es requerido"
+
+            }
+
+            if(!req.body.timezone_id){
+
+              errors.timezone_id="*La zona horaria es requerida"
+
+            }
+
+            if(!req.body.user_id){
+
+              errors.user_id="*El usuario es requerido"
+              
+            }
+            console.log ("andrea",Object.keys(errors).length)
+            if(Object.keys(errors).length !== 0){
+
+              res.json(
+                {
+                  status:"error",
+                  message:"Error al crear la cuenta",
+                  errors: errors
+                }
+              )
+
+            }else{
+              
+              await pool.query('INSERT INTO cuentas set ?', [req.body]);
+
+              res.json(
+              {
+                status:"ok",
+                message:"Cuenta creada correctamente"
+              }
+              )
+            }
+            
         });
 
        
@@ -104,6 +263,24 @@ router.get('/show/:id', isLoggedIn, async(req,res) => {
               WHERE 
                 cuentas.id = ?`,[id]);
 
+    const vehiculos = await pool.query(`
+      SELECT  
+        vehiculos.nombreV AS nombreV, 
+        brand.nombre AS brand, 
+        modelo.nombre AS modelo, 
+        year.nombre AS year, 
+        color.color AS color, 
+        vehiculo_status.vehiculo_status AS vhls
+      FROM
+        vehiculos 
+        LEFT JOIN brand ON brand.id = vehiculos.brand
+        LEFT JOIN modelo ON modelo.id = vehiculos.model
+        LEFT JOIN year ON year.id = vehiculos.year
+        LEFT JOIN color ON color.id = vehiculos.color
+        LEFT JOIN vehiculo_status ON vehiculo_status.id = vehiculos.vehiculo_status
+      WHERE 
+        cuenta=?`, id);
+
     const usuarios= await pool.query(`SELECT usuarios_cuenta.*, timezone.timezone AS tz, roles.rol as rl
      FROM usuarios_cuenta 
     LEFT JOIN timezone ON timezone.id_timezone = usuarios_cuenta.timezone  
@@ -111,20 +288,14 @@ router.get('/show/:id', isLoggedIn, async(req,res) => {
     WHERE usuarios_cuenta.cuenta_id=?`,[id]);
 
 
-    const vehiculos= await pool.query('SELECT COUNT(*) AS total FROM vehiculos WHERE cuentas_id=?',id);
+    const nVehiculos= await pool.query('SELECT COUNT(*) AS total FROM vehiculos WHERE cuenta=?',id);
     const usuariosTotal= await pool.query('SELECT COUNT(*) AS total FROM usuarios_cuenta WHERE cuenta_id=?',id);
-    console.log(cuenta,usuarios,vehiculos);
-    res.render('./cuentas/show', {cuenta: cuenta[0], usuarios:usuarios, vehiculos:vehiculos[0], usuariosTotal:usuariosTotal[0]} );
+   
+    console.log(vehiculos);
+    res.render('./cuentas/show', {cuenta: cuenta[0], usuarios:usuarios, nVehiculos:nVehiculos[0], usuariosTotal:usuariosTotal[0], vehiculos:vehiculos} );
    
 
 }); 
-
-
-
-
-
-
-
 
 
 //Eliminar cuenta
@@ -141,6 +312,9 @@ router.get('/show/:id', isLoggedIn, async(req,res) => {
 //Editar cuenta
 
 router.get('/edit/:id', isLoggedIn, async(req,res) => {
+
+
+  
 
     const {id}=req.params;
 
@@ -163,12 +337,63 @@ router.get('/edit/:id', isLoggedIn, async(req,res) => {
 
 
 router.post('/edit/:id', isLoggedIn, async(req,res) => {
-
   const {id} = req.params;
+
+  console.log("Editing account" , id)
+  var errors= {}
+
+  var nombrePattern=new RegExp(/^[a-zA-ZÑñÁáÉéÍíÓóÚúÜü\s]+$/);
+            if(!req.body.nombre){
+
+              errors.nombre="*El nombre es requerido"
+
+            } else if(!nombrePattern.test(req.body.nombre)){
+              errors.nombre="*Ingrese un nombre válido"
+          }
+
+            if(!req.body.plan_id){
+
+              errors.plan_id="*El plan es requerido"
+
+            }
+
+            if(!req.body.status_id){
+
+              errors.status_id="*El status es requerido"
+
+            }
+
+            if(!req.body.pais_id){
+
+              errors.pais_id="*El país es requerido"
+
+            }
+
+            if(!req.body.timezone_id){
+
+              errors.timezone_id="*La zona horaria es requerida"
+
+            }
+
+            
+            if(Object.keys(errors).length !== 0){
+
+              res.json(
+                {
+                  status:"error",
+                  message:"Error al actualizar la cuenta",
+                  errors: errors
+                }
+              )
+
+
+
+              }else{
+
   const {nombre,plan_id,status_id,pais_id,timezone_id} = req.body;
   const newcta={
 
-    nombre,
+               nombre,
                 plan_id,
                 status_id,
                 pais_id,
@@ -180,11 +405,21 @@ router.post('/edit/:id', isLoggedIn, async(req,res) => {
 console.log(newcta);
 await pool.query('UPDATE cuentas set ? WHERE id=?', [newcta, id]);
 
+          res.json(
+            {
+              status:"ok",
+              message:"Cuenta actualizada correctamente"
+            }
+            )
 
-req.flash('success','Cuenta actualizada correctamente');
-res.redirect('/crud');
+            }
 });
     
+
+
+
+
+
 
 //Usuarios
 
@@ -214,30 +449,172 @@ router.get("/usuarios",async( req, res) =>{
 
 router.post('/usuarios', isLoggedIn,  async (req, res) => {
 
-    const {nombre,email,timezone,cuenta_id,rol_id}= req.body;
-    const newUser = {
+    
+  const {id} = req.params;
+     
+        var errors= {}
 
-        
-        nombre,
-        email,
-        timezone,
-        cuenta_id,
-        rol_id
-        
+                  var emailPattern = new RegExp(/^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i);
+                  var nombrePattern=new RegExp(/^[a-zA-ZÑñÁáÉéÍíÓóÚúÜü\s]+$/);
+                  var cuentapattern=new RegExp("[0-9]+");
 
+
+                  if(!req.body.nombre){
+      
+                    errors.nombre="*El nombre es requerido"
+      
+                  }else if(!nombrePattern.test(req.body.nombre)){
+                    errors.nombre="*Ingrese un nombre válido"
+                }
+      
+                  if(!req.body.rol_id){
+      
+                    errors.rol_id="*El rol es requerido"
+      
+                  }
+      
+                  if(!req.body.email) {
+                    errors.email="*El email es requerido"
+                  } else if(!emailPattern.test(req.body.email)){
+                      errors.email="*Introduzca un email válido"
+                  }
+      
+                  if(!req.body.timezone){
+      
+                    errors.timezone="*La zona horaria es requerida"
+      
+                  }
+      
+                  if(!req.body.cuenta_id){
+      
+                    errors.cuenta_id="*La cuenta es requerida"
+      
+                  }else if(!cuentapattern.test(req.body.cuenta_id)){
+                    errors.cuenta_id="*Ingrese un ID de cuenta válido"
+                }
+                  if(Object.keys(errors).length !== 0){
+
+                    res.json(
+                      {
+                        status:"error",
+                        message:"*Error al crear el usuario",
+                        errors: errors
+                      }
+                    )
+      
+      
+      
+                    }else{
+      
+
+                    const {nombre,rol_id,email,timezone,cuenta_id,}= req.body;
+                    const newUser ={
+                
+                        
+                        nombre,
+                        rol_id,
+                        email,
+                        timezone,
+                        cuenta_id,
+                        
+                  
+
+              
+        
     };
-    await pool.query('INSERT INTO usuarios_cuenta set ?', [newUser]);
-    req.flash('success','**Usuario creado correctamente**');
-    res.redirect('/crud');
+
+    console.log(newUser);
+
+    await pool.query('INSERT INTO usuarios_cuenta set ?', [newUser, id]);
+    
+    
+      res.json(
+        {
+          status:"ok",
+          message:"Usuario creado correctamente",
+          errors: errors
+        }
+      )
+      }
+    });
+
+   //Reset Password
 
 
-});
+
+    router.get('/resetPass/:id', isLoggedIn, async(req,res) => {
 
 
+      const {id} =req.params;
+  
+      
+      const usuario= await pool.query('SELECT * FROM usuarios_cuenta WHERE usuario_id=?',[id]);
+     
+      
+      console.log (id);
+  
+      res.render('./cuentas/resetPass', {user: usuario} );
+     
+  
+  }); 
 
+  router.post('/resetPass/:id', isLoggedIn, async(req,res) => {
 
-    module.exports = router;
+    const {id} = req.params;
+  
+    console.log("Editing user" , id)
+    var errors= {}
+
+              if(!req.body.password){
+  
+                errors.id="*El campo nueva contraseña no puede quedar vacío"
+  
+              }
+  
+             
+  
+              
+              if(Object.keys(errors).length !== 0){
+  
+                res.json(
+                  {
+                    status:"error",
+                    message:"Error al actualizar la contraseña",
+                    errors: errors
+                  }
+                )
+  
+  
+  
+                }else{
+  
+    const {usuario} = req.body;
+    const newuser={
+  
+                 nombre,
+                  plan_id,
+                  status_id,
+                  pais_id,
+                  timezone_id,
+                
+  
+    };
+  
+  console.log(newuser);
+  await pool.query('UPDATE cuentas set ? WHERE id=?', [newuser, id]);
+  
+            res.json(
+              {
+                status:"ok",
+                message:"Usuario actualizado correctamente"
+              }
+              )
+  
+              }
+  });
+
+module.exports = router;
+   
    
 
-
-    
+  

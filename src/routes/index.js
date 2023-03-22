@@ -1,8 +1,9 @@
 
 const express = require ('express');
 const router = express.Router();
+const {isLoggedIn} = require('../lib/auth');
 
-router.get('/',(req, res) => {
+router.get('/', isLoggedIn, (req, res) => {
 
 
     res.render('index');
@@ -13,24 +14,13 @@ router.get('/',(req, res) => {
 //mostrar audit
 
 router.get("/audit",( req, res) =>{
-
-
-    
     res.render('audit');
-    
-    });
+});
 
 
-    //mostrar atributos
-
-    router.get("/atributos",( req, res) =>{
-
-
-    
-        res.render('atributos');
+router.use('/crud',require('./crud'));
+router.use('/user', require('./users'));
         
-        });
-
 
 
 module.exports = router;

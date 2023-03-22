@@ -1,14 +1,242 @@
-<div= "container">
+<html>
+<head>
+    
+ 
 
-<div class="row">
-    <div>
+<meta charset="UTF-8">
+<title>index</title>
 
-        
-        <br>
-        <h3>Sitio en construcción</h3>
+	<link rel="stylesheet" href="/css/styles.css">
+</head>
+
+<body>
+<div>
+    <div >
+
+        <div >
+            
+            <div >
+
+                 <h3>Agregar vehículo a cuenta</h3>
+
+                 <br>
+                 <br>
+
+               
+
+
+                <form  class= "add" >
+
+                <div class="form-g">
+                    <br>
+                    <br>
+                     <label >Tipo de vehículo:</label>
+                    <input type="text" class="text" name="nombreV" id="nameVehiculo" placeholder="nombre" autofocus >
+
+                <div class="message" id="nombreVMessage"></div>
+
+                </div>
+                <br>
+                <br>
+                <div class="form-g">
+                    <label >Marca:</label>
+
+                   <select name="brand" id="brand_id">
+
+                             
+                                <option value="">--Marca-</option>
+
+                              {{#each brand}} 
+
+                                <option value="{{id}}">{{nombre}}</option>
+                                
+                                 {{/each}}
+                     </select>
+                <div class="message" id="brandMessage"></div>
+                </div>
+
+                <br>
+                <br>
+
+                <div class="form-g">
+
+                    <label >Modelo:</label>
+                   
+                          <select name="model" id="model_id">
+
+                             
+                                <option value="">-- Modelo--</option>
+
+                              {{#each modelo}} 
+
+                                <option value="{{id}}">{{nombre}}</option>
+                                
+                                 {{/each}}
+                     </select>
+                 <div class="message" id="modelMessage"></div>
+
+                </div>
+                <br>
+                <br>
+                <div class="form-g">
+                    <label >Año:</label>
+
+                       <select name="year" id="year_id">
+
+                            <option value="">--Año--</option>
+
+                            {{#each year}} 
+
+                                
+                                <option value="{{id}}">{{nombre}}</option>
+                          
+                            {{/each}}
+                     </select>
+                 <div class="message" id="yearMessage"></div>
+                </div>
+                 <br>
+                 <br>
+                <div class="form-g">
+                    <label >Color:</label>
+                    
+                       <select name="color" id="color_id">
+
+                            <option value="">-- Color--</option>
+
+                            {{#each color}} 
+
+                                
+                                <option value="{{id}}">{{color}}</option>
+                          
+                            {{/each}}
+                     </select>
+                        <div class="message" id="colorMessage"></div> 
+                </div>
+
+                
+                <br>
+                <br>
+                <div class="form-g">
+                    <label >Status del vehículo:</label>
+                    
+                       <select name="vehiculo_status" id="status_id">
+
+                            <option value="">-- Status--</option>
+
+                            {{#each vehiculo_status}} 
+
+                                
+                                <option value="{{id}}">{{vehiculo_status}}</option>
+                          
+                            {{/each}}
+                     </select>
+                        <div class="message" id="statusMessage"></div> 
+                </div>
+
+                <br>
+                <br>
+
+                <div class="form-g">
+
+                    <label >Asignar vehículo a cuenta:</label>
+                    
+                       <select name="cuenta" id="cuenta_id">
+
+                            <option value="">-- Cuentas--</option>
+
+                            {{#each cuentas}} 
+
+                                
+                                <option value="{{id}}">{{nombre}}</option>
+                          
+                            {{/each}}
+                     </select>
+
+                         <div class="message" id="cuentaMessage"></div>
+                </div>
+                <br>
+                <br>
+                <div class="form-g">
+
+                    <button class="boton" id="btnSave">
+
+                        Guardar
+                    </button>
+                    <br>
+                    <br>
+                </div>
+
+                </form>
+
+    
+
+            </div>
+
+
+
+        </div>
+
+
     </div>
 
 
-</div>
 
 </div>
+<script src="bootstrap-5.2.0-dist/js/jquery-3.6.1.min.js"></script>
+		<script src="popper/popper.min.js"></script>
+		<script src="bootstrap-5.2.0-dist/js/bootstrap.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+        <script>
+           
+
+
+            $( document ).ready(function() {
+
+                $( "#btnSave" ).click(function(e) {
+
+                    e.preventDefault();
+
+                    const account= {
+
+                        nombreV: $("#nameVehiculo").val(),
+                        brand:  $("#brand_id").val(),
+                        model:  $("#model_id").val(),
+                        year:  $("#year_id").val(),
+                        color:  $("#color_id").val(),
+                        vehiculo_status:  $("#status_id").val(),
+                        cuenta:  $("#cuenta_id").val()
+                    }
+                    
+                    $.post( "/crud/atributos", account, function( data ) {
+
+                        if(data.status=="ok"){
+
+                            window.location.href = '/crud';
+
+                        }else{
+                            
+                            $("#nombreVMessage").text(data.errors.nombreV || "")
+                            $("#brandMessage").html(data.errors.brand || "")
+                            $("#modelMessage").html(data.errors.model || "")
+                            $("#yearMessage").html(data.errors.year || "")
+                            $("#colorMessage").html(data.errors.color || "")
+                            $("#statusMessage").html(data.errors.vehiculo_status || "")
+                            $("#cuentaMessage").html(data.errors.cuenta|| "")
+                        }
+                    });
+                
+                });
+
+            });
+
+        
+
+            
+
+        
+
+            
+
+        </script>	
+</body>
+</html>

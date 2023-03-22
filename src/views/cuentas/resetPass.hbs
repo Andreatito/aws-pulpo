@@ -1,0 +1,127 @@
+<html>
+<head>
+<meta charset="UTF-8">
+<title>index</title>
+	<link rel="stylesheet" href="/css/styles.css">
+</head>
+
+    
+    
+    <div >
+    <div >
+
+        <div >
+            
+            <div >
+
+                <h3>Restablecer contraseña</h3>
+
+                 <br>
+                 <br>
+
+                <form  class = "edit" action= "/crud/resetPass/{{usuario_id}}" method="POST">
+
+                <div class="form-g">
+                    <br>
+                    <label >Ingrese una nueva contraseña:</label>
+                    <input type="text" id="password" value="{{usuarios_cuenta.usuario_id}}" class="text" name="password" placeholder="nombre" autofocus>
+
+                    <div id="passwordMessage"></div>
+
+                </div>
+
+                <br>
+
+                 <div class="form-g">
+                    <br>
+                    <label >Ingrese nuevamente la contraseña:</label>
+                    <input type="text" id="passwordII" value="{{usuarios_cuenta.usuario_id}}" class="text" name="password" placeholder="nombre" autofocus>
+
+                    <div id="passwordIIMessage"></div>
+
+                </div>
+
+                <br>
+                
+                </div>
+                <br>
+                <div class="form-g">
+
+                   
+                <br>
+                <br>
+                <div class="form-g">
+
+                    <button  id="btnSave">
+
+                        Guardar
+                    </button>
+
+                
+
+                </form>
+
+                <button type="submit" formaction="/crud">Cancelar</button>
+                    <br>
+            </div>
+
+
+
+        </div>
+
+
+    </div>
+<script src="bootstrap-5.2.0-dist/js/jquery-3.6.1.min.js"></script>
+		<script src="popper/popper.min.js"></script>
+		<script src="bootstrap-5.2.0-dist/js/bootstrap.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+        <script>
+           
+
+
+            $( document ).ready(function() {
+
+                $( "#btnSave" ).click(function(e) {
+
+                    console.log("btnSave On Click")
+                    e.preventDefault();
+
+                    const user= {
+
+                        password: $("#password").val(),
+                        passwordII:  $("#passwordII").val(),
+                        
+                    }
+
+                    console.log(user)
+
+                    $.post( "/crud/resetPass/{{usuarios_cuenta.usuario_id}}", user, function( data ) {
+
+                        if(data.status=="ok"){
+
+                            window.location.href = '/crud/';
+
+                        }else{
+                            
+                            $("#passwordMessage").text(data.errors.password || "")
+                            $("#passwordII").html(data.errors.passwordII || "")
+                            
+                        }
+                    });
+                
+                });
+
+            });
+
+        
+
+            
+
+        
+
+            
+
+        </script>	
+
+</div>
+</html>

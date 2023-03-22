@@ -1,50 +1,74 @@
-<div class="container">
-    <div class="row">
+<html>
+<head>
+<meta charset="UTF-8">
+<title>index</title>
+	<link rel="stylesheet" href="/css/styles.css">
+</head>
 
-        <div class="column">
+
+<div >
+    <div >
+
+        <div >
             
-            <div class="card">
+            <div >
                     <h3>Registrar usuario</h3>
                     <br>
-                <form action="/signup" method="POST">
+                     <br>
+                <form class="user"  action="/signup" method="POST">
 
-                <div class="form-g">
+                <div >
 
                      <label >Ingrese un usuario:</label>
-                    <input type="text" class="text" name="username" placeholder="usuario" autofocus required>
-                    
+                    <input type="text" class="text" id= "username_id" name="username" placeholder="usuario" autofocus required>
+                    <br>
+                      <div class="message" id="usuarioMessage"></div>
                 </div>
 
                 <br>
                  <div class="form-g">
 
                      <label >Password:</label>
-                    <input type="password" class="text" name="password" placeholder="contrasena" autofocus required>
-                </div>
-
-                 </div>
-
-                <br>
-                 <div class="form-g">
-
-                     <label >Nombre completo:</label>
-                    <input type="text" class="text" name="fullname" placeholder="Nombre completo" autofocus required>
+                    <input type="password" class="text" id= "password_id" name="password" placeholder="contrasena" autofocus required>
+                      <br>
+                      <div class="message" id="passwordMessage"></div>
                 </div>
 
                     <br>
-                 <div class="form-g">
+                    
+                <div class="form-g">
+
+                     <label >Confirmar password:</label>
+                    <input type="password" class="text" id= "password2_id" name="password2" placeholder="contrasena" autofocus required>
+                      <br>
+                      <div class="message" id="pass2Message"></div>
+                </div>
+
+                 
+
+                <br>
+                 <div >
+
+                     <label >Nombre completo:</label>
+                    <input type="text" class="text" id= "name_id" name="fullname" placeholder="Nombre completo" autofocus required>
+                      <br>
+                      <div class="message" id="nombreMessage"></div>
+                </div>
+
+                    <br>
+                 <div>
 
                      <label >Tipo de usuario:</label>
-                    <input type="text" class="text" name="role" placeholder="Rol de usuario" autofocus required>
+                    <input type="text" class="text" id= "role_id" name="role" placeholder="Rol de usuario" autofocus required>
+                      <br>
+                      <div class="message" id="roleMessage"></div>
                 </div>
 
                     <div class="form-g">
 
                     <br>
                 
-                    <button>
-                        Registrar
-                    </button>
+                    <button type="submit"  class="boton"  id="btnSave">Registrar</button>
                 </div>
                 </form>
                
@@ -58,4 +82,69 @@
     </div>
 
 
+
+
+
+<script src="bootstrap-5.2.0-dist/js/jquery-3.6.1.min.js"></script>
+		<script src="popper/popper.min.js"></script>
+		<script src="bootstrap-5.2.0-dist/js/bootstrap.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+        <script>
+           
+
+
+            $( document ).ready(function() {
+
+                $( "#btnSave" ).click(function(e) {
+
+                    e.preventDefault();
+                     
+        
+                    const account= {
+
+                        username: $("#userName_id").val(),                       
+                        password:  $("#password_id").val(),
+                        password2:  $("#password2_id").val()  ,
+                        fullname:  $("#name_id").val(),
+                        role:  $("#role_id").val()
+                    }
+                    
+
+
+                        
+                    
+
+                        
+                    console.log(account)
+                    $.post( "/signup", account, function( data ) {
+
+                        if(data.status=="ok"){
+
+                            window.location.href = '/crud';
+
+                        }else{
+                            
+                            $("#usuarioMessage").text(data.errors.username || "" )
+                            $("#passwordMessage").html(data.errors.password || "")
+                            $("#pass2Message").html(data.errors.password2 || "")
+                            $("#nombreMessage").html(data.errors.fullname || "")
+                            $("#roleMessage").html(data.errors.role|| "")
+                            
+                        }
+                    });
+                
+                });
+
+            });
+
+        
+
+            
+
+        
+
+            
+
+        </script>
 </div>
+</html>

@@ -69,7 +69,6 @@ app.use((req, res, next)=>{
 
 app.use(require('./routes'));
 app.use(require('./routes/authentication'));
-app.use('/crud',require('./routes/crud'));
 
 
 
@@ -87,6 +86,8 @@ app.listen(app.get('port'),() =>{
 console.log('Server on port', app.get('port'));
 
 });
+
+
 
 
 

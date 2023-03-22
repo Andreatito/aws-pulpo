@@ -17,7 +17,7 @@ passport.use('local.signin', new LocalStrategy({
 
 }, async (req, username, password, done) => {
 
-    
+   console.log(req.body) 
     const rows = await pool.query('SELECT * FROM users WHERE username =?', [username]);
     
     if(rows.length > 0) {
@@ -77,8 +77,13 @@ done(null, user.id);
 
 passport.deserializeUser(async(id, done) => {
 
-const rows= await pool.query('SELECT * FROM users WHERE id=?', [id]);
-done(null,rows[0]);
+    console.log('deserialize user');
+    const rows= await pool.query('SELECT * FROM users WHERE id=?', [id]);
+    if (rows[0]) {
+        done(null,rows[0]);
+    } else {
+        done(null,{});
+    }
 
 });
 

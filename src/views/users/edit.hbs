@@ -13,12 +13,12 @@
             
             <div >
 
-                 <h3>Agregar un usuario nuevo</h3>
+                 <h3>Editar usuario</h3>
 
                  <br>
                  <br>
       
-                <form class="user"  action= "/crud/usuarios" method="POST" id="FormUsuario">
+                <form class="user"   method="POST" id="FormUsuario">
 
                   <div >
                     <br>
@@ -28,9 +28,8 @@
                     <br>
                     <br>
                      <label >Nombre de usuario:</label>
-                    <input type="text" class="text" name="nombre" id="userName" placeholder="nombre" autofocus>
-                    <br>
-                    <div class="message" id="nombreMessage"></div>
+                    <input type="text" class="text" name="nombre" id="userName" value="{{usuario.nombre}}" placeholder="nombre" autofocus>
+                    <div id="nombreMessage" class="message"></div>
                 </div>
                 <br>
                 <br>
@@ -44,27 +43,25 @@
                             {{#each roles}} 
 
                                 
-                                <option value="{{id_rol}}">{{rol}}</option>
+                                <option value="{{id_rol}}" {{#if selected}}selected{{/if}}>{{rol}}</option>
                           
                             {{/each}}
 
                      </select>
-                    
-                      
-                
-                          <div class="message" id="rolMessage"></div>
+
+                          <div id="rolMessage" class="message"></div>
                 </div>
                 <br>
                 <br>
                 <div >
 
                     <label >email:</label>
-                    <input type="email" class="text1" name="email" id="email_id" placeholder="email" autofocus>
-                    <div class="message" id="emailMessage"></div>
+                    <input type="email" class="text1" name="email" id="email_id" value="{{usuario.email}}" placeholder="email" autofocus>
+
+                    <div id="emailMessage" class="message"></div>
              </div>
                 <br>
                 <br>
-
                 <div>
                     <label >Zona horaria:</label>
                     
@@ -75,25 +72,17 @@
                             {{#each timezones}} 
 
                                 
-                                <option value="{{id_timezone}}">{{timezone}}</option>
+                                <option value="{{id_timezone}}" {{#if selected}}selected{{/if}}>{{timezone}}</option>
                           
                             {{/each}}
 
                      </select>
-                     
-                          <div class="message" id="timezoneMessage"></div>
+                          <div id="timezoneMessage" class="message"></div>
                       
 
                 </div>
                  <br>
                  <br>
-                <div>
-                    <label >Cuenta:</label>
-                    <input type="text" class="text1" name="cuenta_id" id="cuenta_id" placeholder="Id de la cuenta" autofocus>
-                      <div class="message" id="cuentaMessage"></div>
-                </div>
-                <br>
-                <br>
 
                 <div >
 
@@ -131,25 +120,18 @@
                 $( "#btnSave" ).click(function(e) {
 
                     e.preventDefault();
-                     
-        
+
                     const account= {
 
-                        nombre: $("#userName").val(),                       
+                        nombre: $("#userName").val(),
                         rol_id:  $("#rol_id").val(),
-                        email:  $("#email_id").val()  ,
-                        timezone:  $("#timezone_id").val(),
-                        cuenta_id:  $("#cuenta_id").val()
+                        email:  $("#email_id").val(), 
+                        timezone_id:  $("#timezone_id").val(),
+                        
                     }
-                    
 
-
-                        
-                    
-
-                        
                     console.log(account)
-                    $.post( "/crud/usuarios", account, function( data ) {
+                    $.post( "/user/{{usuario.usuario_id}}/edit", account, function( data ) {
 
                         if(data.status=="ok"){
 
@@ -157,11 +139,11 @@
 
                         }else{
                             
-                            $("#nombreMessage").text(data.errors.nombre || "" )
+                            $("#nombreMessage").text(data.errors.nombre || "")
                             $("#rolMessage").html(data.errors.rol_id || "")
-                            $("#emailMessage").html(data.errors.email || "")
-                            $("#timezoneMessage").html(data.errors.timezone || "")
-                            $("#cuentaMessage").html(data.errors.cuenta_id || "")
+                            $("#emailMessage").html(data.errors.email|| "")
+                            $("#timezoneMessage").html(data.errors.timezone_id|| "")
+                            
                             
                         }
                     });

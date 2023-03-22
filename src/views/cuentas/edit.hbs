@@ -24,7 +24,9 @@
                 <div class="form-g">
                     <br>
                     <label >Nombre de la cuenta:</label>
-                    <input type="text" value="{{cuentas.nombre}}" class="text" name="nombre" placeholder="nombre" autofocus>
+                    <input type="text" id="accountName" value="{{cuentas.nombre}}" class="text" name="nombre" placeholder="nombre" autofocus>
+
+                    <div class="message" id="nombreMessage"></div>
 
                 </div>
 
@@ -42,7 +44,7 @@
                                 
                                  {{/each}}
                      </select>
-
+                <div class="message" id="planMessage"></div>
                 </div>
                 <br>
                 <div class="form-g">
@@ -59,7 +61,7 @@
                                 
                                  {{/each}}
                      </select>
-
+                <div class="message" id="statusMessage"></div>
 
                 </div>
                 <br>
@@ -76,7 +78,7 @@
                                 
                                  {{/each}}
                      </select>
-
+                <div class="message" id="paisMessage"></div>
                 </div>
                  <br>
                 <div class="form-g">
@@ -92,12 +94,14 @@
                                 
                                  {{/each}}
                      </select>
+                           <div class="message" id="timezoneMessage"></div>
+                </div>
 
                 <br>
                 <br>
                 <div class="form-g">
 
-                    <button class="boton">
+                    <button  id="btnSave">
 
                         Guardar
                     </button>
@@ -116,7 +120,63 @@
 
 
     </div>
+<script src="bootstrap-5.2.0-dist/js/jquery-3.6.1.min.js"></script>
+		<script src="popper/popper.min.js"></script>
+		<script src="bootstrap-5.2.0-dist/js/bootstrap.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+        <script>
+           
 
+
+            $( document ).ready(function() {
+
+                $( "#btnSave" ).click(function(e) {
+
+                    console.log("btnSave On Click")
+                    e.preventDefault();
+
+                    const account= {
+
+                        nombre: $("#accountName").val(),
+                        plan_id:  $("#plan_id").val(),
+                        status_id:  $("#status_id").val(),
+                        pais_id:  $("#pais_id").val(),
+                        timezone_id:  $("#timezone_id").val(),
+                        user_id:  $("#user_id").val()
+                    }
+
+                    console.log(account)
+
+                    $.post( "/crud/edit/{{cuentas.id}}", account, function( data ) {
+
+                        if(data.status=="ok"){
+
+                            window.location.href = '/crud/';
+
+                        }else{
+                            
+                            $("#nombreMessage").text(data.errors.nombre || "")
+                            $("#planMessage").html(data.errors.plan_id || "")
+                            $("#statusMessage").html(data.errors.status_id || "")
+                            $("#paisMessage").html(data.errors.pais_id || "")
+                            $("#timezoneMessage").html(data.errors.timezone_id || "")
+                            $("#userMessage").html(data.errors.user_id || "")
+                        }
+                    });
+                
+                });
+
+            });
+
+        
+
+            
+
+        
+
+            
+
+        </script>	
 
 </div>
 </html>

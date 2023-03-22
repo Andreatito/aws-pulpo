@@ -22,6 +22,15 @@
 
 }
 
+	.message {
+
+	color: red;
+	font-size: 9pt;
+	margin-top: 3px;
+	
+}
+
+
 	.add{
 
 			background-color: #f1f3f5;
@@ -39,6 +48,20 @@
 			color: #515050;
 
 	}
+
+
+	.user{
+
+		background-color: #f1f3f5;
+			padding-left: 15px;
+			color: #515050;
+
+	}
+
+
+	
+
+	
 .principal {
 
 	
@@ -198,4 +221,3 @@ table {
  
 
 
-	

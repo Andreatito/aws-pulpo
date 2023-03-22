@@ -14,7 +14,7 @@
 
 </div>
 
- <div style="float:left; position:absolute; left:730px;">
+ <div style=" position:absolute; left:930px;">
 
   <table class="table">
 
@@ -98,7 +98,7 @@
 {{!-- {{tabla plan contratado}} --}}
 
 
-<div style="float: right; position:absolute; right:750px;">
+<div style=" position:absolute; left:500px;">
 
          <table class="table">
 
@@ -123,7 +123,7 @@
 
                      <th>Vehículos</th>
 
-                    <td>{{vehiculos.total}}</td>
+                    <td>{{nVehiculos.total}}</td>
 
                 </tr>
 
@@ -159,8 +159,8 @@
                     <td> 
 
                       
-                        
-                         <a href="/crud/edit/{{id}}">Gestionar módulos</a>
+                        <a href="/crud/edituser/{{user}}">Editar</a>
+                         
                          
                     </td>
                 </tr>
@@ -231,8 +231,9 @@
 
                     <td>
 
-                    
-                        <a href="/crud/delete/{{id}}">Reset password</a>
+                         <a href="/user/{{usuario_id}}/edit">Editar</a>
+
+                     {{!-- {{<a href="/crud/resetPass/{{../user.id}}">Editar usuario</a>}} --}}   
 
                         
                          
@@ -252,7 +253,7 @@
         {{else}}
 
 
-<div  style="float:inline-end; position:absolute; top:700px;">
+<div  style=" position:center; margin-top: 300px">
 
  
 
@@ -267,6 +268,74 @@
             
         {{/if}}
 
+
+
+{{!-- {{Tabla de vehiculos}} --}}
+
+<div  style="  margin-top: 40px;">
+        <table class="table">
+
+            <thead>
+
+      
+                
+                    <th>Vehículos asociados a esta cuenta</th>
+                <tr>
+                    
+                     <th>Vehículo</th>
+                        <th>Marca</th>
+                        <th>Modelo</th>
+                        <th>Año</th>
+                        <th>Color</th>
+                        <th>Status</th>
+                        
+                    
+
+                </tr>
+            </thead>
+
+
+  <tbody> 
+                 
+                 {{#each vehiculos}}
+                
+                <tr>
+                    
+
+                    <td>{{nombreV}}</td>
+
+                    <td>{{brand}}</td>
+
+
+                    <td>{{modelo}}</td>
+
+                    <td>{{year}}</td>
+
+                    <td>{{color}}</td>
+
+                    <td>{{vhls}}</td>
+
+                    
+
+                    <td>
+
+                        <a href="/crud/delete/{{id}}">Borrar</a>
+                         <a href="/crud/edit/{{id}}">Editar</a>
+                         <a href="/crud/show/{{id}}">Ver </a>
+
+                        
+                         
+                    </td>
+                </tr>
+
+                {{/each}}
+            </tbody>
+
+
+
+
     </div>
+
+    
 
     </html>
