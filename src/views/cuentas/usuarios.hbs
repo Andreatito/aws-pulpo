@@ -94,6 +94,11 @@
                 </div>
                 <br>
                 <br>
+                <div>
+                    <label >Usuario:</label>
+                    <input type="text" class="text1" name="user_id" id="user_id" placeholder="Id de tu usuario" autofocus>
+                      <div class="message" id="usuarioMessage"></div>
+                </div>
 
                 <div >
 
@@ -139,7 +144,8 @@
                         rol_id:  $("#rol_id").val(),
                         email:  $("#email_id").val()  ,
                         timezone:  $("#timezone_id").val(),
-                        cuenta_id:  $("#cuenta_id").val()
+                        cuenta_id:  $("#cuenta_id").val(),
+                        user_id:  $("#user_id").val()
                     }
                     
 
@@ -162,6 +168,7 @@
                             $("#emailMessage").html(data.errors.email || "")
                             $("#timezoneMessage").html(data.errors.timezone || "")
                             $("#cuentaMessage").html(data.errors.cuenta_id || "")
+                             $("#usuarioMessage").html(data.errors.user_id || "")
                             
                         }
                     });

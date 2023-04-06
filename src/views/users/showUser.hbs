@@ -1,0 +1,96 @@
+<html>
+
+
+<head>
+<meta charset="UTF-8">
+<title>index</title>
+	<link rel="stylesheet" href="/css/styles.css">
+</head>
+
+
+ <div class="row">
+        
+      
+     {{#if usuarioC}}
+
+ <div  style="  margin-top: 300px;">
+        <table class="table">
+
+            <thead>
+
+      
+                
+                    <th>Usuarios de la cuenta</th>
+                <tr>
+                    
+                     <th>Role</th>
+                        <th>Usuario</th>
+                        <th>Email</th>
+                        <th>Timezone</th>
+                        <th>Deleted at</th>
+                        <th>Acciones</th>
+                        
+                    
+
+                </tr>
+            </thead>
+            
+
+            <tbody> 
+                 
+                 {{#each usuarioC}}
+                
+                <tr>
+                    
+            <td>{{rl}}</td>
+
+                    <td>{{nombre}}</td>
+
+
+                    <td>{{email}}</td>
+
+                    <td>{{tz}}</td>
+
+                    <td>{{acciones}}</td> 
+
+                    
+
+                    <td>
+
+                         <a href="/user/{{usuario_id}}/edit">Editar</a>
+
+                     {{!-- {{<a href="/crud/resetPass/{{../user.id}}">Editar usuario</a>}} --}}   
+
+                        
+                         
+                    </td>
+                </tr>
+                {{/each}}
+               
+            </tbody>
+
+        </table>
+
+   
+ </div>
+
+
+  
+         {{else}}
+
+
+<div  style=" position:center; margin-top: 300px">
+
+ 
+
+        <p>No hay usuarios asociados a esta cuenta</p>
+
+</div>
+        
+                
+               
+ {{/if}}  
+ 
+    </div>
+
+    </html>

@@ -110,16 +110,16 @@ router.post('/atributos', isLoggedIn, async (req, res) => {
   
 });
 
-
+/* 
 //Eliminar cuenta
 router.get('/delete/:id', isLoggedIn, async(req,res) => {
 
   const {id}=req.params;
-  await pool.query('UPDATE vehiculos SET deleted_at=now() WHERE ID=?',[id]);
+  await pool.query('UPDATE vehiculos SET deleted_at=now() WHERE id=?',[id]);
   req.flash('success','Vehiculo eliminado correctamente');
   res.redirect('/crud');
 
-});
+}); */
 
 
 //Agregar cuenta
@@ -293,16 +293,20 @@ router.get('/show/:id', isLoggedIn, async(req,res) => {
    
     console.log(vehiculos);
     res.render('./cuentas/show', {cuenta: cuenta[0], usuarios:usuarios, nVehiculos:nVehiculos[0], usuariosTotal:usuariosTotal[0], vehiculos:vehiculos} );
-   
+    
 
 }); 
+
+
+
+
 
 
 //Eliminar cuenta
         router.get('/delete/:id', isLoggedIn, async(req,res) => {
 
                const {id}=req.params;
-               await pool.query('UPDATE cuentas SET deleted_at=now() WHERE ID=?',[id]);
+               await pool.query('UPDATE cuentas SET deleted_at=now() WHERE id=?',[id]);
                req.flash('success','Cuenta eliminada correctamente');
                res.redirect('/crud');
 
@@ -457,6 +461,7 @@ router.post('/usuarios', isLoggedIn,  async (req, res) => {
                   var emailPattern = new RegExp(/^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i);
                   var nombrePattern=new RegExp(/^[a-zA-ZÑñÁáÉéÍíÓóÚúÜü\s]+$/);
                   var cuentapattern=new RegExp("[0-9]+");
+                  var userpattern=new RegExp("[0-9]");
 
 
                   if(!req.body.nombre){
@@ -491,7 +496,16 @@ router.post('/usuarios', isLoggedIn,  async (req, res) => {
       
                   }else if(!cuentapattern.test(req.body.cuenta_id)){
                     errors.cuenta_id="*Ingrese un ID de cuenta válido"
+
+                    
+                }if(!req.body.user_id){
+      
+                  errors.user_id="*Tu usuario es requerido"
+
+                }else if(!userpattern.test(req.body.user_id)){
+                  errors.user_id="*Ingrese un ID de cuenta válido"
                 }
+
                   if(Object.keys(errors).length !== 0){
 
                     res.json(
@@ -507,7 +521,7 @@ router.post('/usuarios', isLoggedIn,  async (req, res) => {
                     }else{
       
 
-                    const {nombre,rol_id,email,timezone,cuenta_id,}= req.body;
+                    const {nombre,rol_id,email,timezone,cuenta_id,user_id}= req.body;
                     const newUser ={
                 
                         
@@ -516,6 +530,7 @@ router.post('/usuarios', isLoggedIn,  async (req, res) => {
                         email,
                         timezone,
                         cuenta_id,
+                        user_id
                         
                   
 

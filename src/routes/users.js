@@ -99,6 +99,28 @@ router.get('/:id/edit', isLoggedIn, async(req,res) => {
           
       
       
+      //Listar usuarios en showusers
+
+
+
+
+router.get('/showUser/', isLoggedIn, async(req,res) => {
+
+  const {id}=req.params;
+
+  const usuarioC= await pool.query(`SELECT usuarios_cuenta.*, timezone.timezone AS tz, roles.rol as rl
+  FROM usuarios_cuenta 
+  LEFT JOIN timezone ON timezone.id_timezone = usuarios_cuenta.timezone  
+  LEFT JOIN roles ON roles.id_rol = usuarios_cuenta.rol_id 
+  LEFT JOIN users ON users.id = usuarios_cuenta.user_id 
+  WHERE usuarios_cuenta.user_id=?`,[req.user.id]);  
+   
+  console.log(usuarioC) 
+ 
+ 
+  res.render('./users/showUser', {usuarioC :usuarioC} );
+    
+});
 
 
 module.exports = router;
