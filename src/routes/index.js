@@ -3,7 +3,7 @@ const express = require ('express');
 const router = express.Router();
 const {isLoggedIn} = require('../lib/auth');
 
-const PDF = require('PDFKit');
+
 const fs= require('fs');
 const {content} = require("./crud")
 
