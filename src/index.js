@@ -74,14 +74,14 @@ app.use(require('./routes/authentication'));
 
 
 //Public
-if(process.env.NODE_ENV === 'production') {
+
+if(process.env.NODE.ENV === 'production') {
+    
     app.use(express.static(path.join(__dirname,'public')));
   
-    app.get('/', (req, res) => {
-      res.sendFile(path.join(__dirname,'public'))
-    });
     
   }
+
 
 
 
