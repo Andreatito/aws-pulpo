@@ -13,7 +13,7 @@
 
      <div class="addTitle">
 
-                <p >Agregar una cuenta nueva</p>
+                <p >Agregar datos de facturación</p>
 
      </div>
 
@@ -28,7 +28,7 @@
                 <div class="row-lg">
                     <br>
                     <br>
-                     <label >Nombre de la cuenta:</label>
+                     <label >Razón social:</label>
 
                     <input type="text" class="form-label-lg border rounded"  name="nombre" id="accountName" placeholder="nombre" autofocus >
 
@@ -39,7 +39,7 @@
                 <br>
                 <div class="row">
                 <div class="col">
-                    <label >Plan contratado:</label>
+                    <label >RFC:</label>
                    <select class="form-select form-select-sm " style="width:300px" name="plan_id" id="plan_id">
 
                              
@@ -177,7 +177,7 @@
                     }
 
                     console.log(account)
-                    $.post( "/crud/add", account, function( data ) {
+                    $.post( "/atributos/datosfacturacion", account, function( data ) {
 
                         if(data.status=="ok"){
 

@@ -1,5 +1,5 @@
 
-const { createPool } = require('mysql');
+//const { createPool } = require('mysql');
 const passport = require ('passport');
 const LocalStrategy = require ('passport-local').Strategy;
 
@@ -46,24 +46,37 @@ passport.use('local.signup', new LocalStrategy({
 
 
     usernameField: 'username',
-    passwordField:'password',
+    passwordField: 'password',
     passReqToCallback: true
+
 }, async (req, username, password, done) => {
 
-    const{fullname} =req.body;
+    const{fullname,is_admin,empleado,password2} =req.body;
+    
 
     const newUser = {
 
     username,
     password,
-    fullname
+    fullname,
+    is_admin,
+    empleado,
+    password2
 
-};
+}; 
 
 newUser.password= await helpers.encryptPassword(password);// cifrado de password
 
 const result = await pool.query('INSERT INTO users SET ?', [newUser]);
+
+
+console.log(result)
 newUser.id = result.insertId;
+
+
+
+
+
 return done(null, newUser);
 
 }));

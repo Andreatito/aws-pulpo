@@ -7,6 +7,8 @@ const helpers = {};
 
 // cifrado de contraseña cuando se realiza el registro de usuario
 
+
+
 helpers.encryptPassword = async (password) => {
 
 const salt= await bcrypt.genSalt (10); //patron de cifrado
@@ -16,9 +18,9 @@ const hash = await bcrypt.hash(password, salt); //cifrado
 return hash; 
 
 
-};
+}; 
 
-// cifrado de contraseña cuando se realiza el registro de usuario
+// cifrado de contraseña cuando se realiza el login de usuario
 
 helpers.matchPassword = async (password, savedPassword) => {
 

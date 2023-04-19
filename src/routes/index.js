@@ -3,11 +3,14 @@ const express = require ('express');
 const router = express.Router();
 const {isLoggedIn} = require('../lib/auth');
 
-router.get('/', isLoggedIn, (req, res) => {
+const PDF = require('PDFKit');
+const fs= require('fs');
+const {content} = require("./crud")
 
 
-    res.render('index');
-});
+//crear PDF
+
+
 
 
 
@@ -21,6 +24,7 @@ router.get("/audit",( req, res) =>{
 
 router.use('/crud',require('./crud'));
 router.use('/user', require('./users'));
+router.use('/atributos', require('./atributos'));
         
 
 

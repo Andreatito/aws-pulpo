@@ -1,0 +1,191 @@
+<html>
+<head>
+    
+ 
+
+<meta charset="UTF-8">
+<title>index</title>
+
+	<link rel="stylesheet" href="/css/styles.css">
+    
+</head>
+
+<body>
+
+   
+      
+        
+            
+            <div class= "add" >
+
+                  <div class="addTitle">
+                    <h5>Agregar conductor</h5>
+               
+
+                </div>
+
+                  
+
+
+                <form  >
+               <div class="row">   
+                <div class="col">
+
+                   
+                    <br>
+                    <br>
+                     <label >Nombre del conductor:</label>
+                    <input type="text" class="text " name="nombre" id="nameConductor" placeholder="Nombre" autofocus >
+
+                <div class="message" id="nombreCMessage"></div>
+
+                </div>
+
+                 <div class="col">
+                    <br>
+                    <br>
+                     <label >Apellido:</label>
+                    <input type="text" class="text" name="apellido" id="apellido_id" placeholder="Apellido" autofocus >
+
+                <div class="message" id="apellidoMessage"></div>
+
+                </div>
+                </div>  
+                <br>
+                <br>
+                  <div class="row">  
+                <div class="col">
+                    <label >Licencia:</label>
+
+                   <input type="text" class="text" name="licencia" id="licConductor" placeholder="No de licencia" autofocus >
+                     
+                <div class="message" id="licenciaMessage"></div>
+                </div>
+
+                <br>
+                <br>
+
+                <div class="col">
+
+                    <label >Vehículo:</label>
+                   
+                          <select class="form-select form-select-sm " style="width:auto" name="vehiculo_id" id="vehiculo_id">
+
+                             
+                                <option value="">-- vehiculo--</option>
+
+                              {{#each vehiculos}} 
+
+                                <option value="{{id_vehiculo}}">{{id_vehiculo}}</option>
+                                
+                                 {{/each}}
+                     </select>
+                 <div class="message" id="vehiculoMessage"></div>
+
+
+                <div="row">
+                <div class="col">
+
+                    <label >Asignar conductor a cuenta:</label>
+                    <br>
+                
+                    
+                       <select class="form-select form-select-sm " style="width:auto" name="Cuenta_id" id="conductor_id">
+
+                            <option value="">-- Cuentas--</option>
+
+                            {{#each cuentas2}} 
+
+                                
+                                <option value="{{id}}">{{nombre}}</option>
+                          
+                            {{/each}}
+                     </select>  
+
+                         <div class="message" id="conductorMessage"></div>
+                </div>
+                <br>
+                <br>
+                <br>
+                <br>
+             
+                <div class="form-g">
+
+                    <button class="btn btn-primary" id="btnSave">
+
+                        Guardar
+                    </button>
+                    <br>
+                    <br>
+                </div>
+
+                </form>
+
+    
+
+            </div>
+
+
+
+       
+
+
+    
+
+
+
+<script src="bootstrap-5.2.0-dist/js/jquery-3.6.1.min.js"></script>
+		<script src="popper/popper.min.js"></script>
+		<script src="bootstrap-5.2.0-dist/js/bootstrap.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+        <script>
+           
+
+
+            $( document ).ready(function() {
+
+                $( "#btnSave" ).click(function(e) {
+
+                    e.preventDefault();
+
+                    const account= {
+
+                        nombre: $("#nameConductor").val(),
+                        apellido: $("#apellido_id").val(),
+                        licencia:  $("#licConductor").val(),
+                        vehiculo_id:  $("#vehiculo_id").val(),
+                        Cuenta_id:  $("#conductor_id").val(),
+                    }
+                    
+                    $.post( "/atributos/conductor", account, function( data ) {
+
+                        if(data.status=="ok"){
+
+                            window.location.href = '/crud';
+
+                        }else{
+                            
+                            $("#nombreCMessage").text(data.errors.nombre || "")
+                            $("#apellidoMessage").text(data.errors.apellido || "")
+                            $("#licenciaMessage").html(data.errors.licencia|| "")
+                            $("#vehiculoMessage").html(data.errors.vehiculo_id || "")
+                             $("#conductorMessage").html(data.errors.Cuenta_id|| "")
+                           
+                        }
+                    });
+                
+                });
+
+            });
+
+        
+
+            
+
+        
+
+            
+
+        </script>	
+</body>
+</html>

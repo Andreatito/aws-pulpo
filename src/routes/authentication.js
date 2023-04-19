@@ -4,6 +4,9 @@ const passport = require('passport');
 
 const {isLoggedIn} = require('../lib/auth');
 
+const pool = require('../database');
+const { Passport } = require('passport');
+
     router.get('/signup',(req,res) =>{
         res.render('auth/signup')
     });
@@ -12,10 +15,18 @@ const {isLoggedIn} = require('../lib/auth');
 
     router.post('/signup', isLoggedIn, async (req, res) => {
 
+      passport.authenticate ('local.signup', {
+
+        successRedirect: '/profile',
+        failureRedirect:'/signin',
+        failureFlash: true
+
+  })
+
         console.log("cuentas post add")
        
         var errors= {}
-        var nombrePattern=new RegExp(/^[a-zA-ZÑñÁáÉéÍíÓóÚúÜü\s]+$/);
+        var nombrePattern=new RegExp(/^[A-Za-zÑñÁáÉéÍíÓóÚúÜü ]{1,50}$/);
         
         if(!req.body.username){
 
@@ -43,9 +54,9 @@ const {isLoggedIn} = require('../lib/auth');
 
         }
 
-        if(!req.body.role){
+        if(!req.body.is_admin){
 
-          errors.role="*La zona horaria es requerida"
+          errors.is_admin="*La zona horaria es requerida"
 
         }
 
@@ -73,18 +84,18 @@ const {isLoggedIn} = require('../lib/auth');
           )
         }
         
-    });
+   });
+/*   
+    router.post('/signup', passport.authenticate ('local.signup', {
 
-   
-    
-
-
-
-
-
+        successRedirect: '/profile',
+        failureRedirect:'/signin',
+        failureFlash: true
 
 
 
+
+  })); */
 
     router.get('/signin', (req, res)=> {
 

@@ -40,73 +40,154 @@
 		
 			{{#if user}}
 				
-			 <ul class="nav navbar-nav ">
+			 <ul class="menu-box ">
 
-				<li class="nav-item dropdown">
-					
 				
-					<a class="nav-link " class="active" href="/profile">Perfil</a></li>
-					</li>
 					
-				
-				<li class="nav-item dropdown">
 
-					<a class="nav-link dropdown-toggle"  href="#" data-bs-toggle="dropdown">Cuentas</a>
-					<div class="dropdown-menu">
+					<div class="drop-down-menu">
 					
-						<a class="dropdown-item" href="/crud">Ver cuentas</a>
-						<a class="dropdown-item" href="/crud/add">Agregar cuenta</a>
-						
-					
+						<button class="drop-down-button" href="/profile">Perfil
+
+							<i class="fa fa-caret-down"></i>
+
+						</button>
+					<div class="drop-down-menu-content">
+
+							<a class="nav-link " class="active" href="/profile">Perfil</a></li>
+
 					</div>
-					</li>
+						
+					</div>
+
+				
+				{{!-- <li class="nav-item dropdown"> --}}
+
 					
+
+					<div class="drop-down-menu">
+					
+						<button class="drop-down-button">Cuentas
+
+							<i class="fa fa-caret-down"></i>
+
+						</button>
+					<div class="drop-down-menu-content">
+
+							<a class="dropdown-item" href="/crud">Ver cuentas</a>
+							<a class="dropdown-item" href="/crud/add">Agregar cuenta</a>
+
+					</div>
+						
+					</div>
+
+					
+					{{!-- </li> --}}
+					
+
+			
+
+				<div class="drop-down-menu">
+					
+						<button class="drop-down-button">Usuarios
+
+							<i class="fa fa-caret-down"></i>
+
+						</button>
+					<div class="drop-down-menu-content">
+
+							<a class="dropdown-item" href="/crud/usuarios/">Agregar usuario de cuenta</a>
+							<a class="dropdown-item" href="/user/showUser">Ver usuarios</a>
+
+					</div>
+						
+					</div>
+					
+			
+
+
+
+				<div class="drop-down-menu">
+					
+						<button class="drop-down-button">Atributos
+
+							<i class="fa fa-caret-down"></i>
+
+						</button>
+					<div class="drop-down-menu-content">
+
+							
+						<a class="dropdown-item" href="/atributos/addVehiculo">Agregar vehículo a cuenta</a>
+						<a class="dropdown-item" href="/atributos/conductor">Agregar conductor</a>
+						<a class="dropdown-item" href="/atributos/datosfacturacion">Agregar datos de facturación</a>
+						<a class="dropdown-item" href="/user/showUser">Mantenimientos</a>
+						<a class="dropdown-item" href="/user/showUser">Método de pago</a>
+
+					</div>
+						
+					</div>
+
+
+				<div class="drop-down-menu">
+					
+						<button class="drop-down-button">Auditoría
+
+							<i class="fa fa-caret-down"></i>
+
+						</button>
+					<div class="drop-down-menu-content">
+
+						<a class="dropdown-item" href="/atributos/addVehiculo">Ver facturación</a>
+						<a class="dropdown-item" href="/atributos/conductor">Detalle de condutores</a>
+						<a class="dropdown-item" href="/atributos/unidadesMedida">Detalle de vehículos</a>
+						<a class="dropdown-item" href="/user/showUser">Mantenimientos por vehículo</a>
+						
+
+					</div>
+						
+					</div>
+				
+				
 
 			{{#if user.is_admin}}
 
-				<li class="nav-item dropdown">
+				<div class="drop-down-menu">
+					
+						<button class="drop-down-button">Registrar usuario
 
-					<a class="nav-link dropdown-toggle"  href="#" data-bs-toggle="dropdown">Usuarios</a>
-					<div class="dropdown-menu">
-					
-						<a class="dropdown-item" href="/crud/usuarios/">Agregar usuario de cuenta</a>
-						<a class="dropdown-item" href="/user/showUser">Ver usuarios</a>
-						
-						
-					
+							<i class="fa fa-caret-down"></i>
+
+						</button>
+					<div class="drop-down-menu-content">
+
+							
+						<a class="nav-link" class="active" href="/signup">Registrar usuario</a></li>
+
 					</div>
-					</li>
-					
+						
+					</div>
+
+
+			
 			{{/if}}
 
-				<li class="nav-item dropdown">
-
-					<a class="nav-link dropdown-toggle"  href="#" data-bs-toggle="dropdown">Atributos</a>
-					{{!-- <a class="nav-link dropdown-toggle" href="/crud/atributos">Atributos</a> --}}
-
-					<div class="dropdown-menu">
+			<div class="drop-down-menu">
 					
-						<a class="dropdown-item" href="/crud/atributos">Agregar vehículo a cuenta</a>
-						<a class="dropdown-item" href="/user/showUser">Agregar conductor</a>
-						
-						
-					
+						<button class="drop-down-button ">Cerrar sesión
+
+							<i class="fa fa-caret-down"></i>
+
+						</button>
+					<div class="drop-down-menu-content">
+
+							
+						<a class="nav-link" class="active" href="/logout">Cerrar sesión</a></li>
+
 					</div>
-					
-					</li>
-				<li class="nav-item">
-					<a class="nav-link dropdown-toggle" class="active" href="/audit">Auditoria</a></li>
+						
+					</div>
+
 				
-
-			{{#if user.is_admin}}
-
-				<li class="nav-item">
-					<a class="nav-link" class="active" href="/signup">Registrar usuario</a></li>
-			{{/if}}
-
-				<li class="nav-item">
-					<a class="nav-link" class="active" href="/logout">Cerrar sesión</a></li>
-	
 
 			{{/if}}	
 

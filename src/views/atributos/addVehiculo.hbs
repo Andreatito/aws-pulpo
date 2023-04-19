@@ -12,34 +12,37 @@
 <body>
 
    
-        <div class="addTitle">
-
-                 <p>Agregar vehículo a cuenta</p>
-
-        </div>
+  
         
             
             <div class= "add" >
 
+                <div class="addTitle">
 
+                <h5>Agregar vehículo a cuenta</h5>
+
+                </div>
 
                 <form  >
-
-                <div class="form-g">
+                <div clas="row">
+                <div class="col">
                     <br>
                     <br>
                      <label >Tipo de vehículo:</label>
-                    <input type="text" class="text" name="nombreV" id="nameVehiculo" placeholder="nombre" autofocus >
+
+                    <input type="text" class="form-label-lg border rounded" name="nombreV" id="nameVehiculo" placeholder="Tipo de vehículo" autofocus >
 
                 <div class="message" id="nombreVMessage"></div>
+                </div>
 
                 </div>
                 <br>
                 <br>
-                <div class="form-g">
+                <div class="row">
+                <div class="col-md-4 w-25 p-3">
                     <label >Marca:</label>
 
-                   <select name="brand" id="brand_id">
+                   <select class="form-select form-select-sm " style="width:auto" name="brand" id="brand_id">
 
                              
                                 <option value="">--Marca-</option>
@@ -56,11 +59,11 @@
                 <br>
                 <br>
 
-                <div class="form-g">
+                <div class="col-md-4 w-25 p-3">
 
                     <label >Modelo:</label>
                    
-                          <select name="model" id="model_id">
+                          <select class="form-select form-select-sm " style="width:auto" name="model" id="model_id">
 
                              
                                 <option value="">-- Modelo--</option>
@@ -76,10 +79,10 @@
                 </div>
                 <br>
                 <br>
-                <div class="form-g">
+                <div class="col-md-4 w-25 p-3">
                     <label >Año:</label>
 
-                       <select name="year" id="year_id">
+                       <select class="form-select form-select-sm " style="width:auto" name="year" id="year_id">
 
                             <option value="">--Año--</option>
 
@@ -92,12 +95,14 @@
                      </select>
                  <div class="message" id="yearMessage"></div>
                 </div>
+                </div>
                  <br>
                  <br>
-                <div class="form-g">
+                <div class="row">
+                <div class="col-md-4 w-25 p-3">
                     <label >Color:</label>
                     
-                       <select name="color" id="color_id">
+                       <select class="form-select form-select-sm " style="width:auto" name="color" id="color_id">
 
                             <option value="">-- Color--</option>
 
@@ -114,10 +119,10 @@
                 
                 <br>
                 <br>
-                <div class="form-g">
+                <div class="col-md-4 w-25 p-3">
                     <label >Status del vehículo:</label>
                     
-                       <select name="vehiculo_status" id="status_id">
+                       <select class="form-select form-select-sm " style="width:auto" name="vehiculo_status" id="status_id">
 
                             <option value="">-- Status--</option>
 
@@ -129,16 +134,21 @@
                             {{/each}}
                      </select>
                         <div class="message" id="statusMessage"></div> 
+               
+
+                <br>
+                <br>
+
+                 </div>
                 </div>
-
-                <br>
-                <br>
-
-                <div class="form-g">
+                <div="row">
+                <div class="col">
 
                     <label >Asignar vehículo a cuenta:</label>
+                    <br>
+                
                     
-                       <select name="cuenta" id="cuenta_id">
+                       <select class="form-select form-select-sm " style="width:auto" name="cuenta" id="cuenta_id">
 
                             <option value="">-- Cuentas--</option>
 
@@ -154,6 +164,7 @@
                 </div>
                 <br>
                 <br>
+                
                 <div class="form-g">
 
                     <button class="btn btn-primary" id="btnSave">
@@ -204,7 +215,7 @@
                         cuenta:  $("#cuenta_id").val()
                     }
                     
-                    $.post( "/crud/atributos", account, function( data ) {
+                    $.post( "/atributos/addVehiculo", account, function( data ) {
 
                         if(data.status=="ok"){
 

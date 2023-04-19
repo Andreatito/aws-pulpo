@@ -1,15 +1,63 @@
 
+:root{    
+   
+    --secundary:#6ab3f7;
+    --background:#c1c4c8;
+    --black-text:rgb(94, 91, 91);
+    --white-text:#ffffff;
+}
 
-
+*{
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+    list-style: none;
+    box-sizing: border-box;
+    border: none;
+}
 
 .signin{
-
-		
+		margin-top: 150px;
+		margin-left: 45%;
 		padding: 10px;
 		width: max-content;
-		background-color: #f1f3f5;
+		background-color:hsl(210, 50%, 98%);
 		padding-left: 15px;
-		color: #515050;
+		
+
+}
+
+.signUP{
+
+	margin-top: 150px;
+	margin-left: 40%;
+	width: 20%;
+	background-color: hsl(210, 50%, 98%);
+	font-size:medium;
+	border-radius: 20px;
+	padding-left: 50px;
+}
+
+.usuarios{
+
+	margin-top: 70px;
+	margin-left: 40%;
+	width: 20%;
+	background-color: hsl(210, 50%, 98%);
+	font-size:medium;
+	border-radius: 20px;
+	padding-left: 50px;
+
+
+}
+
+.usuariosTitle{
+
+	
+	font-size:20px;
+	margin-top: 130px;
+	margin-left: 42%;
+	width: 20%;
 
 }
 
@@ -23,10 +71,13 @@
 
 .addTitle{
 	
+	padding-top: 20px;
 	font-size:20px;
-	margin-top: 130px;
-	margin-left: 40%;
+	margin-top: 10px;
+	margin-left: 28%;
 	width: 40%;
+	
+	color: #515050;
 
 	
 }
@@ -34,10 +85,12 @@
 
 .add{
 
-	margin-top: 70px;
-	margin-left: 40%;
-	width: 20%;
-	background-color: hsl(210, 50%, 98%);
+	border: solid 0.1em;
+	margin-top: 20px;
+	margin-left: 30%;
+	width: 40%;
+	background-color:#ffffff;
+	border-color: #31a0f5;
 	font-size:medium;
 	border-radius: 20px;
 	padding-left: 50px;
@@ -49,19 +102,20 @@
 
 	.edit{
 
-		background-color: #f1f3f5;
-			padding-left: 15px;
-			color: #515050;
-
+		margin-top: 120px;
+		margin-left: 40%;
+		width: 20%;
+		background-color: hsl(210, 50%, 98%);
+		font-size:medium;
+		border-radius: 20px;
+		padding-left: 50px;
+		
 	}
 
 
-	.user{
-
-		background-color: #f1f3f5;
-			padding-left: 15px;
-			color: #515050;
-
+	.resetPass{
+		width: 50%;
+		background-color: #31a0f5;
 	}
 
 
@@ -75,8 +129,8 @@
 
 
 	.box01{
-		margin-top: 5% ;
-		margin-left: 25%;
+		margin-top: 8% ;
+		
 		width: 990px;
 		height: 100px;
 		
@@ -88,7 +142,7 @@
 
 	.list{
 
-		
+		padding-left: 100%;
 		float: right;
 		width: 90px;
   		height: 50px;
@@ -126,57 +180,101 @@
 }
 
 
+/* Navegador*/
 
- nav ul{
-	
+nav{
+
+	margin-left: 22%;
+	background-color: #bdbfc3;
+	height: 7vh;
+	width:  60%;
 	display: flex;
-	list-style-type: none;
-	margin: 0;
-	padding-top: 2px;
-	background-color: #e0e2e4;
+	justify-content: space-around;
+	
+	
+}
+
+
+
+.drop-down-menu .drop-down-button{
+
+
+margin-left: 25px;
+font-size: 1.2rem;
+outline: none;
+color: var(--black-text);
+padding: 1rem 1rem;
+background-color: inherit;
+
+
+}
+
+.drop-down-menu-content{
+
+	
+	display: none;
+	position:absolute;
+	background-color: var(--white-text);
+	min-width: 10rem;
+	box-shadow: 0 .8rem 1rem 0 rgba(0, 0, 00, .2);
+	z-index: 1;
+}
+
+
+.drop-down-menu:hover{
+
+	background-color: var(--secundary);
+	color: var(--black-text);
+}
+
+
+
+.drop-down-menu-content a{
+
+
+	float: none;
+	color: var(--black-text);
+	padding: 1rem 1rem;
+	display: block;
+}
+
+
+.drop-down-menu-content a:hover{
+
+	background-color: var(--background);
+	color: var(--white-text);
 
 
 }
 
 
-
- nav ul li a{
+.drop-down-menu:hover .drop-down-menu-content{
 
 	display: block;
-	color: #515050;
-	text-align:center;
-	text-decoration: none;
-	font-size: medium;
-	
-
-	
-}  
 
 
-
- .navbar-nav > li{
-	padding-left:60px;
-	padding-right:40px;
-	padding-top: 15px;
-	padding-bottom: 15px;
-  }
-
-.navbar-center {
-    position: absolute;
-    left: 30%;
-    transform: translatex(-20%);
-
-  } 
-
-
-  table{
-
-	margin-left: 25%;
-	max-width: 1000px;
-    table-layout: fixed;
-	
-    
 }
+
+
+
+  nav ul{
+	
+	display: flex;
+	
+	
+} 
+
+
+
+
+/*Tablas*/
+
+  .tableCta{
+	
+	margin-right: 150px;
+	padding-right: 30px;
+
+  }
 
 
  thead{
@@ -200,7 +298,7 @@
 
 
 
-
+/* 
  a {
 	outline: none;
 	text-decoration: none;
@@ -235,15 +333,76 @@
 
 	margin: 0 auto;
  }
- 
+  */
 
 .showCta{
 
-	margin-top: 500px;
-	width:50%;
-	background-color: darkgoldenrod;
+		
+		
+	   margin-top: 120px ;
+		margin-left: 17%;
+		width: 990px;
+		
+		display: flex;
+		align-items: center;
+		
+}
+
+.showUser{
+
+	margin-left: 1%;
+	width: 100%;
+	
+	
+}
+@media screen and (max-width: 320px){
+table{
+
+	
+	
+    table-layout: fixed;
+	display: block;
+    overflow-x: auto;
+	
+}
+}
+
+.divUsuarios{
+
+	position: relative;
+	margin-left: 550px;
+	max-width: 1100px;
+	
+
 }
 
 
+.CeroUser{
+	width: 400px;
+	margin-left: 40%;
+	margin-top: 100px;
+	
+}
+
+.datatable{
+
+	margin-left: 25%;
+	width: 1100px;
+	
+}
+
+.table-striped > tbody > tr:nth-child(2n+1) > td, .table-striped > tbody > tr:nth-child(2n+1) > th {
+	background-color: rgba(14, 163, 244, 0.077);
+ }
+
+/* Boton para generar archivos pdf */
+
+.btnPDF{
+	margin-top: 15px;
+	margin-left: 50%;
+	width: 20%;
+	padding-left: 20%;
+	
+}
 
 

@@ -6,15 +6,17 @@
 </head>
 
 
-<div >
+<div class="signUP">
     <div >
 
         <div >
             
-            <div >
-                    <h3>Registrar usuario</h3>
+            <div>
+                    <h4>Registrar usuario</h4>
                     <br>
                      <br>
+
+             </div>
                 <form class="user"  action="/signup" method="POST">
 
                 <div >
@@ -59,20 +61,20 @@
                  <div>
 
                      <label >Tipo de usuario:</label>
-                    <input type="text" class="text" id= "role_id" name="role" placeholder="Rol de usuario" autofocus required>
+                    <input type="text" class="text" id= "isAdmin_id" name="is_admin" placeholder="Rol de usuario" autofocus required>
                       <br>
-                      <div class="message" id="roleMessage"></div>
+                      <div class="message" id="isAdminMessage"></div>
                 </div>
 
                     <div class="form-g">
 
                     <br>
                 
-                    <button type="submit"  class="boton"  id="btnSave">Registrar</button>
+                    <button type="submit"  class="btn btn-primary" id="btnSave">Registrar</button>
                 </div>
                 </form>
                
-            </div>
+           
 
 
 
@@ -102,11 +104,11 @@
         
                     const account= {
 
-                        username: $("#userName_id").val(),                       
+                        username: $("#username_id").val(),                       
                         password:  $("#password_id").val(),
                         password2:  $("#password2_id").val()  ,
                         fullname:  $("#name_id").val(),
-                        role:  $("#role_id").val()
+                        is_admin:  $("#isAdmin_id").val()
                     }
                     
 
@@ -128,7 +130,7 @@
                             $("#passwordMessage").html(data.errors.password || "")
                             $("#pass2Message").html(data.errors.password2 || "")
                             $("#nombreMessage").html(data.errors.fullname || "")
-                            $("#roleMessage").html(data.errors.role|| "")
+                            $("#isAdminMessage").html(data.errors.is_Admin|| "")
                             
                         }
                     });

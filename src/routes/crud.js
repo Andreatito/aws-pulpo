@@ -1,3 +1,4 @@
+const e = require('connect-flash');
 const { response } = require('express');
 const express = require('express');
 const router = express.Router();
@@ -10,105 +11,6 @@ const helpers = require('../lib/helpers');
 const {validateCreate} = require('../routes/validation');
 
 
-
-
-
-
-//Agregar vehiculo
-
-router.get('/atributos',isLoggedIn, async(req, res) =>{
-  console.log("cuentas get add")
-  const brand= await pool.query('SELECT * FROM brand');
-  console.log (brand);
-  const modelo= await pool.query('SELECT * FROM modelo');
-  console.log (modelo);
-  const year= await pool.query('SELECT * FROM year');
-  console.log (year);
-  const color= await pool.query('SELECT * FROM color');
-  console.log (color);
-  const vehiculo_status= await pool.query('SELECT * FROM vehiculo_status');
-  console.log (vehiculo_status);
-  const cuentas= await pool.query('SELECT * FROM cuentas');
-  console.log (cuentas);
-
-  res.render('./atributos',{brand,modelo,year,color,vehiculo_status,cuentas});
-  
-} );
-
-
-router.post('/atributos', isLoggedIn, async (req, res) => {
-
-  console.log("cuentas post add")
- 
-  var errors= {}
-  var nombrePattern=new RegExp(/^[a-zA-ZÑñÁáÉéÍíÓóÚúÜü\s]+$/);
-  
-  if(!req.body.nombreV){
-
-    errors.nombreV="*El nombre es requerido"
-
-  }else if(!nombrePattern.test(req.body.nombreV)){
-    errors.nombreV="*Ingrese un nombre válido"
-}
-  
-  if(!req.body.brand){
-
-    errors.brand="*Ingrese la marca del vehículo"
-}
-
-  if(!req.body.model){
-
-    errors.model="*Debe ingresar el modelo del vehículo"
-
-  }
-
-  if(!req.body.year){
-
-    errors.year="*El año del vehículo es requerido"
-
-  }
-
-  if(!req.body.color){
-
-    errors.color="*El color es requerido"
-
-  }
-  
-  if(!req.body.vehiculo_status){
-
-    errors.vehiculo_status="*Ingrese el status del vehículo"
-
-  }
-
-  if(!req.body.cuenta){
-
-    errors.cuenta="*La cuenta es requerida"
-    
-  }
-  console.log ("andrea",Object.keys(errors).length)
-  if(Object.keys(errors).length !== 0){
-
-    res.json(
-      {
-        status:"error",
-        message:"Error al agregar el vehículo",
-        errors: errors
-      }
-    )
-
-  }else{
-    
-    await pool.query('INSERT INTO vehiculos set ?', [req.body]);
-
-    res.json(
-    {
-      status:"ok",
-      message:"Automóvil agregado correctamente"
-    }
-    )
-  }
-  
-});
 
 /* 
 //Eliminar cuenta
@@ -253,15 +155,18 @@ router.get('/show/:id', isLoggedIn, async(req,res) => {
 
     const {id}=req.params;
     const cuenta= await pool.query(`SELECT 
-            cuentas.*,timezone.timezone AS tz,status.nombre AS status_nombre,paises.nombre AS pais_nombre
+            cuentas.*,timezone.timezone AS tz,status.nombre AS status_nombre,paises.nombre AS pais_nombre, planes.descripcion AS descripcion
           FROM 
             cuentas 
             LEFT JOIN timezone ON timezone.id_timezone = cuentas.timezone_id 
             LEFT JOIN status ON status.id = cuentas.status_id 
             LEFT JOIN paises ON paises.id = cuentas.pais_id
+            LEFT JOIN planes ON planes.id_plan = cuentas.plan_id
             
               WHERE 
                 cuentas.id = ?`,[id]);
+
+ 
 
     const vehiculos = await pool.query(`
       SELECT  
@@ -288,11 +193,18 @@ router.get('/show/:id', isLoggedIn, async(req,res) => {
     WHERE usuarios_cuenta.cuenta_id=?`,[id]);
 
 
+   
+
+//Mostrar tabla Plan contratado
+
     const nVehiculos= await pool.query('SELECT COUNT(*) AS total FROM vehiculos WHERE cuenta=?',id);
     const usuariosTotal= await pool.query('SELECT COUNT(*) AS total FROM usuarios_cuenta WHERE cuenta_id=?',id);
+    const conductoresTotal= await pool.query('SELECT COUNT(*) AS total FROM conductor WHERE cuenta_id=?',id);
+    
    
-    console.log(vehiculos);
-    res.render('./cuentas/show', {cuenta: cuenta[0], usuarios:usuarios, nVehiculos:nVehiculos[0], usuariosTotal:usuariosTotal[0], vehiculos:vehiculos} );
+    
+    res.render('./cuentas/show', {cuenta: cuenta[0], usuarios:usuarios, nVehiculos:nVehiculos[0], 
+      usuariosTotal:usuariosTotal[0],conductoresTotal:conductoresTotal[0], vehiculos:vehiculos} );
     
 
 }); 
@@ -627,6 +539,9 @@ router.post('/usuarios', isLoggedIn,  async (req, res) => {
   
               }
   });
+
+
+
 
 module.exports = router;
    

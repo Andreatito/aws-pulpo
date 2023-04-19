@@ -7,19 +7,18 @@
 
     
     
-    <div >
-    <div >
+    
+    <div class="edit" >
 
         <div >
             
             <div >
 
-                <h3>Editar cuenta</h3>
+                 <h4>Editar cuenta</h4>
 
-                 <br>
-                 <br>
+             </div> 
 
-                <form  class = "edit" action= "/crud/edit/{{cuentas.id}}" method="POST">
+                <form  action= "/crud/edit/{{cuentas.id}}" method="POST">
 
                 <div class="form-g">
                     <br>
@@ -101,7 +100,7 @@
                 <br>
                 <div class="form-g">
 
-                    <button  id="btnSave">
+                    <button  class="btn btn-primary" id="btnSave">
 
                         Guardar
                     </button>
@@ -110,7 +109,7 @@
 
                 </form>
 
-                <button type="submit" formaction="./crud">Cancelar</button>
+                <button class="btn btn-primary" type="submit" formaction="./crud">Cancelar</button>
                     <br>
             </div>
 
