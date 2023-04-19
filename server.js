@@ -9,7 +9,7 @@ const app=express();
 app.get('/', function(req, res, next) {
 
 
-res.render('/index')   
+res.render('/signin')   
 
 });
 
