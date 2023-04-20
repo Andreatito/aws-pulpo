@@ -492,6 +492,9 @@ router.post('/usuarios', isLoggedIn,  async (req, res) => {
     console.log("Editing user" , id)
     var errors= {}
 
+   
+
+
               if(!req.body.password){
   
                 errors.id="*El campo nueva contraseña no puede quedar vacío"

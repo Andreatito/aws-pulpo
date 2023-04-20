@@ -22,7 +22,7 @@ const app= express();//definir puerto de conexión- settings
 
 require('./lib/passport');
 
-
+//se inicializa la aplicación en localhost: 4000
 
 app.get('/', function(req, res, next) {
 

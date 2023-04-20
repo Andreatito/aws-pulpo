@@ -6,33 +6,33 @@
 </head>
 
 
-<div >
+<div class="add bg-light">
     
 
         
             
-                <div class="usuariosTitle">
-                 <h3>Agregar un usuario nuevo</h3>
+                <div class="addTitle">
+                 <p>Agregar un usuario nuevo</p>
                 </div>
                 
-
-                <form class="usuarios" action= "/crud/usuarios" method="POST" id="FormUsuario">
-
-                  <div >
-                    <br>
-                    <br>
-                   
-                <div >
-                    <br>
-                    <br>
+                <form action= "/crud/usuarios" method="POST" id="FormUsuario">
+                 <br>
+                 <br>
+                 <div class="row">
+                  <div class="col">
                      <label >Nombre de usuario:</label>
+
                     <input type="text" class="text" name="nombre" id="userName" placeholder="nombre" autofocus>
                     <br>
-                    <div class="message" id="nombreMessage"></div>
+                     <div class="message" id="nombreMessage"></div>
+
+                <br>
+                <br>
                 </div>
-                <br>
-                <br>
-                <div >
+                </div>
+
+                <div class="row">
+                <div class="col">
                     <label >Role:</label>
 
                      <select name="rol_id" id="rol_id">
@@ -52,18 +52,21 @@
                 
                           <div class="message" id="rolMessage"></div>
                 </div>
+                   
                 <br>
                 <br>
-                <div >
+                <div class="col" >
 
                     <label >email:</label>
                     <input type="email" class="text1" name="email" id="email_id" placeholder="email" autofocus>
                     <div class="message" id="emailMessage"></div>
              </div>
+             </div>
                 <br>
                 <br>
+                <div class="row">
+                <div class="col">
 
-                <div>
                     <label >Zona horaria:</label>
                     
                        <select name="timezone" id="timezone_id">
@@ -85,10 +88,14 @@
                 </div>
                  <br>
                  <br>
-                <div>
+              
+                <div class="col">
+
                     <label >Cuenta:</label>
+
                     <input type="text" class="text1" name="cuenta_id" id="cuenta_id" placeholder="Id de la cuenta" autofocus>
-                      <div class="message" id="cuentaMessage"></div>
+                    <div class="message" id="cuentaMessage"></div>
+                </div>
                 </div>
                 <br>
                 <br>
