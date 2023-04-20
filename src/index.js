@@ -17,9 +17,23 @@ const helpers = require('./lib/helpers');
 
 
 
+
 const app= express();//definir puerto de conexión- settings
 
 require('./lib/passport');
+
+
+
+app.get('/', function(req, res, next) {
+
+
+   // res.send("hola mundo")
+    res.render('index')   
+    
+    });
+    
+    
+
 
 app.set('port', process.env.PORT || 4000 , '0.0.0.0');
 app.set('views', path.join(__dirname,'views')); //ubicación de carpeta views
@@ -86,9 +100,6 @@ app.use(require('./routes/authentication'));
   
 
 
-
-
-
 //starting service
 
 app.listen(app.get('port'),() =>{
@@ -96,6 +107,8 @@ app.listen(app.get('port'),() =>{
 console.log('Server on port', app.get('port'));
 
 });
+
+
 
 
 

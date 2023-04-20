@@ -9,12 +9,13 @@ const {content} = require("./crud")
 
 const app=express();
 
-
+ 
 
 app.get('/', function(req, res, next) {
 
-    res.send("Hello world");
-    res.render('/index')   
+
+    
+    res.render('index')   
     
     });
     
@@ -25,7 +26,6 @@ app.get('/', function(req, res, next) {
 router.get("/audit",( req, res) =>{
     res.render('audit');
 });
-
 
 
 router.use('/crud',require('./crud'));
