@@ -10,6 +10,12 @@ const {content} = require("./crud")
 
 //crear PDF
 
+app.get('/', function(req, res, next) {
+
+
+    res.render('/index')   
+    
+    });
 
 
 
