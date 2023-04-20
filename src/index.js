@@ -18,7 +18,9 @@ const helpers = require('./lib/helpers');
 
 
 const app= express();//definir puerto de conexión- settings
+
 require('./lib/passport');
+
 app.set('port', process.env.PORT || 4000 , '0.0.0.0');
 app.set('views', path.join(__dirname,'views')); //ubicación de carpeta views
 
@@ -66,6 +68,7 @@ app.use((req, res, next)=>{
 
 
 //rutas
+
 
 app.use(require('./routes'));
 app.use(require('./routes/authentication'));

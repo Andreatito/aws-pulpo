@@ -6,12 +6,7 @@ const app=express();
 
 
 
-app.get('/', function(req, res, next) {
 
-
-res.render('/index')   
-
-});
 
 app.set('port', process.env.PORT || 4000 , '0.0.0.0');
 

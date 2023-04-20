@@ -7,17 +7,17 @@ const {isLoggedIn} = require('../lib/auth');
 const fs= require('fs');
 const {content} = require("./crud")
 
+const app=express();
 
-//crear PDF
+
 
 app.get('/', function(req, res, next) {
 
-
+    res.send("Hello world");
     res.render('/index')   
     
     });
-
-
+    
 
 
 //mostrar audit
