@@ -40,7 +40,7 @@ router.post('/add', isLoggedIn, async (req, res) => {
             console.log("cuentas post add")
            
             var errors= {}
-            var nombrePattern=new RegExp(/^[a-zA-ZÑñÁáÉéÍíÓóÚúÜü\s]+$/);
+            var nombrePattern=new RegExp(/^[ a-zA-ZñÑáéíóúÁÉÍÓÚ]+$/);
             
             if(!req.body.nombre){
 
@@ -347,7 +347,12 @@ router.get("/usuarios",async( req, res) =>{
     const roles= await pool.query('SELECT * FROM roles');
     console.log (roles);
     
-    res.render('./cuentas/usuarios', {timezones,roles});
+    const cuentas= await pool.query('SELECT * FROM cuentas');
+    console.log (cuentas);
+  
+
+
+    res.render('./cuentas/usuarios', {timezones,roles,cuentas});
     
     });
 
@@ -363,8 +368,7 @@ router.post('/usuarios', isLoggedIn,  async (req, res) => {
         var errors= {}
 
                   var emailPattern = new RegExp(/^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i);
-                  var nombrePattern=new RegExp(/^[a-zA-ZÑñÁáÉéÍíÓóÚúÜü\s]+$/);
-                  var cuentapattern=new RegExp("[0-9]+");
+                  var nombrePattern=new RegExp(/^[ a-zA-ZñÑáéíóúÁÉÍÓÚ]+$/);
                   var userpattern=new RegExp("[0-9]");
 
 
@@ -385,7 +389,7 @@ router.post('/usuarios', isLoggedIn,  async (req, res) => {
                   if(!req.body.email) {
                     errors.email="*El email es requerido"
                   } else if(!emailPattern.test(req.body.email)){
-                      errors.email="*Introduzca un email válido"
+                      errors.email="*Introduzca un email válido o con el formato correcto : ej. xxa1@email.com"
                   }
       
                   if(!req.body.timezone){
@@ -394,20 +398,18 @@ router.post('/usuarios', isLoggedIn,  async (req, res) => {
       
                   }
       
-                  if(!req.body.cuenta_id){
-      
-                    errors.cuenta_id="*La cuenta es requerida"
-      
-                  }else if(!cuentapattern.test(req.body.cuenta_id)){
-                    errors.cuenta_id="*Ingrese un ID de cuenta válido"
-
-                    
-                }if(!req.body.user_id){
+                 if(!req.body.user_id){
       
                   errors.user_id="*Tu usuario es requerido"
 
                 }else if(!userpattern.test(req.body.user_id)){
                   errors.user_id="*Ingrese un ID de cuenta válido"
+                }
+                
+                if(!req.body.cuenta_id){
+      
+                  errors.cuenta_id="*La cuenta es requerida"
+    
                 }
 
                   if(Object.keys(errors).length !== 0){

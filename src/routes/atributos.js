@@ -124,6 +124,8 @@ router.get('/conductor/',isLoggedIn, async(req, res) =>{
    
     var errors= {}
     var nombrePattern=new RegExp(/^[a-zA-ZÑñÁáÉéÍíÓóÚúÜü\s]+$/);
+    var apellidoPattern=new RegExp(/^[a-zA-ZÑñÁáÉéÍíÓóÚúÜü\s]+$/);
+    var licenciaPattern=new RegExp(/[a-zA-Z0-9]*-[a-zA-Z0-9]*/);
     
     if(!req.body.nombre){
   
@@ -136,7 +138,7 @@ router.get('/conductor/',isLoggedIn, async(req, res) =>{
   
     errors.apellido="*El apellido es requerido"
 
-  }else if(!nombrePattern.test(req.body.apellido)){
+  }else if(!apellidoPattern.test(req.body.apellido)){
     
     errors.apellido="*Ingrese un apellido válido"
 }
@@ -144,7 +146,11 @@ router.get('/conductor/',isLoggedIn, async(req, res) =>{
     if(!req.body.licencia){
   
       errors.licencia="*Ingrese la licencia asociada al conductor"
-  }
+
+  }else if(!licenciaPattern.test(req.body.licencia)){
+    
+    errors.licencia="*Ingrese una licencia valida (El formato debe ser de tipo WW-1234)"
+}
   
     if(!req.body.vehiculo_id){
   

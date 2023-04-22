@@ -15,17 +15,15 @@
   
         
             
-            <div class= "add" >
+<div class= "add" >
 
-                <div class="addTitle">
-
-                <h5>Agregar vehículo a cuenta</h5>
-
-                </div>
+        <div class="formulario">
 
                 <form  >
                 <div clas="row">
                 <div class="col">
+                      <br>
+                        <label style="font-size: 20px; color: rgb(27, 73, 240);" >Agregar un vehículo nuevo</label>
                     <br>
                     <br>
                      <label >Tipo de vehículo:</label>
@@ -39,7 +37,7 @@
                 <br>
                 <br>
                 <div class="row">
-                <div class="col-md-4 w-25 p-3">
+                <div class="col">
                     <label >Marca:</label>
 
                    <select class="form-select form-select-sm " style="width:auto" name="brand" id="brand_id">
@@ -59,7 +57,7 @@
                 <br>
                 <br>
 
-                <div class="col-md-4 w-25 p-3">
+                <div class="col">
 
                     <label >Modelo:</label>
                    
@@ -77,9 +75,12 @@
                  <div class="message" id="modelMessage"></div>
 
                 </div>
+
+                </div>
                 <br>
                 <br>
-                <div class="col-md-4 w-25 p-3">
+                <div class="row">
+                <div class="col">
                     <label >Año:</label>
 
                        <select class="form-select form-select-sm " style="width:auto" name="year" id="year_id">
@@ -95,11 +96,11 @@
                      </select>
                  <div class="message" id="yearMessage"></div>
                 </div>
-                </div>
+                
                  <br>
                  <br>
-                <div class="row">
-                <div class="col-md-4 w-25 p-3">
+               
+                <div class="col">
                     <label >Color:</label>
                     
                        <select class="form-select form-select-sm " style="width:auto" name="color" id="color_id">
@@ -116,10 +117,11 @@
                         <div class="message" id="colorMessage"></div> 
                 </div>
 
-                
+                </div>
                 <br>
                 <br>
-                <div class="col-md-4 w-25 p-3">
+                <div class="row">
+                <div class="col">
                     <label >Status del vehículo:</label>
                     
                        <select class="form-select form-select-sm " style="width:auto" name="vehiculo_status" id="status_id">
@@ -141,7 +143,9 @@
 
                  </div>
                 </div>
-                <div="row">
+
+               
+                
                 <div class="col">
 
                     <label >Asignar vehículo a cuenta:</label>
@@ -161,31 +165,39 @@
                      </select>
 
                          <div class="message" id="cuentaMessage"></div>
+               </form>
+
+               
+                <br>
                 </div>
-                <br>
-                <br>
-                
+
+               
                 <div class="form-g">
 
                     <button class="btn btn-primary" id="btnSave">
 
                         Guardar
                     </button>
+
+                
+                    <br>
+                     <br>
+                    <Span class = "rojo">* </span>
+                    <label class="text-secondary" >Campos obligatorios</label>
+
                     <br>
                     <br>
                 </div>
-
-                </form>
-
-    
-
-            </div>
-
-
-
+  
+</div>
        
+ <div class="imgAuto">
 
+                    <img src="/img/vehiculo.png" class="img-fluid ">
 
+    </div>
+            
+</div>
     
 
 

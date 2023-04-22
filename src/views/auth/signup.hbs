@@ -6,42 +6,49 @@
 </head>
 
 
-<div class="add bg-light">
-    <div >
+<div class="add ">
 
-        <div >
+ <div class="formulario">
+
+     
             
-            <div class="addTitle">
-                    <p>Registrar usuario</p>
-                    <br>
+            
+                <form   action="/signup" method="POST">
                      <br>
+                  
+                <div class="row">
+                          <br>
+                          <br>
+                   <label style="font-size: 20px; color: rgb(27, 73, 240);" >Registrar usuario de servico al cliente</label>
+                    <br>
+                    <br>
+                </div>
 
-             </div>
-                <form class="user"  action="/signup" method="POST">
+                  
+                <div class="row">
+                <div  class="col">
 
-                <div >
-
-                     <label >Ingrese un usuario:</label>
-                    <input type="text" class="text" id= "username_id" name="username" placeholder="usuario" autofocus required>
+                     <label >Ingrese un nombre de usuario:</label>
+                    <input type="text"  class="form-label-lg border rounded" id= "username_id" name="username" placeholder="usuario" autofocus required>
                     <br>
                       <div class="message" id="usuarioMessage"></div>
                 </div>
-
+                 </div>
                 <br>
-                 <div class="form-g">
-
+                 <div class="row">
+                
                      <label >Password:</label>
-                    <input type="password" class="text" id= "password_id" name="password" placeholder="contrasena" autofocus required>
+                    <input type="password"  class="form-label-lg border rounded" id= "password_id" name="password" placeholder="contrasena" autofocus required>
                       <br>
                       <div class="message" id="passwordMessage"></div>
                 </div>
 
                     <br>
                     
-                <div class="form-g">
+                <div class="row">
 
                      <label >Confirmar password:</label>
-                    <input type="password" class="text" id= "password2_id" name="password2" placeholder="contrasena" autofocus required>
+                    <input type="password"  class="form-label-lg border rounded" id= "password2_id" name="password2" placeholder="contrasena" autofocus required>
                       <br>
                       <div class="message" id="pass2Message"></div>
                 </div>
@@ -49,39 +56,44 @@
                  
 
                 <br>
-                 <div >
+                 <div class="row">
 
                      <label >Nombre completo:</label>
-                    <input type="text" class="text" id= "name_id" name="fullname" placeholder="Nombre completo" autofocus required>
+                    <input type="text" class="form-label-lg border rounded" id= "name_id" name="fullname" placeholder="Nombre completo" autofocus required>
                       <br>
                       <div class="message" id="nombreMessage"></div>
                 </div>
 
                     <br>
-                 <div>
+                 <div class="row">
 
                      <label >Tipo de usuario:</label>
-                    <input type="text" class="text" id= "isAdmin_id" name="is_admin" placeholder="Rol de usuario" autofocus required>
+                    <input type="text" class="form-label-lg border rounded" id= "isAdmin_id" name="is_admin" placeholder="Rol de usuario" autofocus required>
                       <br>
                       <div class="message" id="isAdminMessage"></div>
                 </div>
 
-                    <div class="form-g">
+                    <div class="col">
 
                     <br>
                 
                     <button type="submit"  class="btn btn-primary" id="btnSave">Registrar</button>
+                     <br>
                 </div>
+                 <br>
+                  <br>
                 </form>
-               
-           
+   
+     </div>
 
+        <div class="imgCS">
 
-
-        </div>
-
+                    <img src="/img/CustomerService.png" class="img-fluid">
 
     </div>
+
+
+ </div>
 
 
 

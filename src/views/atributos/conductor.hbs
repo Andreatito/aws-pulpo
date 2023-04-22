@@ -15,41 +15,45 @@
    
       
         
-            
-            <div class= "add bg-light" >
+<div class= "add " >
 
-                  <div class="addTitle">
-                    <h5>Agregar conductor</h5>
+
+
+  <div class="formulario">
                
 
+                <form  >
+             
+                <div class="row">
+                          <br>
+                          <br>
+                   <label style="font-size: 20px; color: rgb(27, 73, 240);" >Agregar un conductor nuevo</label>
+                    <br>
+                    <br>
                 </div>
 
-                  
-
-
-                <form  >
-               <div class="row">   
-                <div class="col">
-
+                
+             
+                 <div class="row">   
                    
-                    <br>
-                    <br>
-                     <label >Nombre del conductor:</label>
-                    <input type="text" class="text " name="nombre" id="nameConductor" placeholder="Nombre" autofocus >
+                     <label >Nombre:</label>
+                    <input type="text" class="form-label-lg border rounded" name="nombre" id="nameConductor" placeholder="Nombre" autofocus >
 
                 <div class="message" id="nombreCMessage"></div>
-
+                
                 </div>
-
-                 <div class="col">
+                    <br>
+                    
+                 <div class="row">
                     <br>
                     <br>
+                    
                      <label >Apellido:</label>
-                    <input type="text" class="text" name="apellido" id="apellido_id" placeholder="Apellido" autofocus >
+                    <input type="text" class="form-label-lg border rounded" name="apellido" id="apellido_id" placeholder="Apellido" autofocus >
 
                 <div class="message" id="apellidoMessage"></div>
 
-                </div>
+                
                 </div>  
                 <br>
                 <br>
@@ -57,7 +61,7 @@
                 <div class="col">
                     <label >Licencia:</label>
 
-                   <input type="text" class="text" name="licencia" id="licConductor" placeholder="No de licencia" autofocus >
+                   <input type="text" class="form-label-lg border rounded" name="licencia" id="licConductor" placeholder="No de licencia" autofocus >
                      
                 <div class="message" id="licenciaMessage"></div>
                 </div>
@@ -67,7 +71,7 @@
 
                 <div class="col">
 
-                    <label >Vehículo:</label>
+                    <label >Vehículo al que deseas asociarlo:</label>
                    
                           <select class="form-select form-select-sm " style="width:auto" name="vehiculo_id" id="vehiculo_id">
 
@@ -82,8 +86,9 @@
                      </select>
                  <div class="message" id="vehiculoMessage"></div>
 
+                </div>
+                </div>
 
-                <div="row">
                 <div class="col">
 
                      <br>
@@ -105,11 +110,9 @@
                      </select>  
 
                          <div class="message" id="conductorMessage"></div>
+                </form>
+                <br>
                 </div>
-                <br>
-                <br>
-                <br>
-                <br>
              
                 <div class="form-g">
 
@@ -119,17 +122,29 @@
                     </button>
                     <br>
                     <br>
+
+                     <Span class = "rojo">* </span>
+                    <label class="text-secondary" >Campos obligatorios</label>
+
+                    <br>
+                    <br>
                 </div>
 
-                </form>
+            
 
     
 
-            </div>
+ </div>
 
 
 
-       
+       <div class="imgConductor">
+
+                    <img src="/img/camion.png" class="img-fluid">
+
+    </div>
+            
+</div>
 
 
     

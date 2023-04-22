@@ -20,34 +20,33 @@ body {
     
 
         
-            
+              <div class="formulario">
          
               
                 <form action= "/crud/usuarios" method="POST" id="FormUsuario">
-                 <br>
-                 <br>
+                
                           <br>
-                <label style="font-size: 20px; color: rgb(27, 73, 240);" >Agregar nuevo usuario</label>
+                <label style="font-size: 20px; color: rgb(27, 73, 240);" >Agregar un nuevo usuario de cuenta</label>
                  <br>
                  <br>
                  <div class="row">
-                  <div class="col">
+                
                      <label >Nombre de usuario:</label>
 
-                    <input type="text" class="text" name="nombre" id="userName" placeholder="nombre" autofocus>
+                    <input type="text"  class=" border rounded" name="nombre" id="userName" placeholder="nombre" autofocus>
                     <br>
                      <div class="message" id="nombreMessage"></div>
 
                 <br>
                 <br>
-                </div>
+            
                 </div>
 
                 <div class="row">
                 <div class="col">
                     <label >Role:</label>
 
-                     <select name="rol_id" id="rol_id">
+                     <select class=" form-select form-select-sm " style="width:auto"  name="rol_id" id="rol_id">
 
                             <option value="">-- Roles--</option>
 
@@ -70,7 +69,7 @@ body {
                 <div class="col" >
 
                     <label >email:</label>
-                    <input type="email" class="text1" name="email" id="email_id" placeholder="email" autofocus>
+                    <input type="email" class=" border rounded"  name="email" id="email_id" placeholder="email" autofocus>
                     <div class="message" id="emailMessage"></div>
              </div>
              </div>
@@ -81,7 +80,7 @@ body {
 
                     <label >Zona horaria:</label>
                     
-                       <select name="timezone" id="timezone_id">
+                       <select class=" form-select form-select-sm " style="width:auto"  name="timezone" id="timezone_id">
 
                             <option value="">-- Zona horaria--</option>
 
@@ -105,7 +104,17 @@ body {
 
                     <label >Cuenta:</label>
 
-                    <input type="text" class="text1" name="cuenta_id" id="cuenta_id" placeholder="Id de la cuenta" autofocus>
+                          <select class="form-select form-select-sm " style="width:auto" name="Cuenta_id" id="cuenta_id">
+
+                            <option value="">-- Cuentas--</option>
+
+                            {{#each cuentas}} 
+
+                                
+                                <option value="{{id}}">{{nombre}}</option>
+                          
+                            {{/each}}
+                     </select>  
                     <div class="message" id="cuentaMessage"></div>
                 </div>
                 </div>
@@ -113,7 +122,7 @@ body {
                 <br>
                 <div>
                     <label >Usuario:</label>
-                    <input type="text" class="text1" name="user_id" id="user_id" placeholder="Id de tu usuario" autofocus>
+                    <input type="text" class=" border rounded"  name="user_id" id="user_id" placeholder="Id de tu usuario" autofocus>
                       <div class="message" id="usuarioMessage"></div>
                 </div>
 
@@ -127,15 +136,25 @@ body {
                     </button>
                     <br>
                     <br>
+                     <Span class = "rojo">* </span>
+                    <label class="text-secondary" >Campos obligatorios</label>
+
+                    <br>
+                    <br>
                 </div>
+     </div>
 
                 </form>
 
               
+<div class="imgUser">
 
+                    <img src="/img/nvoUser2.png" class="img-fluid">
+
+ </div>
            
 
-
+</div>
 
         
 
