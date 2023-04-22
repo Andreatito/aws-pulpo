@@ -15,6 +15,30 @@
 </head>
 
 
+<script type="text/javascript">
+
+function ConfirmDelete(){
+
+
+    var respuesta= confirm("Seguro?")
+
+    if(respuesta== true)
+
+    {
+
+        return trues;
+    }else
+
+    {
+
+        return false
+    }
+}
+
+
+
+</script>
+
   <body>     
       
         <div class="datatable">
@@ -23,7 +47,7 @@
 
                 <div class="showUser">
 
-                <table class="table table-striped table-bordered" id="datatable" >
+                <table class="table table-bordered table-hover cell-border" id="datatable" >
 
                     <thead>
 
@@ -36,7 +60,6 @@
                         <th>Usuario</th>
                         <th>Email</th>
                         <th>Timezone</th>
-                        <th>Deleted at</th>
                         <th>Acciones</th>
                         
                     
@@ -60,13 +83,17 @@
 
                     <td>{{tz}}</td>
 
-                    <td>{{acciones}}</td> 
+              
+
+                    
 
                     
 
                     <td>
 
-                         <a href="/user/{{usuario_id}}/edit">Editar</a>
+                         <a href="/user/{{usuario_id}}/edit"  class="btn btn-outline-primary btn-sm">Editar</a>
+                         <a href="/user/delete/{{usuario_id}}" class="btn btn-outline-danger btn-sm" onclick="return ConfirmDelete()">Borrar</a>
+                              
 
                      {{!-- {{<a href="/crud/resetPass/{{../user.id}}">Editar usuario</a>}} --}}   
 

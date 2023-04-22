@@ -13,25 +13,23 @@
 
     
 
-<div class="add bg-light">
+<div class="add ">
     
-     
-            <div class="addTitle">
-
-                <p >Agregar una cuenta nueva</p>
-
-     </div>
+     <div class="formulario">
+         
 
                  
                 <form  >
                 <div class="row">
                 <div class="col">
+                      <br>
+                <label style="font-size: 20px; color: rgb(27, 73, 240);" >Agregar una cuenta nueva</label>
                     <br>
                     <br>
                      <label >Nombre de la cuenta:</label>
-
-                    <input type="text" class="form-label-lg border rounded"  name="nombre" id="accountName" placeholder="nombre" autofocus >
-
+                    <Span class = "rojo"> * </span>
+                    <input type="text"  class=" border rounded"  name="nombre" id="accountName" placeholder="nombre" autofocus  required>
+                    
                 <div class="message" id="nombreMessage"></div>
                     </div>
                 </div>
@@ -40,6 +38,7 @@
                 <div class="row">
                 <div class="col">
                     <label >Plan contratado:</label>
+                    <Span class = "rojo"> * </span>
                    <select class="form-select form-select-sm " style="width:300px" name="plan_id" id="plan_id">
 
                              
@@ -52,14 +51,15 @@
                                  {{/each}}
                      </select>
                 <div class="message" id="planMessage"></div>
-                
+                </div>
                 </div>
                 <br>
                 <br>
+                <div class="row">
                 <div class="col">
 
                     <label >Status:</label>
-                   
+                            <Span class = "rojo"> * </span>
                           <select class="form-select form-select-sm " style="width:auto" name="status_id" id="status_id">
 
                              
@@ -72,15 +72,15 @@
                                  {{/each}}
                      </select>
                  <div class="message" id="statusMessage"></div>
-                </div>
+                
                 </div>
                
                 <br>
                 <br>
-                <div class="row">
+               
                 <div class="col">
                     <label >País:</label>
-
+                        <Span class = "rojo"> * </span>
                        <select class="form-select form-select-sm " style="width:auto" name="pais_id" id="pais_id">
 
                             <option value="">--País--</option>
@@ -93,13 +93,16 @@
                             {{/each}}
                      </select>
                  <div class="message" id="paisMessage"></div>
-                
+
+               
+                </div>
                 </div>
                  <br>
                  <br>
+                 <div class="row">
                 <div class="col">
                     <label >Zona horaria:</label>
-                    
+                        <Span class = "rojo"> * </span>
                        <select class="form-select form-select-sm " style="width:auto" name="timezone_id" id="timezone_id">
 
                             <option value="">-- Zona horaria--</option>
@@ -113,15 +116,17 @@
                      </select>
                         <div class="message" id="timezoneMessage"></div> 
                 </div>
-                 </div>
+                </div>
+              
                 
                 <br>
                 <br>
 
-                <div class="form-g">
-                    <label >Asignar cuenta a usuario de servicio al cliente:</label>
+                <div class="col">
                     
-                       <select class="form-select form-select-sm " style="width:auto"  name="user_id" id="user_id">
+                    <label >Asignar cuenta a usuario de servicio al cliente:</label>
+                        <Span class = "rojo"> * </span>
+                       <select class=" form-select form-select-sm " style="width:auto"  name="user_id" id="user_id">
 
                             <option value="">-- Usuarios--</option>
 
@@ -133,6 +138,9 @@
                             {{/each}}
                      </select>
                          <div class="message" id="userMessage"></div>
+
+                          
+                </form>
                 </div>
                 <br>
                 <br>
@@ -143,17 +151,28 @@
                         Guardar
                     </button>
                     <br>
+                     <br>
+                    <Span class = "rojo">* </span>
+                    <label class="text-secondary" >Campos obligatorios</label>
+
+                    <br>
                     <br>
                 </div>
-
-                </form>
-
+  
+</div>
     
+    <div class="imgCta">
 
+                    <img src="/img/addCta.png" class="imgPulpo float-center">
+
+    </div>
             
 
 
 </div>
+
+
+ 
 <script src="bootstrap-5.2.0-dist/js/jquery-3.6.1.min.js"></script>
 		<script src="popper/popper.min.js"></script>
 		<script src="bootstrap-5.2.0-dist/js/bootstrap.min.js"></script>

@@ -16,12 +16,66 @@
     border: none;
 }
 
+
+
+input[type="text"]{
+	background-color:rgb(241, 244, 252) 
+	}
+
+
+	.is-required:after {
+		content: '*';
+		margin-left: 3px;
+		color: red;
+		font-weight: bold;
+	  }
+
+	
+.rojo {
+
+color: red;
+
+}
+
+/* Formulario agregar cuenta */
+
+.formulario{
+
+
+	width: 50%;
+	
+	}
+		
+
+	.imgCta {
+
+
+	
+		width: 50%;
+		padding-right: 40%;
+		padding-top: 10%;
+		}
+
+.imgAdd {
+
+
+
+margin-bottom: 30%;
+width: 40%;
+margin-left: 10%;
+
+
+
+}
+
+
+
 .signin{
 		margin-top: 150px;
 		margin-left: 45%;
 		padding: 10px;
 		width: max-content;
-		background-color:hsl(210, 50%, 98%);
+		background-color:hsl(204, 38%, 95%);
 		padding-left: 15px;
 		
 
@@ -87,16 +141,20 @@
 
 	border: solid 0.1em;
 	margin-top: 20px;
-	margin-left: 30%;
-	width: 40%;
+	margin-left: 27%;
+	width: 50%;
 	
-	border-color: #31a0f5;
+	border-color:  #31a0f5;
 	font-size:medium;
 	border-radius: 20px;
 	padding-left: 50px;
+	display: flex;
+  	align-items: flex;
 	
 }
-	
+
+
+
 
 
 
@@ -166,6 +224,7 @@
 	grid-area: header;
 	color: #000103;
 	
+	
 
 
 }
@@ -180,34 +239,76 @@
 }
 
 
-/* Navegador*/
+.menuNav {
 
-nav{
-
-	margin-left: 22%;
-	background-color: #bdbfc3;
-	height: 7vh;
-	width:  60%;
-	display: flex;
-	justify-content: space-around;
-	
-	
-}
-
-
-
-.drop-down-menu .drop-down-button{
-
-
-margin-left: 25px;
-font-size: 1.2rem;
-outline: none;
-color: var(--black-text);
-padding: 1rem 1rem;
-background-color: inherit;
+	border-bottom: 1px solid #31a0f5;
 
 
 }
+
+.container-fluid header nav ul li a{
+    color: rgb(134, 134, 137);
+	font-size: large;
+	
+
+	
+}
+
+.navbar.navbar-1 .navbar-toggler-icon {
+	background-image: url('https://mdbootstrap.com/img/svg/hamburger6.svg?color=000');
+  }
+
+
+li{
+
+	margin-left: 25px;
+}
+
+
+li:nth-of-type(1) a:focus{
+
+border-bottom: 1px solid rgb(19, 19, 138);
+
+}
+li:nth-of-type(2) a:focus{
+
+	border-bottom: 1px solid blue;
+	
+	}
+
+
+li:nth-of-type(3) a:focus{
+
+		border-bottom: 1px solid blue;
+		
+	}
+
+li:nth-of-type(4) a:focus{
+
+		border-bottom: 1px solid blue;
+		
+	}
+li:nth-of-type(5) a:focus{
+
+		border-bottom: 1px solid blue;
+		
+		}
+
+li:nth-of-type(6) a:focus{
+
+			border-bottom: 1px solid blue;
+			
+	}
+
+li:nth-of-type(7) a:focus{
+
+		border-bottom: 1px solid blue;
+		
+	}
+
+
+
+
 
 .drop-down-menu-content{
 
@@ -255,16 +356,7 @@ background-color: inherit;
 
 }
 
-
-
-  nav ul{
-	
-	display: flex;
-	
-	
-} 
-
-
+ */
 
 
 /*Tablas*/
@@ -387,14 +479,32 @@ table{
 
 .datatable{
 
+	
 	margin-left: 25%;
-	width: 1100px;
+	width: 1200px;
 	
 }
 
-.table-striped > tbody > tr:nth-child(2n+1) > td, .table-striped > tbody > tr:nth-child(2n+1) > th {
-	background-color: rgba(14, 163, 244, 0.077);
- }
+.footer{
+
+	margin-top: 10%;
+}
+
+
+.imgEditCta{
+
+	padding-bottom: 10%;
+	width: 300px;
+	margin-left: 20%;
+	margin-top: 50%;
+}
+
+.editIcon{
+
+	
+	width: 50%;
+	
+}
 
 /* Boton para generar archivos pdf */
 
@@ -407,3 +517,13 @@ table{
 }
 
 
+.imgPulpo{
+
+width: 450px;
+margin-left: 45%;
+padding-top: 50%;
+display: flex;
+align-items: center;
+
+
+}

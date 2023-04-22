@@ -113,14 +113,31 @@ router.get('/showUser/', isLoggedIn, async(req,res) => {
   LEFT JOIN timezone ON timezone.id_timezone = usuarios_cuenta.timezone  
   LEFT JOIN roles ON roles.id_rol = usuarios_cuenta.rol_id 
   LEFT JOIN users ON users.id = usuarios_cuenta.user_id 
-  WHERE usuarios_cuenta.user_id=?`,[req.user.id]);  
+  WHERE deleted_at is NULL AND usuarios_cuenta.user_id=?`,[req.user.id]);  
    
+
+
   console.log(usuarioC) 
  
  
   res.render('./users/showUser', {usuarioC :usuarioC} );
     
 });
+
+
+//Eliminar cuenta
+router.get('/delete/:id', isLoggedIn, async(req,res) => {
+
+  const {id}=req.params;
+  await pool.query('UPDATE usuarios_cuenta SET deleted_at=now() WHERE usuario_id=?',[id]);
+  req.flash('success','*Usuario eliminado correctamente');
+  res.redirect('/user/showUser');
+
+  
+
+});
+
+
 
 
 module.exports = router;

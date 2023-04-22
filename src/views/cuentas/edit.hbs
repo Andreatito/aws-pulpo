@@ -3,27 +3,30 @@
 <meta charset="UTF-8">
 <title>index</title>
 	<link rel="stylesheet" href="/css/styles.css">
+     <link rel="stylesheet" href=
+"https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" />
 </head>
 
     
     
     
-    <div class="add bg-light" >
+    <div class="add" >
 
-        <div >
+         <div class="formulario">
             
-            <div class="addTitle">
-
-                 <p>Editar cuenta</p>
-
-             </div> 
+            
 
                 <form  action= "/crud/edit/{{cuentas.id}}" method="POST">
 
                 <div class="form-g">
                     <br>
+                    <br>
+                    <label style="font-size: 20px; color: rgb(27, 73, 240);" >Editar cuenta</label>
+                    <br>
+                    <br>
                     <label >Nombre de la cuenta:</label>
-                    <input type="text" id="accountName" value="{{cuentas.nombre}}" class="text" name="nombre" placeholder="nombre" autofocus>
+                    <Span class = "rojo"> * </span>
+                    <input type="text" class="form-label-lg border rounded is-required" id="accountName" value="{{cuentas.nombre}}" class="text" name="nombre" placeholder="nombre" autofocus>
 
                     <div class="message" id="nombreMessage"></div>
 
@@ -32,7 +35,8 @@
                 <br>
                 <div class="form-g">
                     <label >Plan contratado:</label>
-                    <select name="plan_id" id="plan_id">
+                    <Span class = "rojo"> * </span>
+                    <select class="form-select form-select-sm " style="width:auto" name="plan_id" id="plan_id">
 
                              
                                 <option value="">-- Plan contratado--</option>
@@ -49,7 +53,8 @@
                 <div class="form-g">
 
                     <label >Status:</label>
-                     <select name="status_id" id="status_id">
+                    <Span class = "rojo"> * </span>
+                     <select class="form-select form-select-sm " style="width:auto" name="status_id" id="status_id">
 
                              
                                 <option value="">-- Status--</option>
@@ -66,7 +71,8 @@
                 <br>
                 <div class="form-g">
                     <label >País:</label>
-                       <select name="pais_id" id="pais_id">
+                    <Span class = "rojo"> * </span>
+                       <select class="form-select form-select-sm " style="width:auto" name="pais_id" id="pais_id">
 
                              
                                 <option value="">-- Pais--</option>
@@ -82,7 +88,8 @@
                  <br>
                 <div class="form-g">
                     <label >Zona horaria:</label>
-                      <select name="timezone_id" id="timezone_id">
+                    <Span class = "rojo"> * </span>
+                      <select class="form-select form-select-sm " style="width:auto" name="timezone_id" id="timezone_id">
 
                              
                                 <option value="">-- timezone--</option>
@@ -109,10 +116,23 @@
 
                 </form>
 
-                <button class="btn btn-primary" type="submit" formaction="./crud">Cancelar</button>
+                <button class="btn btn-primary"  href="/users/showUser/">Cancelar</button>
+                    <br>
                     <br>
             </div>
+           
+                    <Span class = "rojo">* </span>
+                    <label class="text-secondary" >Campos obligatorios</label>
 
+                    <br>
+                    <br>
+        </div>
+    
+     <div class="editIcon">
+                     
+                    <img src="/img/web.png" class="imgEditCta float-center">
+
+     </div>
 
 
         </div>
@@ -178,4 +198,14 @@
         </script>	
 
 </div>
+
+<footer class="footer modal-footer text-center ">
+
+
+<label>Atribuciones</label>
+<a href="https://www.flaticon.es/iconos-gratis/editar" title="editar iconos">Iconos creados por Pixel perfect - Flaticon</a>
+<a href="https://www.flaticon.es/iconos-gratis/inscripcion" title="inscripción iconos">Inscripción iconos creados por Icongeek26 - Flaticon</a>
+
+
+</footer>
 </html>

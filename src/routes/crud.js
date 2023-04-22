@@ -12,16 +12,6 @@ const {validateCreate} = require('../routes/validation');
 
 
 
-/* 
-//Eliminar cuenta
-router.get('/delete/:id', isLoggedIn, async(req,res) => {
-
-  const {id}=req.params;
-  await pool.query('UPDATE vehiculos SET deleted_at=now() WHERE id=?',[id]);
-  req.flash('success','Vehiculo eliminado correctamente');
-  res.redirect('/crud');
-
-}); */
 
 
 //Agregar cuenta
@@ -186,11 +176,12 @@ router.get('/show/:id', isLoggedIn, async(req,res) => {
       WHERE 
         cuenta=?`, id);
 
+  //Listar usuarios en detalle de cuenta
     const usuarios= await pool.query(`SELECT usuarios_cuenta.*, timezone.timezone AS tz, roles.rol as rl
      FROM usuarios_cuenta 
     LEFT JOIN timezone ON timezone.id_timezone = usuarios_cuenta.timezone  
     LEFT JOIN roles ON roles.id_rol = usuarios_cuenta.rol_id 
-    WHERE usuarios_cuenta.cuenta_id=?`,[id]);
+    WHERE deleted_at is NULL AND usuarios_cuenta.cuenta_id=?`,[id]);
 
 
    
@@ -215,11 +206,12 @@ router.get('/show/:id', isLoggedIn, async(req,res) => {
 
 
 //Eliminar cuenta
+
         router.get('/delete/:id', isLoggedIn, async(req,res) => {
 
                const {id}=req.params;
                await pool.query('UPDATE cuentas SET deleted_at=now() WHERE id=?',[id]);
-               req.flash('success','Cuenta eliminada correctamente');
+               req.flash('success','*Cuenta eliminada correctamente');
                res.redirect('/crud');
 
         });
