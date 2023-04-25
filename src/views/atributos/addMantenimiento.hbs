@@ -1,0 +1,210 @@
+<html>
+<head>
+    
+ 
+
+<meta charset="UTF-8">
+<title>index</title>
+
+	<link rel="stylesheet" href="/css/styles.css">
+</head>
+
+<body>
+
+   
+  
+        
+            
+<div class= "add" >
+
+        <div class="formulario">
+
+                <form  >
+                <div clas="row">
+                <div class="col">
+                      <br>
+                        <label style="font-size: 20px; color: rgb(27, 73, 240);" >Registrar mantenimiento de vehículo</label>
+                    <br>
+                    <br>
+                     <label >Vehículo:</label>
+
+                    <input type="text" class="form-label-lg border rounded" name="nombreV" id="nameVehiculo" placeholder="Tipo de vehículo" autofocus >
+
+                <div class="message" id="nombreVMessage"></div>
+                </div>
+
+                </div>
+                <br>
+                <br>
+                <div class="row">
+                <div class="col">
+                    <label >Tipo de mantenimiento que se realizará al vehículo:</label>
+
+                   <select class="form-select form-select-sm " style="width:auto" name="brand" id="brand_id">
+
+                             
+                                <option value="">--Mantenimiento-</option>
+
+                              {{#each brand}} 
+
+                                <option value="{{id}}">{{nombre}}</option>
+                                
+                                 {{/each}}
+                     </select>
+                <div class="message" id="brandMessage"></div>
+                </div>
+
+                <br>
+                <br>
+
+                <div class="col">
+
+                    <label >Conductor del vehículo:</label>
+                   
+                          <select class="form-select form-select-sm " style="width:auto" name="model" id="model_id">
+
+                             
+                                <option value="">-- Modelo--</option>
+
+                              {{#each modelo}} 
+
+                                <option value="{{id}}">{{nombre}}</option>
+                                
+                                 {{/each}}
+                     </select>
+                 <div class="message" id="modelMessage"></div>
+
+                </div>
+
+                </div>
+                <br>
+                <br>
+                
+                <br>
+                <br>
+                <div class="row">
+                
+                <div class="col">
+
+                    <label >Cuenta a la que pertenece el vehículo:</label>
+                    <br>
+                
+                    
+                       <select class="form-select form-select-sm " style="width:auto" name="cuenta" id="cuenta_id">
+
+                            <option value="">-- Cuentas--</option>
+
+                            {{#each cuentas}} 
+
+                                
+                                <option value="{{id}}">{{nombre}}</option>
+                          
+                            {{/each}}
+                     </select>
+
+                         <div class="message" id="cuentaMessage"></div>
+
+
+                         <br>
+                    <br>
+                     <label >Descripción del mantenimiento a realizar:</label>
+
+                    <textarea  type="text" class="form-label-lg border rounded" name="nombreV" id="nameVehiculo" placeholder="Tipo de vehículo" autofocus ></textarea>
+
+                <div class="message" id="nombreVMessage"></div>
+                </div>
+               </form>
+
+               
+                <br>
+                </div>
+
+               
+                <div class="form-g">
+
+                    <button class="btn btn-primary" id="btnSave">
+
+                        Guardar
+                    </button>
+
+                
+                    <br>
+                     <br>
+                    <Span class = "rojo">* </span>
+                    <label class="text-secondary" >Campos obligatorios</label>
+
+                    <br>
+                    <br>
+                </div>
+  
+</div>
+       
+ <div class="imgAuto">
+
+                    <img src="/img/vehiculo.png" class="img-fluid ">
+
+    </div>
+            
+</div>
+    
+
+
+
+<script src="bootstrap-5.2.0-dist/js/jquery-3.6.1.min.js"></script>
+		<script src="popper/popper.min.js"></script>
+		<script src="bootstrap-5.2.0-dist/js/bootstrap.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+        <script>
+           
+
+
+            $( document ).ready(function() {
+
+                $( "#btnSave" ).click(function(e) {
+
+                    e.preventDefault();
+
+                    const account= {
+
+                        nombreV: $("#nameVehiculo").val(),
+                        brand:  $("#brand_id").val(),
+                        model:  $("#model_id").val(),
+                        year:  $("#year_id").val(),
+                        color:  $("#color_id").val(),
+                        vehiculo_status:  $("#status_id").val(),
+                        cuenta:  $("#cuenta_id").val()
+                    }
+                    
+                    $.post( "/atributos/addVehiculo", account, function( data ) {
+
+                        if(data.status=="ok"){
+
+                            window.location.href = '/crud';
+
+                        }else{
+                            
+                            $("#nombreVMessage").text(data.errors.nombreV || "")
+                            $("#brandMessage").html(data.errors.brand || "")
+                            $("#modelMessage").html(data.errors.model || "")
+                            $("#yearMessage").html(data.errors.year || "")
+                            $("#colorMessage").html(data.errors.color || "")
+                            $("#statusMessage").html(data.errors.vehiculo_status || "")
+                            $("#cuentaMessage").html(data.errors.cuenta|| "")
+                        }
+                    });
+                
+                });
+
+            });
+
+        
+
+            
+
+        
+
+            
+
+        </script>	
+</body>
+</html>

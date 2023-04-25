@@ -270,6 +270,112 @@ if(!req.body.apellido){
 });
 
 
+//Detalle ocnductores
+
+
+router.get('/detConductor/', isLoggedIn, async(req,res) => {
+
+  const {id}=req.params;
+
+  const detConductor= await pool.query(`SELECT * FROM  conductor 
+  
+
+
+  
+  `);  
+
+
+  console.log(detConductor) 
+ 
+ 
+  res.render('./atributos/detConductor', {detConductor :detConductor} );
+    
+});
+
+
+  //Agregar Mantenimiento
+
+
+   
+router.get('/addmantenimiento/',isLoggedIn, async(req, res) =>{
+  console.log("cuentas get add")
+  const vehiculos= await pool.query('SELECT * FROM vehiculos');
+  console.log (vehiculos);
+  const cuentas2= await pool.query('SELECT * FROM cuentas');
+  console.log (cuentas2);
+ 
+
+  res.render('./atributos/addMantenimiento',{vehiculos, cuentas2});
+  
+} );
+
+
+router.post('/addMantenimiento/', isLoggedIn, async (req, res) => {
+
+  console.log("cuentas post add")
+ 
+  var errors= {}
+  var nombrePattern=new RegExp(/^[a-zA-ZÑñÁáÉéÍíÓóÚúÜü\s]+$/);
+  
+  if(!req.body.nombre){
+
+    errors.nombre="*El nombre es requerido"
+
+  }else if(!nombrePattern.test(req.body.nombre)){
+    errors.nombre="*Ingrese un nombre válido"
+} 
+if(!req.body.apellido){
+
+  errors.apellido="*El apellido es requerido"
+
+}else if(!nombrePattern.test(req.body.apellido)){
+  
+  errors.apellido="*Ingrese un apellido válido"
+}
+  
+  if(!req.body.licencia){
+
+    errors.licencia="*Ingrese la licencia asociada al conductor"
+}
+
+  if(!req.body.vehiculo_id){
+
+    errors.vehiculo_id="*Debe seleccionar un vehículo"
+
+  }
+
+  if(!req.body.Cuenta_id){
+
+    errors.Cuenta_id="*Debe seleccionar una cuenta para asociar al conductor"
+
+  }
+
+  console.log ("andrea",Object.keys(errors).length)
+  if(Object.keys(errors).length !== 0){
+
+    res.json(
+      {
+        status:"error",
+        message:"Error al agregar el conductor",
+        errors: errors
+      }
+    )
+
+  }else{
+    
+    await pool.query('INSERT INTO conductor set ?', [req.body]);
+
+    res.json(
+    {
+      status:"ok",
+      message:"Conductor agregado correctamente"
+    }
+    )
+  }
+  
+});
+
+
 
 
 

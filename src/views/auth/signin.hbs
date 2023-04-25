@@ -4,25 +4,39 @@
 <meta charset="UTF-8">
 <title>index</title>
 	<link rel="stylesheet" href="/css/styles.css">
-</head>  
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+     <script>
+       function onSubmit(token) {
+         document.getElementById("loginForm").submit();
+       }
+     </script>
+</head> 
+
+
+<body>
             <div class="login" >
 
           
 
-                <form  action="/signin" method="POST">
+                <form  action="/signin" method="POST" id="loginForm">
 
                        <label style="font-size: 20px; color: rgb(27, 73, 240);" >Ingresar</label>
+                       <br>
                 <div >
-
-                    <input type="text"  name="username" placeholder="usuario" autofocus required>
+<br>
+                    <input type="text"  class=" border rounded" name="username" id="user_id" placeholder="usuario" autofocus >
                 
-
+                    <div class="message" id="usernameMessage"></div>
+                
                 <br>
                 <br>
                  <div >
 
                 
-                    <input type="password"  name="password" placeholder="contrasena" autofocus required>
+                    <input type="password"   class=" border rounded"  name="password" id="pass_id" placeholder="contrasena" autofocus>
+
+                    <div class="message" id="passwordMessage"></div>
+                
                 </div>
 
                  </div>
@@ -30,7 +44,7 @@
                 <br>
                     <br>
                 
-                    <button class="btn btn-primary">
+                     <button class="g-recaptcha btn btn-primary" data-sitekey="6LfFEbklAAAAAE10yrzE5jhHz8whdKTrU7tKbutL" data-callback="onSubmit">Submit</button>
                         Ingresar
                     </button>
                
@@ -40,7 +54,57 @@
 
                 </div>
 
-               
+         </body>
+
+
+         <script src="bootstrap-5.2.0-dist/js/jquery-3.6.1.min.js"></script>
+		<script src="popper/popper.min.js"></script>
+		<script src="bootstrap-5.2.0-dist/js/bootstrap.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+        <script>
+           
+
+
+            $( document ).ready(function() {
+
+                $( "#btnSave" ).click(function(e) {
+
+                    e.preventDefault();
+
+                    const account= {
+
+                        username: $("#user_id").val(),
+                        password:  $("#pass_id").val(),
+                      
+                    }
+                    
+                    $.post( "/auth/signin", account, function( data ) {
+
+                        if(data.status=="ok"){
+
+                            window.location.href = '/authentication';
+
+                        }else{
+                            
+                            $("#usernameMessage").text(data.errors.username || "")
+                            $("#passwordMessage").html(data.errors.password || "")
+                          
+                        }
+                    });
+                
+                });
+
+            });
+
+        
+
+            
+
+        
+
+            
+
+        </script>	      
      
 
 

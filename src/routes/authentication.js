@@ -6,6 +6,7 @@ const {isLoggedIn} = require('../lib/auth');
 
 const pool = require('../database');
 const { Passport } = require('passport');
+let alert = require('alert'); 
 
     router.get('/signup',(req,res) =>{
         res.render('auth/signup')
@@ -103,6 +104,7 @@ const { Passport } = require('passport');
 
     });
 
+
     router.post('/signin', (req, res, next)=> {
 
         passport.authenticate('local.signin',{
@@ -111,15 +113,51 @@ const { Passport } = require('passport');
         failureRedirect:'/signin',
         failureFlash: true
 
-        })(req,res,next);
+        }) (req,res,next);
+
+        var errors= {}
+
+        if(!req.body.password){
+          
+          errors.password="*Ingrese un password"
+          console.log("ingrese un password")
+          
+        }
+
+        if(!req.body.username){
+          
+          errors.username="*Ingrese su usuario"
+          
+        } console.log ("andrea",Object.keys(errors).length)
+        if(Object.keys(errors).length !== 0){
+
+          res.json(
+            {
+              status:"error",
+              message:"Error al crear el usuario",
+              errors: errors
+            }
+          )
+
+        }
+        
+        
+        
+        else{
+         
+
+          router.get('/profile',isLoggedIn, (req,res) =>{ 
+
+            res.render('profile')
+        
+        });
+        }
 
     });
 
-    router.get('/profile',isLoggedIn, (req,res) =>{
+   
 
-        res.render('profile')
-    
-    });
+   
 
 router.get('/logout',(req,res) =>{
 

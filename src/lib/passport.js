@@ -18,24 +18,40 @@ passport.use('local.signin', new LocalStrategy({
 }, async (req, username, password, done) => {
 
    console.log(req.body) 
+   console.log(username)
+   console.log(password)
+
     const rows = await pool.query('SELECT * FROM users WHERE username =?', [username]);
     
     if(rows.length > 0) {
 
         const user= rows[0];
         const validPassword = await helpers.matchPassword(password, user.password)//valida contraseña en BD con la ingresada
-        if(validPassword){
+        
+   
 
-            done(null, user, req.flash( 'success','welcome' + user.username)); //Ingreso correcto
-        } else {
+
+
+        if(validPassword){
+        
+                done(null, user, req.flash( 'success','welcome' + user.username)); //Ingreso correcto
+            } 
+        
+        
+        else {
 
             done(null, false, req.flash('message','*contraseña invalida')); //Password incorrecto
+            
         }
-    }else {
+        
+        }else {
 
-        return done(null,false, req.flash('message','*El usuario ingresado no existe'));//El usuario no existe
-    }
+            return done(null,false, req.flash('message','*El usuario ingresado no existe'));//El usuario no existe
+        }
 
+
+       
+    
 
 }));
 

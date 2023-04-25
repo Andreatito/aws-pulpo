@@ -48,7 +48,7 @@ if(!errors.isEmpty()){
     console.log(req.body)
     const valores = req.body
     const resultado= errors.array()
-    res.render( './cuentas/add',{resultado: resultado, valores: valores} )
+    res.render( '/signin',{resultado: resultado, valores: valores} )
    
 }
 
