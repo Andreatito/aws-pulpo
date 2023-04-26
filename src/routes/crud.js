@@ -463,82 +463,79 @@ router.post('/usuarios', isLoggedIn,  async (req, res) => {
 
 
 
-    router.get('/resetPass/:id', isLoggedIn, async(req,res) => {
+   router.get('/resetPass/:id', isLoggedIn, async(req,res) => {
 
 
-      const {id} =req.params;
-  
-      
-      const usuario= await pool.query('SELECT * FROM usuarios_cuenta WHERE usuario_id=?',[id]);
-     
-      
-      console.log (id);
-  
-      res.render('./cuentas/resetPass', {user: usuario} );
-     
-  
-  }); 
+    const {id} =req.params;
 
-  router.post('/resetPass/:id', isLoggedIn, async(req,res) => {
+    
+    const usuario= await pool.query('SELECT * FROM usuarios_cuenta WHERE usuario_id=?',[id]);
+   
+    
+    console.log (id);
 
-    const {id} = req.params;
-  
-    console.log("Editing user" , id)
-    var errors= {}
-
+    res.render('./cuentas/resetPass', {user: usuario} );
    
 
+}); 
 
-              if(!req.body.password){
-  
-                errors.id="*El campo nueva contraseña no puede quedar vacío"
-  
-              }
-  
-             
-  
-              
-              if(Object.keys(errors).length !== 0){
-  
-                res.json(
-                  {
-                    status:"error",
-                    message:"Error al actualizar la contraseña",
-                    errors: errors
-                  }
-                )
-  
-  
-  
-                }else{
-  
-    const {usuario} = req.body;
-    const newuser={
-  
-                 nombre,
-                  plan_id,
-                  status_id,
-                  pais_id,
-                  timezone_id,
-                
-  
-    };
-  
-  console.log(newuser);
-  await pool.query('UPDATE cuentas set ? WHERE id=?', [newuser, id]);
-  
-            res.json(
-              {
-                status:"ok",
-                message:"Usuario actualizado correctamente"
-              }
+router.post('/resetPass/:id', isLoggedIn, async(req,res) => {
+
+  const {id} = req.params;
+
+  console.log("Editing user" , id)
+  var errors= {}
+
+ 
+
+
+            if(!req.body.password){
+
+              errors.id="*El campo nueva contraseña no puede quedar vacío"
+
+            }
+
+           
+
+            
+            if(Object.keys(errors).length !== 0){
+
+              res.json(
+                {
+                  status:"error",
+                  message:"Error al actualizar la contraseña",
+                  errors: errors
+                }
               )
-  
-              }
-  });
 
 
 
+              }else{
+
+  const {usuario} = req.body;
+  const newuser={
+
+               nombre,
+                plan_id,
+                status_id,
+                pais_id,
+                timezone_id,
+              
+
+  };
+
+console.log(newuser);
+await pool.query('UPDATE cuentas set ? WHERE id=?', [newuser, id]);
+
+          res.json(
+            {
+              status:"ok",
+              message:"Usuario actualizado correctamente"
+            }
+            )
+
+            }
+});
 
 module.exports = router;
    

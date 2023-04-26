@@ -23,6 +23,7 @@
     "brfs": "^2.0.2",
     "browserify": "^17.0.0",
     "connect-flash": "^0.1.1",
+    "cors": "^2.8.5",
     "datatables.net-dt": "^1.13.4",
     "ejs": "^3.1.8",
     "espress": "^0.0.0",

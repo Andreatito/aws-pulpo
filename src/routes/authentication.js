@@ -8,21 +8,29 @@ const pool = require('../database');
 const { Passport } = require('passport');
 let alert = require('alert'); 
 
+
+
     router.get('/signup',(req,res) =>{
+
         res.render('auth/signup')
+
     });
 
 
+    router.post('/signup',passport.authenticate('local.signup',{
 
+        
+      successRedirect: '/profile',
+      failureRedirect:'/signup',
+      failureFlash: true
+
+  }))
+
+
+
+  /* 
     router.post('/signup', isLoggedIn, async (req, res) => {
 
-      passport.authenticate ('local.signup', {
-
-        successRedirect: '/profile',
-        failureRedirect:'/signin',
-        failureFlash: true
-
-  })
 
         console.log("cuentas post add")
        
@@ -85,18 +93,10 @@ let alert = require('alert');
           )
         }
         
-   });
-/*   
-    router.post('/signup', passport.authenticate ('local.signup', {
-
-        successRedirect: '/profile',
-        failureRedirect:'/signin',
-        failureFlash: true
+   }); */
 
 
-
-
-  })); */
+   //Signin
 
     router.get('/signin', (req, res)=> {
 
@@ -105,59 +105,30 @@ let alert = require('alert');
     });
 
 
-    router.post('/signin', (req, res, next)=> {
+    router.post('/signin', (req, res, next) => {
 
-        passport.authenticate('local.signin',{
+    /*   req.check('username', 'Username is Required').notEmpty();
+      req.check('password', 'Password is Required').notEmpty(); */
 
+      // const errors = req.validationErrors();
+      // if (errors.length > 0) {
+      //   req.flash('message', errors[0].msg);
+      //   res.redirect('/signin');
+      // }
+      passport.authenticate('local.signin', {
         successRedirect: '/profile',
-        failureRedirect:'/signin',
+        failureRedirect: '/signin',
         failureFlash: true
-
-        }) (req,res,next);
-
-        var errors= {}
-
-        if(!req.body.password){
-          
-          errors.password="*Ingrese un password"
-          console.log("ingrese un password")
-          
-        }
-
-        if(!req.body.username){
-          
-          errors.username="*Ingrese su usuario"
-          
-        } console.log ("andrea",Object.keys(errors).length)
-        if(Object.keys(errors).length !== 0){
-
-          res.json(
-            {
-              status:"error",
-              message:"Error al crear el usuario",
-              errors: errors
-            }
-          )
-
-        }
-        
-        
-        
-        else{
-         
-
-          router.get('/profile',isLoggedIn, (req,res) =>{ 
-
-            res.render('profile')
-        
-        });
-        }
-
+      })(req, res, next);
     });
 
-   
+       
+    router.get('/profile',isLoggedIn, (req,res) =>{ 
 
+      return res.render('profile')
    
+    });
+
 
 router.get('/logout',(req,res) =>{
 

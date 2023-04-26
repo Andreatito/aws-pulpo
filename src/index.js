@@ -8,6 +8,8 @@ const MySQLStore= require('express-mysql-session');
 const { database }=require('./keys');
 const passport= require('passport');
 const helpers = require('./lib/helpers');
+const cors = require('cors')
+
 
 
 
@@ -19,8 +21,6 @@ const helpers = require('./lib/helpers');
 
 
 const app= express();//definir puerto de conexión- settings
-
-
 
 
 require('./lib/passport');

@@ -35,7 +35,7 @@ helpers.matchPassword = async (password, savedPassword) => {
 
 //validaciones formulario
 
-const { validationResult } = require('express-validator');
+/* const { validationResult } = require('express-validator');
 
 const validateResult = (req,res, next) => {
 
@@ -52,7 +52,7 @@ if(!errors.isEmpty()){
    
 }
 
-
+ */
 //return res.redirect('/add')
 
 
@@ -72,7 +72,7 @@ if(!errors.isEmpty()){
     
 //}
 
-}
+
 
 
 module.exports=helpers;
