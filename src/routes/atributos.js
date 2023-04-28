@@ -277,12 +277,7 @@ router.get('/detConductor/', isLoggedIn, async(req,res) => {
 
   const {id}=req.params;
 
-  const detConductor= await pool.query(`SELECT * FROM  conductor 
-  
-
-
-  
-  `);  
+  const detConductor= await pool.query(`SELECT * FROM  conductor `);  
 
 
   console.log(detConductor) 

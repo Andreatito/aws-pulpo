@@ -115,10 +115,15 @@
 
                 </form>
 
-                <button class="btn btn-primary"  href="/users/showUser/">Cancelar</button>
+                <button class="btn btn-primary" id="btnCancel">Cancelar</button>
+
+               
+
+
+
                     <br>
                     <br>
-            </div>
+                </div>
            
                     <Span class = "rojo">* </span>
                     <label class="text-secondary" >Campos obligatorios</label>
@@ -186,13 +191,55 @@
 
             });
 
-        
 
-            
+        </script>	
 
-        
 
-            
+
+         <script>
+           
+
+
+            $( document ).ready(function() {
+
+                $( "#btnCancel" ).click(function(e) {
+
+                    console.log("btnCancel On Click")
+                    e.preventDefault();
+
+                    const account= {
+
+                        nombre: $("#accountName").val(),
+                        plan_id:  $("#plan_id").val(),
+                        status_id:  $("#status_id").val(),
+                        pais_id:  $("#pais_id").val(),
+                        timezone_id:  $("#timezone_id").val(),
+                        user_id:  $("#user_id").val()
+                    }
+
+                    console.log(account)
+
+                    $.post( "/crud/edit/{{cuentas.id}}", account, function( data ) {
+
+                        if(data.status=="ok"){
+
+                            window.location.href = '/crud/';
+
+                        }else{
+                            
+                            $("#nombreMessage").text(data.errors.nombre || "")
+                            $("#planMessage").html(data.errors.plan_id || "")
+                            $("#statusMessage").html(data.errors.status_id || "")
+                            $("#paisMessage").html(data.errors.pais_id || "")
+                            $("#timezoneMessage").html(data.errors.timezone_id || "")
+                            $("#userMessage").html(data.errors.user_id || "")
+                        }
+                    });
+                
+                });
+
+            });
+
 
         </script>	
 

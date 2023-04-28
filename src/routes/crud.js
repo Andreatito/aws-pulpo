@@ -454,6 +454,7 @@ router.post('/usuarios', isLoggedIn,  async (req, res) => {
           status:"ok",
           message:"Usuario creado correctamente",
           errors: errors
+          
         }
       )
       }

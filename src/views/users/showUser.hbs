@@ -5,15 +5,20 @@
 <meta charset="UTF-8">
 <title>index</title>
 
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css" />
+<script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.js"></script>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css" />
-    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 
-	<link rel="stylesheet" href="/css/styles.css">
+
+
+</script>
+<link rel="stylesheet" href="/css/styles.css">
+
+
+
+  
 </head>
-
 
 <script type="text/javascript">
 
@@ -39,42 +44,64 @@ function ConfirmDelete(){
 
 </script>
 
-  <body>     
-      
-        <div class="datatable">
+  <body>  
+
+    <div class="datatable">   
+
+
+         <div class="box01" >
+
+            <div class="agregarC" >  
+
+                <form >
+                {{#if user.is_admin}}
+                <button  class="btn btn-primary"  type="submit" formaction="/crud/usuarios/">Agregar Usuario</button>
+                {{/if}}
+
+                 </form>
+            </div>
             
-              {{#if usuarioC}}
+        </div>
+  
+    <br>
 
-                <div class="showUser">
+    <br>
+      
+        <div class="table-responsive">
+            
+             
 
-                <table class="table table-bordered table-hover cell-border" id="datatable" >
+        
 
-                    <thead>
+            <table id="datatable" class="table table-bordered display nowrap" cellspacing="0" width="100%"  >
+
+                <thead>
 
       
                 
-                    <th>Usuarios de la cuenta</th>
-                <tr>
                     
-                     <th>Role</th>
-                        <th>Usuario</th>
-                        <th>Email</th>
-                        <th>Timezone</th>
-                        <th>Acciones</th>
+                    <tr>
                         
-                    
+                        <th>Role</th>
+                            <th>Usuario</th>
+                            <th>Email</th>
+                            <th>Timezone</th>
+                            <th>Acciones</th>
+                            
+                        
 
-                </tr>
-            </thead>
+                    </tr>
+
+                </thead>
             
 
-            <tbody> 
+            <tbody class="tbody"> 
                  
                  {{#each usuarioC}}
                 
                 <tr>
                     
-            <td>{{rl}}</td>
+                     <td>{{rl}}</td>
 
                     <td>{{nombre}}</td>
 
@@ -83,75 +110,77 @@ function ConfirmDelete(){
 
                     <td>{{tz}}</td>
 
-              
-
-                    
-
                     
 
                     <td>
 
                          <a href="/user/{{usuario_id}}/edit"  class="btn btn-outline-primary btn-sm">Editar</a>
                          <a href="/user/delete/{{usuario_id}}" class="btn btn-outline-danger btn-sm" onclick="return ConfirmDelete()">Borrar</a>
-                              
-
-                     {{!-- {{<a href="/crud/resetPass/{{../user.id}}">Editar usuario</a>}} --}}   
-
-                        
+           
                          
                     </td>
                 </tr>
+                
                 {{/each}}
                
             </tbody>
 
-        </table>
+    </table>
 
-   
- </div>
+
+         {{#each usuarioC}}
 
 
   
          {{else}}
 
 
-<div  style=" position:center; margin-top: 300px">
+                <div>
 
- 
+                
 
-        <p>No hay usuarios asociados a esta cuenta</p>
+                        <p>No hay usuarios asociados a esta cuenta</p>
 
-</div>
-        
+                </div>
+                        
    
                         
-            {{/if}}  
+           {{/each}}
 
-                        <script>src="https://code.jquery.com/jquery-3.5.1.js"</script>
-        <script>src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"</script>
-        <script>src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"</script>
+    
+    <script>src="https://code.jquery.com/jquery-3.5.1.js"</script>
+    <script>src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"</script>
+    <script>src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"</script>
 
-                <script>
-                    $(document).ready(function () {
-                
-                    $('#datatable').DataTable({
-                        "language": {
-                    "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
-                    }
+    
 
-                    }
+                    <script>
+
+                                $(document).ready(function () {
+                            
+                                $('#datatable').DataTable({
+                                    
+                                
+                                    "language": {
+                                "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
+                                }
+
+                                }
 
 
-                    );
-                });
-                    
+                                );
+                            });
+                                
+                                
 
 
 
-            </script> 
+                    </script>  
                             
 
             </div>
+
+        </div>
         
-        </body> 
-    </html>
+    </body> 
+</html>

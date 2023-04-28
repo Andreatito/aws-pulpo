@@ -72,10 +72,12 @@
 							<li class="nav-item">
 								<a class="dropdown-item" href="/crud/">Ver cuentas</a>
 								</li>
+								{{#if user.is_admin}}
 							<li class="nav-item">
 							    <a class="dropdown-item" href="/crud/add">Agregar cuenta</a>
 
 								</li>
+								 {{/if}}
 						</ul>
 			</li>
 

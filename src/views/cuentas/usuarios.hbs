@@ -20,7 +20,7 @@ body {
     
 
         
-              <div class="formulario">
+            <div class="formulario">
          
               
                 <form action= "/crud/usuarios" method="POST" id="FormUsuario">
@@ -31,9 +31,9 @@ body {
                  <br>
                  <div class="row">
                 
-                     <label >Nombre de usuario:</label>
-
-                    <input type="text"  class=" border rounded" name="nombre" id="userName" placeholder="nombre" autofocus>
+                     <label >Nombre de usuario: <Span class = "rojo"> * </span></label>
+                    
+                    <input type="text"  style="width:450px" class=" border rounded" name="nombre" id="userName" placeholder="nombre" autofocus>
                     <br>
                      <div class="message" id="nombreMessage"></div>
 
@@ -44,7 +44,7 @@ body {
 
                 <div class="row">
                 <div class="col">
-                    <label >Role:</label>
+                    <label >Role: <Span class = "rojo"> * </span></label>
 
                      <select class=" form-select form-select-sm " style="width:auto"  name="rol_id" id="rol_id">
 
@@ -68,7 +68,8 @@ body {
                 <br>
                 <div class="col" >
 
-                    <label >email:</label>
+                    <label >email: <Span class = "rojo"> * </span></label>
+                    <br>
                     <input type="email" class=" border rounded"  name="email" id="email_id" placeholder="email" autofocus>
                     <div class="message" id="emailMessage"></div>
              </div>
@@ -78,7 +79,7 @@ body {
                 <div class="row">
                 <div class="col">
 
-                    <label >Zona horaria:</label>
+                    <label >Zona horaria: <Span class = "rojo"> * </span></label>
                     
                        <select class=" form-select form-select-sm " style="width:auto"  name="timezone" id="timezone_id">
 
@@ -102,7 +103,7 @@ body {
               
                 <div class="col">
 
-                    <label >Cuenta:</label>
+                    <label >Cuenta: <Span class = "rojo"> * </span></label>
 
                           <select class="form-select form-select-sm " style="width:auto" name="Cuenta_id" id="cuenta_id">
 
@@ -116,42 +117,61 @@ body {
                             {{/each}}
                      </select>  
                     <div class="message" id="cuentaMessage"></div>
-                </div>
+                
                 </div>
                 <br>
                 <br>
                 <div>
-                    <label >Usuario:</label>
+                      <br>
+
+                    <label >Usuario: <Span class = "rojo"> * </span></label>
+                    <br>
                     <input type="text" class=" border rounded"  name="user_id" id="user_id" placeholder="Id de tu usuario" autofocus>
                       <div class="message" id="usuarioMessage"></div>
                 </div>
 
-                <div >
+                </form>
+                <br>
+                </div>
 
-                    <br>
+                <br>
+                    <div class="form-g">
 
-                    <button type="submit"  class="btn btn-primary"  id="btnSave">
+                    <button  class="btn btn-primary" id="btnSave">
 
                         Guardar
                     </button>
-                    <br>
-                    <br>
-                     <Span class = "rojo">* </span>
-                    <label class="text-secondary" >Campos obligatorios</label>
+
+                
+
+                
+
+                <button class="btn btn-primary" id="btnCancel">Cancelar</button>
+
+               
+
+
 
                     <br>
                     <br>
                 </div>
-     </div>
+           
+                    <Span class = "rojo">* </span>
+                    <label class="text-secondary" >Campos obligatorios</label>
 
-                </form>
+                    <br>
+                    <br>
+     
+            </div>
+     
+  
 
               
 <div class="imgUser">
 
                     <img src="/img/nvoUser2.png" class="img-fluid">
 
- </div>
+</div>
            
 
 </div>
@@ -165,10 +185,11 @@ body {
 		<script src="popper/popper.min.js"></script>
 		<script src="bootstrap-5.2.0-dist/js/bootstrap.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+        
+        
+     {{!-- botón Aceptar --}}   
         <script>
            
-
-
             $( document ).ready(function() {
 
                 $( "#btnSave" ).click(function(e) {
@@ -197,7 +218,7 @@ body {
 
                         if(data.status=="ok"){
 
-                            window.location.href = '/crud';
+                            window.location.href = '/user/showUser/';
 
                         }else{
                             
@@ -217,11 +238,25 @@ body {
 
         
 
-            
+        </script>	
 
+{{!-- botón cancelar --}}
+         <script>
+           
+            $( document ).ready(function() {
+
+                $( "#btnCancel" ).click(function(e) {
+
+                    e.preventDefault();
+                     
         
+                   window.location.href = '/profile';
+                
+                });
 
-            
+            });
+
+             
 
         </script>	
 </div>

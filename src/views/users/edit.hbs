@@ -6,36 +6,50 @@
 </head>
 
 
-<div class="add bg-light">
-    <div >
+<div class="add">
 
-        <div >
+
+    <div  class="formulario">
             
-            <div class="addTitle" >
-
-                 <hp>Editar usuario</hp>
-
-             </div> 
+           
       
-                <form class="user"   method="POST" id="FormUsuario">
+        <form class="user"  method="POST" id="FormUsuario">
 
-                  <div >
+                 <br>
+                <label style="font-size: 20px; color: rgb(27, 73, 240);" >Editar usuario</label>
+                 <br>
+                 <br>
+                
+                <div class="row" >
+                  
                     <br>
-                    <br>
-                   
-                <div >
-                    <br>
-                    <br>
-                     <label >Nombre de usuario:</label>
-                    <input type="text" class="text" name="nombre" id="userName" value="{{usuario.nombre}}" placeholder="nombre" autofocus>
+                     <label >Nombre de usuario:<Span class = "rojo"> * </span></label>
+                      
+                     <br>
+                    <input type="text" style="width:450px" class=" border rounded" name="nombre" id="userName" value="{{usuario.nombre}}" placeholder="nombre" autofocus>
                     <div id="nombreMessage" class="message"></div>
+
                 </div>
                 <br>
-                <br>
-                <div >
-                    <label >Role:</label>
 
-                     <select name="rol_id" id="rol_id">
+                <div class="row" >
+
+                    <label >email:<Span class = "rojo"> * </span></label>
+
+                <br>
+                    <input type="email" style="width:450px" class=" border rounded" name="email" id="email_id" value="{{usuario.email}}" placeholder="email" autofocus>
+
+                    <div id="emailMessage" class="message"></div>
+                </div>
+
+                 <br>
+                
+                <div class="row" >
+                <div class="col">
+            
+                    <label >Role:<Span class = "rojo"> * </span></label>
+
+                     <select class=" form-select form-select-sm " style="width:auto"  name="rol_id" id="rol_id">
 
                             <option value="">-- Roles--</option>
 
@@ -51,20 +65,12 @@
                           <div id="rolMessage" class="message"></div>
                 </div>
                 <br>
-                <br>
-                <div >
-
-                    <label >email:</label>
-                    <input type="email" class="text1" name="email" id="email_id" value="{{usuario.email}}" placeholder="email" autofocus>
-
-                    <div id="emailMessage" class="message"></div>
-             </div>
-                <br>
-                <br>
-                <div>
-                    <label >Zona horaria:</label>
+       
+            
+                <div class="col">
+                    <label >Zona horaria:<Span class = "rojo"> * </span></label>
                     
-                       <select name="timezone" id="timezone_id">
+                       <select class=" form-select form-select-sm " style="width:auto" name="timezone" id="timezone_id">
 
                             <option value="">-- Zona horaria--</option>
 
@@ -80,36 +86,64 @@
                       
 
                 </div>
-                 <br>
-                 <br>
+                 </div>
+    
+                </form>
 
-                <div >
+                     <br>
+                
 
-                    <button type="submit"  class="btn btn-primary"  id="btnSave">
+                <br>
+                    <div class="form-g">
+
+                    <button  class="btn btn-primary" id="btnSave">
 
                         Guardar
                     </button>
+
+
+
+                  <button class="btn btn-primary" id="btnCancel">Cancelar</button>
+
+               
+
+
+
                     <br>
                     <br>
                 </div>
+                
+                 <Span class = "rojo">* </span>
+                    <label class="text-secondary" >No debes dejar campos debe quedar vacíos</label>
 
-                </form>
+                    <br>
+                    <br>
 
+
+
+              </div>
+                
               
+            <div class="EditUser">
 
-          
+                                <img src="/img/EditUser.png" class="img-fluid">
+
+            </div>
+                    
 
 
 
-        </div>
+        
 
 
     </div>
 
-<script src="bootstrap-5.2.0-dist/js/jquery-3.6.1.min.js"></script>
+        <script src="bootstrap-5.2.0-dist/js/jquery-3.6.1.min.js"></script>
 		<script src="popper/popper.min.js"></script>
 		<script src="bootstrap-5.2.0-dist/js/bootstrap.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+       
+           {{!-- Botón aceptar --}}
         <script>
            
 
@@ -134,7 +168,7 @@
 
                         if(data.status=="ok"){
 
-                            window.location.href = '/crud';
+                            window.location.href = '/user/showUser/';
 
                         }else{
                             
@@ -151,13 +185,29 @@
 
             });
 
+
+        </script>	
+
+        {{!-- Botón cancelar --}}
+            </script>	
+
+{{!-- botón cancelar --}}
+         <script>
+           
+            $( document ).ready(function() {
+
+                $( "#btnCancel" ).click(function(e) {
+
+                    e.preventDefault();
+                     
         
+                   window.location.href = '/profile';
+                
+                });
 
-            
+            });
 
-        
-
-            
+             
 
         </script>	
 </div>
