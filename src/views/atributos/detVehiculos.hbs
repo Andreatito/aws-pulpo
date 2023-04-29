@@ -1,0 +1,162 @@
+<html>
+
+
+<head>
+<meta charset="UTF-8">
+<title>index</title>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css" />
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+
+	<link rel="stylesheet" href="/css/styles.css">
+</head>
+
+
+<script type="text/javascript">
+
+function ConfirmDelete(){
+
+
+    var respuesta= confirm("Seguro?")
+
+    if(respuesta== true)
+
+    {
+
+        return trues;
+    }else
+
+    {
+
+        return false
+    }
+}
+
+
+
+</script>
+
+  <body>     
+      
+        <div class="datatable">
+            
+              {{#if detVehiculos}}
+
+                <div class="showUser">
+
+                <table class="table table-bordered table-hover cell-border" id="datatable" >
+
+                    <thead>
+
+      
+                
+                    <th>Vehículos</th>
+                <tr>
+                    
+                     <th>Tipo de vehículo</th>
+                        <th>Marca</th>
+                        <th>Modelo</th>
+                        <th>Año</th>
+                        <th>Color</th>
+                        <th>Estatus</th>
+                        <th>Cuenta</th>
+                         <th>Acciones</th>
+                        
+                    
+
+                </tr>
+            </thead>
+            
+
+            <tbody> 
+                 
+                 {{#each detConductor}}
+                
+                <tr>
+                    
+            
+
+                    <td>{{vh}}</td>
+
+                    <td>{{apellido}}</td>
+
+                    <td>{{licencia}}</td>
+                    
+                   <td>{{vehiculo_id}}</td>
+                 
+                    <td>{{timeago vigencia_lic}}</td>
+              
+
+                    
+
+                    
+
+                    <td>
+
+                         <a href="/user/{{usuario_id}}/edit"  class="btn btn-outline-primary btn-sm">Suspender</a>
+                       
+                              
+
+                     {{!-- {{<a href="/crud/resetPass/{{../user.id}}">Editar usuario</a>}} --}}   
+
+                        
+                         
+                    </td>
+                </tr>
+                {{/each}}
+               
+            </tbody>
+
+        </table>
+
+   
+ </div>
+
+
+  
+         {{else}}
+
+
+<div  style=" position:center; margin-top: 300px">
+
+ 
+
+        <p>No hay usuarios asociados a esta cuenta</p>
+
+</div>
+        
+   
+                        
+            {{/if}}  
+
+                        <script>src="https://code.jquery.com/jquery-3.5.1.js"</script>
+        <script>src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"</script>
+        <script>src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"</script>
+
+                <script>
+                    $(document).ready(function () {
+                
+                    $('#datatable').DataTable({
+                        "language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
+                    }
+
+                    }
+
+
+                    );
+                });
+                    
+
+
+
+            </script> 
+                            
+
+            </div>
+        
+        </body> 
+    </html>

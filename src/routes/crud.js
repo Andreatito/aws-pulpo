@@ -159,8 +159,8 @@ router.get('/show/:id', isLoggedIn, async(req,res) => {
  
 
     const vehiculos = await pool.query(`
-      SELECT  
-        vehiculos.nombreV AS nombreV, 
+      SELECT  vehiculos.*,
+        vehiculo_tipo.tipo AS tp, 
         brand.nombre AS brand, 
         modelo.nombre AS modelo, 
         year.nombre AS year, 
@@ -173,6 +173,7 @@ router.get('/show/:id', isLoggedIn, async(req,res) => {
         LEFT JOIN year ON year.id = vehiculos.year
         LEFT JOIN color ON color.id = vehiculos.color
         LEFT JOIN vehiculo_status ON vehiculo_status.id = vehiculos.vehiculo_status
+        LEFT JOIN vehiculo_tipo ON vehiculo_tipo.id = vehiculos.tipo1_id
       WHERE 
         cuenta=?`, id);
 

@@ -108,12 +108,13 @@ router.get('/showUser/', isLoggedIn, async(req,res) => {
 
   const {id}=req.params;
 
-  const usuarioC= await pool.query(`SELECT usuarios_cuenta.*, timezone.timezone AS tz, roles.rol as rl
+  const usuarioC= await pool.query(`SELECT usuarios_cuenta.*, timezone.timezone AS tz, roles.rol as rl, cuentas.nombre as cta, usuarios_cuenta. deleted_at as dlt
   FROM usuarios_cuenta 
   LEFT JOIN timezone ON timezone.id_timezone = usuarios_cuenta.timezone  
   LEFT JOIN roles ON roles.id_rol = usuarios_cuenta.rol_id 
   LEFT JOIN users ON users.id = usuarios_cuenta.user_id 
-  WHERE deleted_at is NULL AND usuarios_cuenta.user_id=?`,[req.user.id]);  
+  LEFT JOin cuentas ON cuentas.id =usuarios_cuenta.cuenta_id
+  WHERE  usuarios_cuenta.deleted_at is NULL AND usuarios_cuenta.user_id=?`,[req.user.id]);  
    
 
 

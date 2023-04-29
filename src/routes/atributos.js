@@ -21,8 +21,10 @@ router.get('/addVehiculo/',isLoggedIn, async(req, res) =>{
     console.log (vehiculo_status);
     const cuentas= await pool.query('SELECT * FROM cuentas');
     console.log (cuentas);
+    const vehiculo_tipo= await pool.query('SELECT * FROM vehiculo_tipo');
+    console.log (vehiculo_tipo);
   
-    res.render('./atributos/addVehiculo',{brand,modelo,year,color,vehiculo_status,cuentas});
+    res.render('./atributos/addVehiculo',{brand,modelo,year,color,vehiculo_status,cuentas,vehiculo_tipo});
     
   } );
   
@@ -32,15 +34,13 @@ router.get('/addVehiculo/',isLoggedIn, async(req, res) =>{
     console.log("cuentas post add")
    
     var errors= {}
-    var nombrePattern=new RegExp(/^[a-zA-ZÑñÁáÉéÍíÓóÚúÜü\s]+$/);
+
     
-    if(!req.body.nombreV){
+    if(!req.body.tipo1_id){
   
-      errors.nombreV="*El nombre es requerido"
+      errors.tipo1_id="*El nombre es requerido"
   
-    }else if(!nombrePattern.test(req.body.nombreV)){
-      errors.nombreV="*Ingrese un nombre válido"
-  }
+    }
     
     if(!req.body.brand){
   
@@ -74,6 +74,11 @@ router.get('/addVehiculo/',isLoggedIn, async(req, res) =>{
     if(!req.body.cuenta){
   
       errors.cuenta="*La cuenta es requerida"
+      
+    }
+    if(!req.body.placa){
+  
+      errors.cuenta="*Ingresa la placa del vehículo"
       
     }
     console.log ("andrea",Object.keys(errors).length)
@@ -111,9 +116,11 @@ router.get('/conductor/',isLoggedIn, async(req, res) =>{
     console.log (vehiculos);
     const cuentas2= await pool.query('SELECT * FROM cuentas');
     console.log (cuentas2);
+    const estatus= await pool.query('SELECT * FROM estatus_conductor');
+    console.log (estatus);
    
   
-    res.render('./atributos/conductor',{vehiculos, cuentas2});
+    res.render('./atributos/conductor',{vehiculos, cuentas2,estatus});
     
   } );
   
@@ -149,12 +156,18 @@ router.get('/conductor/',isLoggedIn, async(req, res) =>{
 
   }else if(!licenciaPattern.test(req.body.licencia)){
     
-    errors.licencia="*Ingrese una licencia valida (El formato debe ser de tipo WW-1234)"
+    errors.licencia="*Ingrese una licencia válida (El formato debe ser de tipo WW-1234)"
 }
   
     if(!req.body.vehiculo_id){
   
       errors.vehiculo_id="*Debe seleccionar un vehículo"
+  
+    }
+
+    if(!req.body.estatus){
+  
+      errors.estatus="*Debe seleccionar un estatus"
   
     }
 
@@ -191,101 +204,77 @@ router.get('/conductor/',isLoggedIn, async(req, res) =>{
 
 //Agregar datos de facturacion
 
-router.get('/datosfacturacion/',isLoggedIn, async(req, res) =>{
-  console.log("cuentas get add")
-  const vehiculos= await pool.query('SELECT * FROM vehiculos');
-  console.log (vehiculos);
-  const cuentas2= await pool.query('SELECT * FROM cuentas');
-  console.log (cuentas2);
- 
-
-  res.render('./atributos/datosfacturacion',{vehiculos, cuentas2});
-  
-} );
 
 
-router.post('/datosfacturacion/', isLoggedIn, async (req, res) => {
-
-  console.log("cuentas post add")
- 
-  var errors= {}
-  var nombrePattern=new RegExp(/^[a-zA-ZÑñÁáÉéÍíÓóÚúÜü\s]+$/);
-  
-  if(!req.body.nombre){
-
-    errors.nombre="*El nombre es requerido"
-
-  }else if(!nombrePattern.test(req.body.nombre)){
-    errors.nombre="*Ingrese un nombre válido"
-} 
-if(!req.body.apellido){
-
-  errors.apellido="*El apellido es requerido"
-
-}else if(!nombrePattern.test(req.body.apellido)){
-  
-  errors.apellido="*Ingrese un apellido válido"
-}
-  
-  if(!req.body.licencia){
-
-    errors.licencia="*Ingrese la licencia asociada al conductor"
-}
-
-  if(!req.body.vehiculo_id){
-
-    errors.vehiculo_id="*Debe seleccionar un vehículo"
-
-  }
-
-  if(!req.body.Cuenta_id){
-
-    errors.Cuenta_id="*Debe seleccionar una cuenta para asociar al conductor"
-
-  }
-
-  console.log ("andrea",Object.keys(errors).length)
-  if(Object.keys(errors).length !== 0){
-
-    res.json(
-      {
-        status:"error",
-        message:"Error al agregar el conductor",
-        errors: errors
-      }
-    )
-
-  }else{
-    
-    await pool.query('INSERT INTO conductor set ?', [req.body]);
-
-    res.json(
-    {
-      status:"ok",
-      message:"Conductor agregado correctamente"
-    }
-    )
-  }
-  
-});
-
-
-//Detalle ocnductores
+//Detalle conductores
 
 
 router.get('/detConductor/', isLoggedIn, async(req,res) => {
 
+ 
   const {id}=req.params;
 
-  const detConductor= await pool.query(`SELECT * FROM  conductor `);  
+  const detConductor= await pool.query(`SELECT conductor.*, vehiculos.placa AS pl, cuentas.nombre as cta, estatus_conductor.tipo AS est
+  FROM conductor
+  LEFT JOIN vehiculos ON vehiculos.id_vehiculo = conductor.vehiculo_id
+  LEFT JOIN users ON users.id = conductor.usuario_id 
+  LEFT JOIN cuentas ON cuentas.id =conductor.cuenta_id
+  LEFT JOIN estatus_conductor ON estatus_conductor.id = conductor.Estatus
+  WHERE conductor.usuario_id=?`,[req.user.id]);
 
 
   console.log(detConductor) 
  
  
-  res.render('./atributos/detConductor', {detConductor :detConductor} );
+  res.render('./atributos/detConductor', {detConductor: detConductor} );
     
 });
+
+
+
+
+//Suspender conductor
+
+router.get('/detConductor/:id', isLoggedIn, async(req,res) => {
+
+  const {id}=req.params;
+
+  await pool.query('UPDATE Conductor SET Estatus= "3" WHERE id=?',[id]);
+
+  const detConductor= await pool.query(`SELECT conductor.*, vehiculo_tipo.tipo AS vh, cuentas.nombre as cta, estatus_conductor.tipo AS est
+  FROM conductor
+
+  LEFT JOIN vehiculos ON vehiculos.id_vehiculo = conductor.vehiculo_id
+  LEFT JOIN users ON users.id = conductor.usuario_id 
+  LEFT JOin cuentas ON cuentas.id =conductor.cuenta_id
+  LEFT JOIN estatus_conductor ON estatus_conductor.id = conductor.Estatus
+  LEFT JOIN vehiculo_tipo ON vehiculo_tipo.id = conductor.vehiculo_id
+
+
+  WHERE conductor.usuario_id=?`,[req.user.id]  );
+ 
+  res.render('./atributos/detConductor', {detConductor :detConductor});
+
+});
+
+
+//Detalle vehículos
+
+
+router.get('/detVehiculos/', isLoggedIn, async(req,res) => {
+
+  const {id}=req.params;
+
+  const detVehiculos= await pool.query(`SELECT * FROM  vehiculos `);  
+
+
+  console.log(detVehiculos) 
+ 
+ 
+  res.render('./atributos/detVehiculos', {detVehiculos: detVehiculos} );
+    
+});
+
 
 
   //Agregar Mantenimiento

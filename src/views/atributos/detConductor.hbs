@@ -1,138 +1,162 @@
 <html>
 
 
-<head>
-<meta charset="UTF-8">
-<title>index</title>
-
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css" />
-    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
-
-	<link rel="stylesheet" href="/css/styles.css">
-</head>
-
-
-<script type="text/javascript">
-
-function ConfirmDelete(){
-
-
-    var respuesta= confirm("Seguro?")
-
-    if(respuesta== true)
-
-    {
-
-        return trues;
-    }else
-
-    {
-
-        return false
-    }
-}
-
-
+        <head>
+        <meta charset="UTF-8">
+        <title>index</title>
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css" />
+<script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.js"></script>
 
 </script>
 
-  <body>     
+<link rel="stylesheet" href="/css/styles.css">
+
+</head>
+
+        </head>
+
+
+                <script type="text/javascript">
+
+                function ConfirmDelete(){
+
+
+                    var respuesta= confirm("Seguro?")
+
+                    if(respuesta== true)
+
+                    {
+
+                        return trues;
+                    }else
+
+                    {
+
+                        return false
+                    }
+                }
+
+
+
+                </script>
+
+    <body>     
       
         <div class="datatable">
+
+
+            <div class="box01" >
+
+                <div class="agregarCon" >  
+
+                    <form >
+                    {{#if user.is_admin}}
+                    <button  class="btn btn-primary"  type="submit" formaction="/atributos/Conductor/">Agregar Conductor</button>
+                    {{/if}}
+
+                    </form>
+                </div>
             
-              {{#if detConductor}}
+            </div>
 
-                <div class="showUser">
+         <br>
 
-                <table class="table table-bordered table-hover cell-border" id="datatable" >
+         <br>  
 
-                    <thead>
+            <div class="table-responsive">
+
+                    <table id="datatable" class="table table-bordered display nowrap" cellspacing="0" width="100%"  >
+
+                        <thead>
 
       
                 
-                    <th>Usuarios de la cuenta</th>
-                <tr>
-                    
-                     <th>Nombre</th>
-                        <th>Apellido</th>
-                        <th>No.Licencia</th>
-                        <th>Vehículo asociado</th>
-                        <th>Vigencia de licencia</th>
-                         <th>Acciones</th>
-                        
-                    
+                            <th>Usuarios de la cuenta</th>
+                            <tr>
+                                <th>Cuenta</th>
+                                <th>Nombre</th>
+                                <th>Apellido</th>
+                                <th>No.Licencia</th>
+                                <th>V Placa</th>
+                                <th>Vigencia Lic</th>
+                                <th>Estatus</th>
+                                <th>Acciones</th>
+                                
+                            
 
-                </tr>
-            </thead>
+                             </tr>
+                        </thead>
             
 
-            <tbody> 
-                 
-                 {{#each detConductor}}
+                        <tbody class="tbody"> 
+                    
+                            {{#each detConductor}}
+                            
+                            <tr>
+                                
+                        
+                                <td>{{cta}}</td>
+                                
+                                <td>{{nombre}}</td>
+
+                                <td>{{apellido}}</td>
+
+                                <td>{{licencia}}</td>
+                                
+                                <td>{{pl}}</td>
+                            
+                                <td>{{timeago vigencia_lic}}</td>
+
+                                 <td>{{est}}</td>
+                        
+
+                            <td>
+
+                            <a href="/atributos/detconductor/{{id}}" class="btn btn-outline-primary btn-sm">Suspender</a>
+                        
+                                
+
+                        {{!-- {{<a href="/crud/resetPass/{{../user.id}}">Editar usuario</a>}} --}}   
+
+                            
+                            
+                            </td>
+
+                            </tr>
+
+                            {{/each}}
                 
-                <tr>
-                    
+                        </tbody>
+
             
 
-                    <td>{{nombre}}</td>
-
-                    <td>{{apellido}}</td>
-
-                    <td>{{licencia}}</td>
-                    
-                   <td>{{vehiculo_id}}</td>
-                 
-                    <td>{{timeago vigencia_lic}}</td>
-              
-
-                    
-
-                    
-
-                    <td>
-
-                         <a href="/user/{{usuario_id}}/edit"  class="btn btn-outline-primary btn-sm">Suspender</a>
-                       
-                              
-
-                     {{!-- {{<a href="/crud/resetPass/{{../user.id}}">Editar usuario</a>}} --}}   
-
-                        
-                         
-                    </td>
-                </tr>
-                {{/each}}
-               
-            </tbody>
-
-        </table>
+                    </table>
 
    
- </div>
+                    {{#each detConductor}}
 
 
-  
-         {{else}}
+    
+                    {{else}}
 
 
-<div  style=" position:center; margin-top: 300px">
+                    <div>
 
- 
+                    
 
-        <p>No hay usuarios asociados a esta cuenta</p>
+                            <p>***No hay conductores a esta cuenta***</p>
 
-</div>
+                    </div>
         
    
                         
-            {{/if}}  
+                     {{/each}}
+
 
                         <script>src="https://code.jquery.com/jquery-3.5.1.js"</script>
-        <script>src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"</script>
-        <script>src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"</script>
+                        <script>src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"</script>
+                        <script>src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"</script>
 
                 <script>
                     $(document).ready(function () {
@@ -151,10 +175,11 @@ function ConfirmDelete(){
 
 
 
-            </script> 
+                 </script> 
                             
-
             </div>
+
+         </div>
         
-        </body> 
-    </html>
+    </body> 
+ </html>

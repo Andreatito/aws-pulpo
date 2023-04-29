@@ -20,7 +20,7 @@ body {
     
 
         
-            <div class="formulario">
+            <div class="formularioU">
          
               
                 <form action= "/crud/usuarios" method="POST" id="FormUsuario">
@@ -33,7 +33,7 @@ body {
                 
                      <label >Nombre de usuario: <Span class = "rojo"> * </span></label>
                     
-                    <input type="text"  style="width:450px" class=" border rounded" name="nombre" id="userName" placeholder="nombre" autofocus>
+                    <input type="text"  style="width:450px" class=" border rounded" name="nombre" id="userName" placeholder="Ingresa tu nombre de usuario..." autofocus>
                     <br>
                      <div class="message" id="nombreMessage"></div>
 
@@ -124,9 +124,9 @@ body {
                 <div>
                       <br>
 
-                    <label >Usuario: <Span class = "rojo"> * </span></label>
+                    <label >Usuario:{{user.username}}</label>
                     <br>
-                    <input type="text" class=" border rounded"  name="user_id" id="user_id" placeholder="Id de tu usuario" autofocus>
+                    <input type="text" class=" border rounded"  name="user_id" id="user_id" value="{{user.id}}" readonly>
                       <div class="message" id="usuarioMessage"></div>
                 </div>
 

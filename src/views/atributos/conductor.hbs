@@ -19,9 +19,9 @@
 
 
 
-  <div class="formulario">
+  <div class="box3">
                
-
+                     <br>
                 <form  >
              
                 <div class="row">
@@ -32,7 +32,14 @@
                     <br>
                 </div>
 
+                  <div class="row">   
+                   
+                     <label >Usuario:{{user.username}}</label>
+                    <input type="text" class="form-label-lg border rounded" name="usuario_id" id="id_user" value=" {{user.id}} "placeholder="Nombre" autofocus readonly>
+
                 
+                </div>
+                    <br>
              
                  <div class="row">   
                    
@@ -46,7 +53,7 @@
                     
                  <div class="row">
                     <br>
-                    <br>
+                   
                     
                      <label >Apellido:</label>
                     <input type="text" class="form-label-lg border rounded" name="apellido" id="apellido_id" placeholder="Apellido" autofocus >
@@ -55,10 +62,10 @@
 
                 
                 </div>  
-                <br>
+            
                 <br>
                   <div class="row">  
-                <div class="col">
+               
                     <label >Licencia:</label>
 
                    <input type="text" class="form-label-lg border rounded" name="licencia" id="licConductor" placeholder="No de licencia" autofocus >
@@ -66,12 +73,13 @@
                 <div class="message" id="licenciaMessage"></div>
                 </div>
 
+                
                 <br>
-                <br>
-
+                
+                <div class="row">
                 <div class="col">
 
-                    <label >Vehículo al que deseas asociarlo:</label>
+                    <label >Asociar a vehículo:</label>
                    
                           <select class="form-select form-select-sm " style="width:auto" name="vehiculo_id" id="vehiculo_id">
 
@@ -85,6 +93,25 @@
                                  {{/each}}
                      </select>
                  <div class="message" id="vehiculoMessage"></div>
+
+                </div>
+
+                  <div class="col">
+
+                    <label >Estatus:</label>
+                   
+                          <select class="form-select form-select-sm " style="width:auto" name="estatus" id="estatus_id">
+
+                             
+                                <option value="">-- Estatus--</option>
+
+                              {{#each estatus}} 
+
+                                <option value="{{id}}">{{tipo}}</option>
+                                
+                                 {{/each}}
+                     </select>
+                 <div class="message" id="estatusMessage"></div>
 
                 </div>
                 </div>
@@ -120,6 +147,9 @@
 
                         Guardar
                     </button>
+
+
+                      <button class="btn btn-primary" id="btnCancel">Cancelar</button>
                     <br>
                     <br>
 
@@ -172,13 +202,16 @@
                         licencia:  $("#licConductor").val(),
                         vehiculo_id:  $("#vehiculo_id").val(),
                         Cuenta_id:  $("#conductor_id").val(),
+                        estatus:  $("#estatus_id").val(),
+                        usuario_id:  $("#id_user").val(),
+
                     }
                     
                     $.post( "/atributos/conductor", account, function( data ) {
 
                         if(data.status=="ok"){
 
-                            window.location.href = '/crud';
+                            window.location.href = '/atributos/detConductor/';
 
                         }else{
                             
@@ -187,7 +220,7 @@
                             $("#licenciaMessage").html(data.errors.licencia|| "")
                             $("#vehiculoMessage").html(data.errors.vehiculo_id || "")
                              $("#conductorMessage").html(data.errors.Cuenta_id|| "")
-                           
+                            $("#estatusMessage").html(data.errors.estatus|| "")
                         }
                     });
                 
@@ -195,14 +228,29 @@
 
             });
 
-        
-
-            
-
-        
-
-            
-
         </script>	
+
+
+                        </script>	
+
+{{!-- botón cancelar --}}
+         <script>
+           
+            $( document ).ready(function() {
+
+                $( "#btnCancel" ).click(function(e) {
+
+                    e.preventDefault();
+                     
+        
+                   window.location.href = '/profile';
+                
+                });
+
+            });
+
+             
+
+        </script>
 </body>
 </html>
