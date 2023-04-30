@@ -17,12 +17,17 @@
             
 
                 <form  action= "/crud/edit/{{cuentas.id}}" method="POST">
-
+                    <br>
                 <div class="row">
-              
+                    <br>
+                    <br>
                     <label style="font-size: 20px; color: rgb(27, 73, 240);" >Editar cuenta</label>
                     <br>
                     <br>
+
+                </div>
+                <div class="row">
+
                     <label ><Span class = "rojo"> * </span>Nombre de la cuenta:</label>
                     
                     <input type="text" class="form-label-lg border rounded" id="accountName" 
@@ -72,9 +77,10 @@
 
                 </div>  
                 <br>
-                <div class="form-g">
-                    <label >País:</label>
-                    <Span class = "rojo"> * </span>
+                <div class="row">
+                <div class="col">
+                    <label ><Span class = "rojo"> * </span>País:</label>
+                    
                        <select class="form-select form-select-sm " style="width:auto" name="pais_id" id="pais_id">
 
                              
@@ -89,7 +95,7 @@
                 <div class="message" id="paisMessage"></div>
                 </div>
                  <br>
-                <div class="form-g">
+                <div class="col">
                     <label >Zona horaria:</label>
                     <Span class = "rojo"> * </span>
                       <select class="form-select form-select-sm " style="width:auto" name="timezone_id" id="timezone_id">
@@ -104,6 +110,7 @@
                                  {{/each}}
                      </select>
                            <div class="message" id="timezoneMessage"></div>
+                </div>
                 </div>
 
                 <br>

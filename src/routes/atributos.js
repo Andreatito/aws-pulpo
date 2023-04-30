@@ -323,29 +323,25 @@ router.get('/detVehiculos/', isLoggedIn, async(req,res) => {
 
 
 
-//Detalle vehiculo en modal
-
-
-
-
-
-
-
 
 
   //Agregar Mantenimiento
 
 
    
-router.get('/addmantenimiento/',isLoggedIn, async(req, res) =>{
+router.get('/addMantenimiento/',isLoggedIn, async(req, res) =>{
+
   console.log("cuentas get add")
   const vehiculos= await pool.query('SELECT * FROM vehiculos');
   console.log (vehiculos);
-  const cuentas2= await pool.query('SELECT * FROM cuentas');
-  console.log (cuentas2);
- 
+  const cuentas= await pool.query('SELECT * FROM cuentas');
+  console.log (cuentas);
+  const mantenimiento_tipo= await pool.query('SELECT * FROM mantenimiento_tipo');
+  console.log (mantenimiento_tipo);
+  const conductor= await pool.query('SELECT * FROM conductor');
+  console.log (conductor);
 
-  res.render('./atributos/addMantenimiento',{vehiculos, cuentas2});
+  res.render('./atributos/addMantenimiento',{vehiculos,cuentas,mantenimiento_tipo,conductor});
   
 } );
 
@@ -356,39 +352,39 @@ router.post('/addMantenimiento/', isLoggedIn, async (req, res) => {
  
   var errors= {}
   var nombrePattern=new RegExp(/^[a-zA-ZÑñÁáÉéÍíÓóÚúÜü\s]+$/);
+  var descPattern=new RegExp(/^[a-zA-ZÑñÁáÉéÍíÓóÚúÜü\s]{2,254}$/);
   
-  if(!req.body.nombre){
+  if(!req.body.vehiculo){
 
-    errors.nombre="*El nombre es requerido"
-
-  }else if(!nombrePattern.test(req.body.nombre)){
-    errors.nombre="*Ingrese un nombre válido"
-} 
-if(!req.body.apellido){
-
-  errors.apellido="*El apellido es requerido"
-
-}else if(!nombrePattern.test(req.body.apellido)){
-  
-  errors.apellido="*Ingrese un apellido válido"
-}
-  
-  if(!req.body.licencia){
-
-    errors.licencia="*Ingrese la licencia asociada al conductor"
-}
-
-  if(!req.body.vehiculo_id){
-
-    errors.vehiculo_id="*Debe seleccionar un vehículo"
+    errors.vehiculo="*El vehículo es requerido"
 
   }
+if(!req.body.mantenimiento_tipo){
 
-  if(!req.body.Cuenta_id){
+  errors.mantenimiento_tipo="*Seleccione el tipo de mantenimiento que se realizará al vehículo"
 
-    errors.Cuenta_id="*Debe seleccionar una cuenta para asociar al conductor"
+}
+  
+  if(!req.body.conductor){
+
+    errors.conductor="*Debe ingresar el conductor que gestionará el mantenimiento"
+}
+
+  if(!req.body.cuentas){
+
+    errors.cuentas="*Seleccione la cuenta a la que está asociado el vehículo"
 
   }
+  if(!req.body.fecha){
+
+    errors.fecha="*Seleccione la fecha de realización del mantenimiento"
+
+  }
+  if(!descPattern.test(req.body.descripcion)){
+    errors.descripcion="*Solo debe ingresar letras y hasta un máximo de 250 caracteres "
+  }
+
+
 
   console.log ("andrea",Object.keys(errors).length)
   if(Object.keys(errors).length !== 0){
@@ -403,12 +399,12 @@ if(!req.body.apellido){
 
   }else{
     
-    await pool.query('INSERT INTO conductor set ?', [req.body]);
+    await pool.query('INSERT INTO mantenimientos set ?', [req.body]);
 
     res.json(
     {
       status:"ok",
-      message:"Conductor agregado correctamente"
+      message:"Mantenimiento agregado correctamente"
     }
     )
   }

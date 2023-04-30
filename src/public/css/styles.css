@@ -247,10 +247,10 @@ margin-left: 10%;
 }
 
 
-.formularioEditU{
+.formularioEdit{
 
-	
 
+ margin-left: 20px;
 }
 
 .login{
@@ -725,9 +725,10 @@ padding-top: 20px;
 
 .editIcon{
 
-	
-	width: 40%;
-	margin-top: 20%;
+	margin-top: 10%;
+	width: 30%;
+	margin-left: 20%;
+
 	
 }
 
@@ -786,3 +787,9 @@ align-items: center;
 	
 }
 
+.imgMnt{
+
+	margin-left: 10%;
+	margin-top: 10%;
+	width: 50%;
+}

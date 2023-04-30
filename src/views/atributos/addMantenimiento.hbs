@@ -7,6 +7,7 @@
 <title>index</title>
 
 	<link rel="stylesheet" href="/css/styles.css">
+   
 </head>
 
 <body>
@@ -17,7 +18,7 @@
             
 <div class= "add" >
 
-        <div class="formulario">
+        <div class="formularioMtn">
 
                 <form  >
                 <div clas="row">
@@ -26,71 +27,92 @@
                         <label style="font-size: 20px; color: rgb(27, 73, 240);" >Registrar mantenimiento de vehículo</label>
                     <br>
                     <br>
-                     <label >Vehículo:</label>
 
-                    <input type="text" class="form-label-lg border rounded" name="nombreV" id="nameVehiculo" placeholder="Tipo de vehículo" autofocus >
+                     <div class="row ">   
+                   <div class="col "> 
+                     <label >Usuario: {{user.username}}</label>
+                    <input type="text" class="form-label-lg border rounded"  name="user_id" id="id_user" value=" {{user.id}} " autofocus readonly>
+                    </div>  
+                
+                    </div>
 
-                <div class="message" id="nombreVMessage"></div>
-                </div>
-
-                </div>
-                <br>
-                <br>
-                <div class="row">
-                <div class="col">
-                    <label >Tipo de mantenimiento que se realizará al vehículo:</label>
-
-                   <select class="form-select form-select-sm " style="width:auto" name="brand" id="brand_id">
+                    <div class="row">
+                     <div class="col">
+                    <br>
+                    <label ><Span class = "rojo"> * </span>Vehículo:</label>
+              
+                   <select class="form-select form-select-sm "  name="vehiculo" id="vehiculo_id">
 
                              
-                                <option value="">--Mantenimiento-</option>
+                                <option value="">--Vehículo-</option>
 
-                              {{#each brand}} 
+                              {{#each vehiculos}} 
 
-                                <option value="{{id}}">{{nombre}}</option>
+                                <option value="{{id_vehiculo}}">{{placa}}</option>
                                 
                                  {{/each}}
                      </select>
-                <div class="message" id="brandMessage"></div>
+                <div class="message" id="vehiculoMessage"></div>
                 </div>
+                    <br>
+                    
 
+                </div>
+                
                 <br>
+                <div class="row">
+                <div class="col">
+                    <label ><Span class = "rojo"> * </span>Tipo de mantenimiento que se realizará al vehículo:</label>
+
+                   <select class="form-select form-select-sm "  name="mantenimiento_tipo" id="mantenimiento_id">
+
+                             
+                                <option value="">--Tipo de mantenimiento-</option>
+
+                              {{#each mantenimiento_tipo}} 
+
+                                <option value="{{id}}">{{tipo}}</option>
+                                
+                                 {{/each}}
+                     </select>
+                <div class="message" id="mantenimientoMessage"></div>
+                </div>
+                </div>
+              
                 <br>
 
                 <div class="col">
 
-                    <label >Conductor del vehículo:</label>
+                    <label ><Span class = "rojo"> * </span>Conductor del vehículo:</label>
                    
-                          <select class="form-select form-select-sm " style="width:auto" name="model" id="model_id">
+                          <select class="form-select form-select-sm "  name="conductor" id="conductor_id">
 
                              
-                                <option value="">-- Modelo--</option>
+                                <option value="">-- Conductor--</option>
 
-                              {{#each modelo}} 
+                              {{#each conductor}} 
 
                                 <option value="{{id}}">{{nombre}}</option>
                                 
                                  {{/each}}
                      </select>
-                 <div class="message" id="modelMessage"></div>
+                 <div class="message" id="conductorMessage"></div>
 
                 </div>
 
                 </div>
-                <br>
-                <br>
+               
                 
-                <br>
                 <br>
                 <div class="row">
                 
                 <div class="col">
 
-                    <label >Cuenta a la que pertenece el vehículo:</label>
+                    <label ><Span class = "rojo"> * </span>Cuenta a la que pertenece el vehículo:</label>
                     <br>
                 
                     
-                       <select class="form-select form-select-sm " style="width:auto" name="cuenta" id="cuenta_id">
+                       <select class="form-select form-select-sm "  name="cuentas" id="cuenta_id">
 
                             <option value="">-- Cuentas--</option>
 
@@ -103,30 +125,47 @@
                      </select>
 
                          <div class="message" id="cuentaMessage"></div>
+                    <br>
+                
+                       <label ><Span class = "rojo"> * </span>Fecha de mantenimiento:</label>
+                    <br>
+
+                     <form>
+
+                        <input class="form-control" type="date" name="fecha" id="fecha_id" placeholder="Selecciona una fecha">
+                     </form>
+
+                         <div class="message" id="fechaMessage"></div>
 
 
-                         <br>
+                        
                     <br>
                      <label >Descripción del mantenimiento a realizar:</label>
+                    <br>
+                    <textarea  type="text" class="col-lg-8 border rounded" name="descripcion" id="desc_id" placeholder="Tipo de vehículo" autofocus ></textarea>
 
-                    <textarea  type="text" class="form-label-lg border rounded" name="nombreV" id="nameVehiculo" placeholder="Tipo de vehículo" autofocus ></textarea>
-
-                <div class="message" id="nombreVMessage"></div>
+                <div class="message" id="descripcionMessage"></div>
                 </div>
                </form>
 
                
                 <br>
                 </div>
-
+                    <br>
+                    <br>
                
                 <div class="form-g">
 
-                    <button class="btn btn-primary" id="btnSave">
+                  <button  class="btn btn-primary" id="btnSave">
 
                         Guardar
                     </button>
 
+                
+
+                
+
+                <button class="btn btn-primary" id="btnCancel">Cancelar</button>
                 
                     <br>
                      <br>
@@ -136,12 +175,12 @@
                     <br>
                     <br>
                 </div>
-  
+  </div>
 </div>
        
- <div class="imgAuto">
+ <div class="imgMnt">
 
-                    <img src="/img/vehiculo.png" class="img-fluid ">
+                    <img src="/img/mantenimiento.png" class="img-fluid ">
 
     </div>
             
@@ -154,6 +193,8 @@
 		<script src="popper/popper.min.js"></script>
 		<script src="bootstrap-5.2.0-dist/js/bootstrap.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+         <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+         <script src="js/bootstrap-datetimepicker.min.js"></script>
         <script>
            
 
@@ -166,16 +207,18 @@
 
                     const account= {
 
-                        nombreV: $("#nameVehiculo").val(),
-                        brand:  $("#brand_id").val(),
-                        model:  $("#model_id").val(),
-                        year:  $("#year_id").val(),
-                        color:  $("#color_id").val(),
-                        vehiculo_status:  $("#status_id").val(),
-                        cuenta:  $("#cuenta_id").val()
+                        
+                        user_id: $("#id_user").val(),
+                        vehiculo: $("#vehiculo_id").val(),
+                        mantenimiento_tipo:  $("#mantenimiento_id").val(),
+                        conductor:  $("#conductor_id").val(),
+                        cuentas:  $("#cuenta_id").val(),
+                        fecha:  $("#fecha_id").val(),
+                        descripcion:  $("#desc_id").val(),
+                 
                     }
                     
-                    $.post( "/atributos/addVehiculo", account, function( data ) {
+                    $.post( "/atributos/addMantenimiento", account, function( data ) {
 
                         if(data.status=="ok"){
 
@@ -183,13 +226,14 @@
 
                         }else{
                             
-                            $("#nombreVMessage").text(data.errors.nombreV || "")
-                            $("#brandMessage").html(data.errors.brand || "")
-                            $("#modelMessage").html(data.errors.model || "")
-                            $("#yearMessage").html(data.errors.year || "")
-                            $("#colorMessage").html(data.errors.color || "")
-                            $("#statusMessage").html(data.errors.vehiculo_status || "")
-                            $("#cuentaMessage").html(data.errors.cuenta|| "")
+                           
+                            $("#vehiculoMessage").text(data.errors.vehiculo || "")
+                            $("#mantenimientoMessage").html(data.errors.mantenimiento_tipo || "")
+                            $("#conductorMessage").html(data.errors.conductor || "")
+                            $("#cuentaMessage").html(data.errors.cuentas|| "")
+                            $("#descripcionMessage").html(data.errors.descripcion || "")
+                             $("#fechaMessage").html(data.errors.fecha|| "")
+                         
                         }
                     });
                 
@@ -197,14 +241,40 @@
 
             });
 
-        
-
-            
-
-        
-
-            
 
         </script>	
+
+
+
+                </script>	
+
+{{!-- botón cancelar --}}
+         <script>
+           
+            $( document ).ready(function() {
+
+                $( "#btnCancel" ).click(function(e) {
+
+                    e.preventDefault();
+                     
+        
+                   window.location.href = '/profile';
+                
+                });
+
+            });
+
+            
+        </script>	
+
+
+        <script>
+
+
+            $(function () {
+             $('#picker').datetimepicker();
+         });
+      </script>
+
 </body>
 </html>
