@@ -97,6 +97,17 @@ color: red;
 	width: 400px;
 	margin-top: 10%;
 	margin-left: 4%;
+	
+
+
+}
+
+.EditUser1{
+
+	width: 400px;
+	margin-top: 10%;
+	margin-right: 10%;
+
 
 
 }
@@ -225,7 +236,7 @@ margin-left: 10%;
 	margin-top: 20px;
 	margin-left: 27%;
 	width: 50%;
-	
+
 	border-color:  #31a0f5;
 	font-size:medium;
 	border-radius: 20px;
@@ -236,10 +247,9 @@ margin-left: 10%;
 }
 
 
-.formularioEdit{
+.formularioEditU{
 
 	
-
 
 }
 

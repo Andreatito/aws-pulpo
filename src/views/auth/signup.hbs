@@ -30,7 +30,7 @@
 
                      <label >Ingrese un nombre de usuario:<Span class = "rojo"> * </span></label>
                       
-                    <input type="text"  class="form-label-lg border rounded" id= "username_id" name="username" placeholder="usuario" autofocus required>
+                    <input type="text"  class="form-label-lg border rounded" id= "username_id" name="username" placeholder="usuario" autofocus >
                     <br>
                       <div class="message" id="usuarioMessage"></div>
                 </div>
@@ -40,7 +40,7 @@
                 
                      <label >Password:<Span class = "rojo"> * </span></label>
                       
-                    <input type="password"  class="form-label-lg border rounded" id= "password_id" name="password" placeholder="contrasena" autofocus required>
+                    <input type="password"  class="form-label-lg border rounded" id= "password_id" name="password" placeholder="contrasena" autofocus >
                       <br>
                       <div class="message" id="passwordMessage"></div>
                 </div>
@@ -51,7 +51,7 @@
 
                      <label >Confirmar password:<Span class = "rojo"> * </span></label>
                     
-                    <input type="password"  class="form-label-lg border rounded" id= "password2_id" name="password2" placeholder="contrasena" autofocus required>
+                    <input type="password"  class="form-label-lg border rounded" id= "password2_id" name="password2" placeholder="contrasena" autofocus >
                       <br>
                       <div class="message" id="pass2Message"></div>
                 </div>
@@ -61,29 +61,65 @@
                 <br>
                  <div class="row">
 
-                     <label >Nombre completo:<Span class = "rojo"> * </span></label>
+                     <label >Nombre:<Span class = "rojo"> * </span></label>
                       
-                    <input type="text" class="form-label-lg border rounded" id= "name_id" name="fullname" placeholder="Nombre completo" autofocus required>
+                    <input type="text" class="form-label-lg border rounded" id= "name_id" name="fullname" placeholder="Nombre" autofocus >
                       <br>
                       <div class="message" id="nombreMessage"></div>
                 </div>
 
-                    <br>
-                 <div class="row">
+                 <br>
+                <div class="row">
 
-                     <label >Tipo de usuario: <Span class = "rojo"> * </span></label>
-                     
-                    <input type="text" class="form-label-lg border rounded" id= "isAdmin_id" name="is_admin" placeholder="Rol de usuario" autofocus required>
+                     <label >Apellido:<Span class = "rojo"> * </span></label>
+                      
+                    <input type="text" class="form-label-lg border rounded" id= "apellido_id" name="apellido" placeholder="Apellido(s)" autofocus >
                       <br>
-                      <div class="message" id="isAdminMessage"></div>
+                      <div class="message" id="apellidoMessage"></div>
                 </div>
+
+                    <br>
+                <div class="row">
+
+                <div class="col">
+                     <label >Tipo de usuario: <Span class = "rojo"> * </span></label>
+
+                 <select class="form-select form-select-sm " style="width:auto"  name="is_admin" id= "isAdmin_id">
+
+                             
+                                <option value="">-- Tipo--</option>
+
+                              {{#each userT}} 
+
+                                <option value="{{id}}">{{tipo}}</option>
+                                
+                                 {{/each}}
+                     </select>
+
+                <div class="message" id="isAdminMessage"></div>
+                </div>
+
+                <br>
+
+                 <div class="col">
+
+                     <label >No. de Empleado:<Span class = "rojo"> * </span></label>
+                      
+                    <input type="text" class="form-label-lg border rounded" id= "empleado_id" name="empleado" placeholder=" E-1233" autofocus >
+                      <br>
+                      <div class="message" id="empleadoMessage"></div>
+                </div>
+                </div>
+
 
                     <div class="col">
 
                     <br>
                 
-                    <button class="btn btn-primary" >Registrar</button>
-                     <br>
+                    <button class="btn btn-primary" id="btnSave" >Registrar</button>
+                     
+                      <button class="btn btn-primary" id="btnCancel">Cancelar</button>
+                
                 </div>
                  <br>
                   <br>
@@ -123,9 +159,11 @@
 
                         username: $("#username_id").val(),                       
                         password:  $("#password_id").val(),
-                        password2:  $("#password2_id").val()  ,
+                        password2:  $("#password2_id").val(),
                         fullname:  $("#name_id").val(),
-                        is_admin:  $("#isAdmin_id").val()
+                        apellido:  $("#apellido_id").val(),
+                        is_admin:  $("#isAdmin_id").val(),
+                        empleado:  $("#empleado_id").val(),
                     }
                     
 
@@ -139,15 +177,17 @@
 
                         if(data.status=="ok"){
 
-                            window.location.href = '/crud';
+                            window.location.href = '/profile';
 
                         }else{
                             
                             $("#usuarioMessage").text(data.errors.username || "" )
                             $("#passwordMessage").html(data.errors.password || "")
                             $("#pass2Message").html(data.errors.password2 || "")
-                            $("#nombreMessage").html(data.errors.fullname || "")
-                            $("#isAdminMessage").html(data.errors.is_Admin|| "")
+                            $("#nombreMessage").html(data.errors.fullname || "")       
+                            $("#apellidoMessage").html(data.errors.apellido|| "")
+                             $("#isAdminMessage").html(data.errors.is_admin|| "")
+                              $("#empleadoMessage").html(data.errors.empleado|| "")
                             
                         }
                     });
@@ -156,14 +196,31 @@
 
             });
 
-        
-
-            
-
-        
-
-            
+   
 
         </script>
+
+
+                       </script>	
+
+{{!-- botón cancelar --}}
+         <script>
+           
+            $( document ).ready(function() {
+
+                $( "#btnCancel" ).click(function(e) {
+
+                    e.preventDefault();
+                     
+        
+                   window.location.href = '/profile';
+                
+                });
+
+            });
+
+             
+
+        </script>	
 </div>
 </html>
