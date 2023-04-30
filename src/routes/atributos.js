@@ -23,8 +23,12 @@ router.get('/addVehiculo/',isLoggedIn, async(req, res) =>{
     console.log (cuentas);
     const vehiculo_tipo= await pool.query('SELECT * FROM vehiculo_tipo');
     console.log (vehiculo_tipo);
+    const km_id= await pool.query('SELECT * FROM kilometros');
+    console.log (km_id);
+    const combustible= await pool.query('SELECT * FROM combustible');
+    console.log (combustible);
   
-    res.render('./atributos/addVehiculo',{brand,modelo,year,color,vehiculo_status,cuentas,vehiculo_tipo});
+    res.render('./atributos/addVehiculo',{brand,modelo,year,color,vehiculo_status,cuentas,vehiculo_tipo,km_id,combustible});
     
   } );
   
@@ -32,7 +36,7 @@ router.get('/addVehiculo/',isLoggedIn, async(req, res) =>{
   router.post('/addVehiculo/', isLoggedIn, async (req, res) => {
   
     console.log("cuentas post add")
-   
+    var placaPattern=new RegExp(/[a-zA-Z0-9]*-[a-zA-Z0-9]*/);
     var errors= {}
 
     
@@ -41,6 +45,16 @@ router.get('/addVehiculo/',isLoggedIn, async(req, res) =>{
       errors.tipo1_id="*El nombre es requerido"
   
     }
+
+    if(!req.body.placa){
+  
+      errors.placa="*La placa del vehículo es requerida"
+  
+    }else if(!placaPattern.test(req.body.placa)){
+      errors.placa="*Ingrese una placa válida (El formato debe ser de tipo WW-1234)"
+  } 
+
+  
     
     if(!req.body.brand){
   
@@ -67,7 +81,7 @@ router.get('/addVehiculo/',isLoggedIn, async(req, res) =>{
     
     if(!req.body.vehiculo_status){
   
-      errors.vehiculo_status="*Ingrese el status del vehículo"
+      errors.vehiculo_status="*Seleccione el status del vehículo"
   
     }
   
@@ -76,9 +90,14 @@ router.get('/addVehiculo/',isLoggedIn, async(req, res) =>{
       errors.cuenta="*La cuenta es requerida"
       
     }
-    if(!req.body.placa){
+    if(!req.body.km_id){
   
-      errors.cuenta="*Ingresa la placa del vehículo"
+      errors.km_id="*Debes seleccionar el rango de kilometros con los que cuenta el vehículo"
+      
+    }
+    if(!req.body.combustible){
+  
+      errors.combustible="*Debes seleccionar el tipo de combustible que utiliza el vehículo"
       
     }
     console.log ("andrea",Object.keys(errors).length)
@@ -258,14 +277,41 @@ router.get('/detConductor/:id', isLoggedIn, async(req,res) => {
 });
 
 
+
+
+
 //Detalle vehículos
 
 
 router.get('/detVehiculos/', isLoggedIn, async(req,res) => {
 
+ 
   const {id}=req.params;
 
-  const detVehiculos= await pool.query(`SELECT * FROM  vehiculos `);  
+  const detVehiculos= await pool.query(`SELECT vehiculos.*, 
+  vehiculos.placa AS pl, 
+  cuentas.nombre as cta ,
+  vehiculo_tipo.tipo AS vh,
+  vehiculo_status.vehiculo_status as st,
+  brand.nombre as brand,
+  color.color as color,
+  modelo.nombre as model,
+  year.nombre as year,
+  kilometros.rango as rg
+
+  FROM vehiculos
+ 
+  LEFT JOIN users ON users.id = vehiculos.user_id
+  LEFT JOIN cuentas ON cuentas.id =vehiculos.cuenta
+  LEFT JOIN brand ON brand.id =vehiculos.brand
+  LEFT JOIN color ON color.id=vehiculos.color
+  LEFT JOIN vehiculo_tipo ON vehiculo_tipo.id = vehiculos.tipo1_id
+  LEFT JOIN vehiculo_status ON vehiculo_status.id = vehiculos.vehiculo_status
+  LEFT JOIN modelo ON modelo.id = vehiculos.model
+  LEFT JOIN year on year.id = vehiculos.year
+  LEFT JOIN kilometros ON kilometros.id= vehiculos.km_id
+
+  WHERE vehiculos.user_id=?`,[req.user.id]);
 
 
   console.log(detVehiculos) 
@@ -274,6 +320,16 @@ router.get('/detVehiculos/', isLoggedIn, async(req,res) => {
   res.render('./atributos/detVehiculos', {detVehiculos: detVehiculos} );
     
 });
+
+
+
+//Detalle vehiculo en modal
+
+
+
+
+
+
 
 
 
@@ -358,6 +414,12 @@ if(!req.body.apellido){
   }
   
 });
+
+
+
+
+
+
 
 
 

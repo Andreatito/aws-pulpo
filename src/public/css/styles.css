@@ -235,6 +235,14 @@ margin-left: 10%;
 	
 }
 
+
+.formularioEdit{
+
+	
+
+
+}
+
 .login{
 
 	border: solid 0.1em;
@@ -637,7 +645,8 @@ padding-top: 20px;
 	height: 250px;
 	display: flex;
 	padding-top: 20px;
-	
+	margin-top: 10px;
+	margin-bottom: 30px;
 
 	
 	
@@ -649,11 +658,12 @@ padding-top: 20px;
 
 ::-webkit-scrollbar {
 	-webkit-appearance: none;
-	width: 10px;
+	width: 7px;
+	color: #31a0f5;
   }
   
   ::-webkit-scrollbar-thumb {
-	border-radius: 5px;
+	border-radius: 3px;
 	background-color: rgba(0,0,0,.5);
 	-webkit-box-shadow: 0 0 1px rgba(255, 255, 255, 0.5);
   }
@@ -759,3 +769,10 @@ align-items: center;
 .alert button.close, .alert button.close > * {
     background: transparent;
 }
+
+#modal{
+
+	max-width: 50ch;
+	
+}
+

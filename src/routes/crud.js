@@ -218,6 +218,8 @@ router.get('/show/:id', isLoggedIn, async(req,res) => {
         });
 
 
+
+
 //Editar cuenta
 
 router.get('/edit/:id', isLoggedIn, async(req,res) => {

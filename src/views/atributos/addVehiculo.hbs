@@ -20,13 +20,27 @@
         <div class="formulario">
 
                 <form  >
-                <div clas="row">
+                    
+                <div class="row">
                 <div class="col">
                       <br>
                         <label style="font-size: 20px; color: rgb(27, 73, 240);" >Agregar un vehículo nuevo</label>
                     <br>
                     <br>
-                     <label>Tipo de vehículo:</label>
+                </div>
+                
+                     <div class="row ">   
+                   <div class="col "> 
+                     <label >Usuario: {{user.username}}</label>
+                    <input type="text" class="form-label-lg border rounded"  name="user_id" id="id_user" value=" {{user.id}} "placeholder="Nombre" autofocus readonly>
+                    </div>  
+                
+                    </div>
+                    <br>
+                <div class="row">
+                <div class="col">
+                    <br>
+                     <label>Tipo de vehículo:<Span class = "rojo"> * </span></label>
 
                      <select class="form-select form-select-sm " style="width:auto" name="tipo" id="tipo_id">
 
@@ -44,8 +58,8 @@
                 </div>
                      <div class="col">
                         <br>
-                 <label >Placas: <Span class = "rojo"> * </span></label>
-                   
+                 <label > <Span class = "rojo"> * </span>Placas:</label>
+                   <br>
                     <input type="text"  class=" border rounded"  name="placa" id="placa_id" placeholder="nombre" autofocus >
                     
                 <div class="message" id="placaMessage"></div>
@@ -56,8 +70,9 @@
                 <br>
                 <div class="row">
                 <div class="col">
-                    <label >Marca:</label>
-
+                    <br>
+                    <label ><Span class = "rojo"> * </span>Marca:</label>
+              
                    <select class="form-select form-select-sm "  name="brand" id="brand_id">
 
                              
@@ -76,8 +91,8 @@
                 <br>
 
                 <div class="col">
-
-                    <label >Modelo:</label>
+                    <br>
+                    <label > <Span class = "rojo"> * </span>Modelo:</label>
                    
                           <select class="form-select form-select-sm " style="width:auto" name="model" id="model_id">
 
@@ -97,9 +112,11 @@
                 </div>
                 <br>
                 <br>
+               
                 <div class="row">
                 <div class="col">
-                    <label >Color:</label>
+                    <br>
+                    <label > <Span class = "rojo"> * </span>Color:</label>
                   <select class="form-select form-select-sm "  name="color" id="color_id">
 
                             <option value="">-- Color--</option>
@@ -119,7 +136,8 @@
                  <br>
                
                 <div class="col">
-                    <label >Año:</label>
+                    <br>
+                    <label > <Span class = "rojo"> * </span>Año:</label>
 
                       <select class="form-select form-select-sm " style="width:auto" name="year" id="year_id">
 
@@ -138,11 +156,58 @@
                 </div>
 
                 </div>
+
+                 <div class="row">
+                <div class="col">
+                    <br>
+                    <label > <Span class = "rojo"> * </span>Combustible:</label>
+                  <select class="form-select form-select-sm "  name="combustible" id="comb_id">
+
+                            <option value="">-- Combustible--</option>
+
+                            {{#each combustible}} 
+
+                                
+                                <option value="{{id}}">{{tipo}}</option>
+                          
+                            {{/each}}
+                     </select>
+                        <div class="message" id="combMessage"></div> 
+                     
+                </div>
+                
+                 <br>
+                 <br>
+               
+                <div class="col">
+                    <br>
+                    <label > <Span class = "rojo"> * </span>Kilometraje:</label>
+
+                      <select class="form-select form-select-sm " style="width:auto" name="km_id" id="km_id">
+
+                            <option value="">--Kilometraje--</option>
+
+                            {{#each km_id}} 
+
+                                
+                                <option value="{{id}}">{{rango}}</option>
+                          
+                            {{/each}}
+                     </select>
+                 <div class="message" id="kmMessage"></div>
+                    
+                     
+                </div>
+
+                </div>
+           
+                
                 <br>
                 <br>
                 <div class="row">
                 <div class="col">
-                    <label >Status del vehículo:</label>
+                    <br>
+                    <label > <Span class = "rojo"> * </span>Status del vehículo:</label>
                     
                        <select class="form-select form-select-sm "  name="vehiculo_status" id="status_id">
 
@@ -164,8 +229,8 @@
                  </div>
 
                 <div class="col">
-
-                    <label >Asignar vehículo a cuenta:</label>
+                    <br>
+                    <label > <Span class = "rojo"> * </span>Asignar vehículo a cuenta:</label>
                     <br>
                 
                     
@@ -187,7 +252,7 @@
                
                  <br>
                 </div>
-                 </div>
+                </div>
 
                 <br>
                     <div class="form-g">
@@ -211,13 +276,14 @@
                     <br>
                 </div>
            
-                    <Span class = "rojo">* </span>
-                    <label class="text-secondary" >Campos obligatorios</label>
+                    
+                    <label class="text-secondary" ><Span class = "rojo">* </span>Campos obligatorios</label>
 
                     <br>
                     <br>
      
             </div>
+        </div>
        
  <div class="imgAuto">
 
@@ -251,9 +317,13 @@
                         model:  $("#model_id").val(),
                         year:  $("#year_id").val(),
                         color:  $("#color_id").val(),
-                        vehiculo_status:  $("#status_id").val(),
+                        vehiculo_status: $("#status_id").val(),
                         cuenta:  $("#cuenta_id").val(),
-                        placa:  $("#placa_id").val()
+                        placa:  $("#placa_id").val(),
+                        user_id:  $("#id_user").val(),
+                        km_id:  $("#km_id").val(),
+                        combustible:  $("#comb_id").val(),
+                        
                         
                         
                     }
@@ -262,7 +332,7 @@
 
                         if(data.status=="ok"){
 
-                            window.location.href = '/crud';
+                            window.location.href = '/atributos/detVehiculos/';
 
                         }else{
                             
@@ -274,6 +344,8 @@
                             $("#statusMessage").html(data.errors.vehiculo_status || "")
                             $("#cuentaMessage").html(data.errors.cuenta|| "")
                             $("#placaMessage").html(data.errors.placa|| "")
+                            $("#kmMessage").html(data.errors.km_id|| "")
+                            $("#combMessage").html(data.errors.combustible|| "")
                         }
                     });
                 

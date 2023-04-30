@@ -12,29 +12,31 @@
     
     <div class="add" >
 
-         <div class="formulario">
+         <div class="formularioEdit">
             
             
 
                 <form  action= "/crud/edit/{{cuentas.id}}" method="POST">
 
                 <div class="row">
-                    
+              
                     <label style="font-size: 20px; color: rgb(27, 73, 240);" >Editar cuenta</label>
                     <br>
                     <br>
-                    <label >Nombre de la cuenta:</label>
-                    <Span class = "rojo"> * </span>
-                    <input type="text" class="form-label-lg border rounded is-required" id="accountName" value="{{cuentas.nombre}}" class="text" name="nombre" placeholder="nombre" autofocus>
+                    <label ><Span class = "rojo"> * </span>Nombre de la cuenta:</label>
+                    
+                    <input type="text" class="form-label-lg border rounded" id="accountName" 
+                    value="{{cuentas.nombre}}" class="text" name="nombre" placeholder="nombre" autofocus>
 
                     <div class="message" id="nombreMessage"></div>
 
+          
                 </div>
-
                 <br>
-                <div class="form-g">
-                    <label >Plan contratado:</label>
-                    <Span class = "rojo"> * </span>
+                <div class="row">
+                 <div class="col"> 
+                    <label ><Span class = "rojo"> * </span>Plan contratado:</label>
+                    
                     <select class="form-select form-select-sm " style="width:auto" name="plan_id" id="plan_id">
 
                              
@@ -49,7 +51,7 @@
                 <div class="message" id="planMessage"></div>
                 </div>
                 <br>
-                <div class="form-g">
+                <div class="col">
 
                     <label >Status:</label>
                     <Span class = "rojo"> * </span>
@@ -67,6 +69,8 @@
                 <div class="message" id="statusMessage"></div>
 
                 </div>
+
+                </div>  
                 <br>
                 <div class="form-g">
                     <label >País:</label>
