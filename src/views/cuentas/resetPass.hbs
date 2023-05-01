@@ -12,21 +12,35 @@
 
        
             
-            <div class="add bg-light">
+<div class="reset">
 
-                <h3>Restablecer contraseña</h3>
 
+    <div class="row>"
+                <label style="font-size: 20px; color: rgb(27, 73, 240);" >Cambiar contraseña</label>
+                    <br>
                  <br>
                  <br>
-
-                <form   action= "/crud/resetPass/{{usuario_id}}" method="POST">
+            </div>
+                   
+            
+                <form  >
 
                 <div class="form-g">
-                    <br>
-                    <label >Ingrese una nueva contraseña:</label>
-                    <input type="text" id="password" value="{{usuarios_cuenta.usuario_id}}" class="text" name="password" placeholder="nombre" autofocus>
 
-                    <div id="passwordMessage"></div>
+                    <br>
+                      <br>
+
+                     <div class="col "> 
+                     <label >Usuario: {{user.username}}</label>
+                    <input type="text" class="form-label-lg border rounded"  name="user_id" id="id_user" value=" {{user.id}} " autofocus readonly>
+                    </div>  
+                    <br>
+                    <br>
+                    <label ><Span class = "rojo"> * </span>Ingrese una nueva contraseña:</label>
+                   <br>
+                    <input type="password"  class="border rounded" style="width: 280px;" name="password" id="password" placeholder="contraseña" autofocus>
+
+                    <div class="message" id="passwordMessage"></div>
 
                 </div>
 
@@ -34,19 +48,20 @@
 
                  <div class="form-g">
                     <br>
-                    <label >Ingrese nuevamente la contraseña:</label>
-                    <input type="text" id="passwordII" value="{{usuarios_cuenta.usuario_id}}" class="text" name="password" placeholder="nombre" autofocus>
+                    <label ><Span class = "rojo"> * </span>Ingrese nuevamente la contraseña:</label>
+                    <br>
+                    <input type="password" id="passwordII"  class="border rounded" style="width: 280px;" name="password2" id="passwordII"  placeholder="Ingrese nuevamente la contraseña" autofocus>
 
-                    <div id="passwordIIMessage"></div>
+                    <div class="message" id="passwordIIMessage"></div>
 
-                </div>
+            </div>
 
                 <br>
                 
                 
                 <br>
                 
-<div class="form-g">
+                    <div class="form-g">
 
                     <button  class="btn btn-primary" id="btnSave">
 
@@ -55,11 +70,12 @@
 
                 
 
-                </form>
+                    </form>
 
-                <button class="btn btn-primary" type="submit" formaction="./crud">Cancelar</button>
+                <button class="btn btn-primary" id="btnCancel">Cancelar</button>
                     <br>
-            </div>
+                       <br>
+                 </div>
            
 
 
@@ -85,22 +101,22 @@
                     const user= {
 
                         password: $("#password").val(),
-                        passwordII:  $("#passwordII").val(),
+                        password2:  $("#passwordII").val(),
                         
                     }
 
                     console.log(user)
 
-                    $.post( "/crud/resetPass/{{usuarios_cuenta.usuario_id}}", user, function( data ) {
+                    $.post( "/crud/resetPass/{{user.id}}", user, function( data ) {
 
                         if(data.status=="ok"){
 
-                            window.location.href = '/crud/';
+                            window.location.href = '/profile';
 
                         }else{
                             
                             $("#passwordMessage").text(data.errors.password || "")
-                            $("#passwordII").html(data.errors.passwordII || "")
+                            $("#passwordIIMessage").html(data.errors.password2 || "")
                             
                         }
                     });
@@ -109,13 +125,32 @@
 
             });
 
+    
+        </script>	
+
+
+
+      {{!--   Botón cancelar --}}
+         <script>
+           
+
+
+              
+           
+            $( document ).ready(function() {
+
+                $( "#btnCancel" ).click(function(e) {
+
+                    e.preventDefault();
+                     
         
+                   window.location.href = '/profile';
+                
+                });
 
-            
+            });
 
-        
-
-            
+             
 
         </script>	
 

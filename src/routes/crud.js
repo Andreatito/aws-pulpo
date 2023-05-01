@@ -3,7 +3,7 @@ const { response } = require('express');
 const express = require('express');
 const router = express.Router();
 const {body,validationResult}=require('express-validator')
-
+const passport = require('passport');
 const pool = require('../database');
 
 const {isLoggedIn} = require('../lib/auth');
@@ -473,12 +473,12 @@ router.post('/usuarios', isLoggedIn,  async (req, res) => {
     const {id} =req.params;
 
     
-    const usuario= await pool.query('SELECT * FROM usuarios_cuenta WHERE usuario_id=?',[id]);
+    const usuario= await pool.query('SELECT * FROM users WHERE id=?',[id]);
    
     
     console.log (id);
 
-    res.render('./cuentas/resetPass', {user: usuario} );
+    res.render('./cuentas/resetPass', {usuario: usuario} );
    
 
 }); 
@@ -489,18 +489,29 @@ router.post('/resetPass/:id', isLoggedIn, async(req,res) => {
 
   console.log("Editing user" , id)
   var errors= {}
+  var passPattern=new RegExp(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,16}$/)
 
  
 
 
             if(!req.body.password){
 
-              errors.id="*El campo nueva contraseña no puede quedar vacío"
+              errors.password="*El campo nueva contraseña no puede quedar vacío"
 
+            }else if(!passPattern.test(req.body.password)){
+              errors.password="*La contraseña debe contener al menos una letra mayúscula, una minúscula, un número , un carácter especial y tener una longitud entre 8 y 16 caracteres. "
+    
+            }if(!req.body.password2){
+
+              errors.password2="*El campo nueva contraseña no puede quedar vacío"
+
+            }else if(!passPattern.test(req.body.password2)){
+              errors.password2="*La contraseña debe contener al menos una letra mayúscula, una minúscula, un número , un carácter especial y tener una longitud entre 8 y 16 caracteres. "
+    
+            }else if(req.body.password2 !== req.body.password){
+              errors.password2="*Las contraseñas no coinciden. "
+    
             }
-
-           
-
             
             if(Object.keys(errors).length !== 0){
 
@@ -516,20 +527,20 @@ router.post('/resetPass/:id', isLoggedIn, async(req,res) => {
 
               }else{
 
-  const {usuario} = req.body;
-  const newuser={
+  const {password,password2} = req.body;
+  const user={
 
-               nombre,
-                plan_id,
-                status_id,
-                pais_id,
-                timezone_id,
+                password,
+                password2
               
 
   };
 
-console.log(newuser);
-await pool.query('UPDATE cuentas set ? WHERE id=?', [newuser, id]);
+console.log(user);
+
+user.password = await helpers.encryptPassword(password,password2);
+
+await pool.query('UPDATE users set ? WHERE id=?', [user, id]);
 
           res.json(
             {
@@ -540,6 +551,21 @@ await pool.query('UPDATE cuentas set ? WHERE id=?', [newuser, id]);
 
             }
 });
+
+
+passport.serializeUser((user, done) => {
+  done(null, user.id);
+  });
+  
+  
+  
+  passport.deserializeUser(async (id, done) => {
+  const rows = await pool.query('SELECT * FROM users WHERE id = ?', [id]);
+  done(null, rows[0]);
+  });
+
+
+
 
 module.exports = router;
    

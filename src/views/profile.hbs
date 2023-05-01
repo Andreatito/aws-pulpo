@@ -1,7 +1,9 @@
 
 
 <div class="profile" class="profile">
-    <div class=" text-center display-flex" >
+
+    
+    <div class="textoP" >
 
         <h3>Bienvenido(a) {{user.fullname}}</h3>
         <br>
@@ -12,17 +14,29 @@
         <h4>No. de Empleado: {{user.empleado}}</h4>
         <br>
         <h3>Gestiona tus cuentas Pulpo</h3>
+        <br>
+        <br>
+        <div class="container ">
+            <br>
+            <a class="btn btn-light" href="/crud/resetPass/{{user.id}}">Actualizar contraseña</a>
+        </div>
     </div>
+   
     <br>
 
-    <div class="container text-center">
-
-            <a class="btn btn-light" href="/crud/resetPass/{{user.id}}">Actualizar contraseña</a>
-    </div>
+   
         
 
 
+        <div class="imgProfile">
+
+                    <img src="/img/perfil1.png" class="img-fluid ">
+
+
+            <br>
        
+
+    </div>
                     
                    
                                     

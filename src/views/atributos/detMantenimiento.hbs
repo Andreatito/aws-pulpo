@@ -52,7 +52,7 @@
 
                     <form >
                     {{#if user.is_admin}}
-                    <button  class="btn btn-primary"  type="submit" formaction="/atributos/Conductor/">Agregar Conductor</button>
+                    <button  class="btn btn-primary"  type="submit" formaction="/atributos/addMantenimiento/">Agregar mantenimiento</button>
                     {{/if}}
 
                     </form>
@@ -74,10 +74,13 @@
                 
                             <th>Mantenimiento de vehículos</th>
                             <tr>
+                                <th>Cuenta</th>
                                 <th>Vehículo</th>
+                                <th>Conductor</th>
                                 <th>Mantenimiento</th>
-                                <th>proveedor</th>
+                                <th>Descripción</th>
                                 <th>Fecha de realización</th>
+                             
                              
                                 
                             
@@ -88,32 +91,26 @@
 
                         <tbody class="tbody"> 
                     
-                            {{#each detConductor}}
+                            {{#each detMantenimiento}}
                             
                             <tr>
                                 
                         
                                 <td>{{cta}}</td>
+
+                                <td>{{pl}}</td>
                                 
-                                <td>{{nombre}}</td>
+                                <td>{{lic}}</td>
 
-                                <td>{{apellido}}</td>
+                                <td>{{mnt}}</td>
 
-                                <td>{{licencia}}</td>
-                               
+                                <td>{{descripcion}}</td>
+
+                                
+                                <td>{{fecha}}</td>
                         
 
-                            <td>
-
-                            <a href="/atributos/detconductor/{{id}}" class="btn btn-outline-primary btn-sm">Suspender</a>
-                        
-                                
-
-                        {{!-- {{<a href="/crud/resetPass/{{../user.id}}">Editar usuario</a>}} --}}   
-
-                            
-                            
-                            </td>
+                         
 
                             </tr>
 
@@ -126,7 +123,7 @@
                     </table>
 
    
-                    {{#each detConductor}}
+                    {{#each detMantenimiento}}
 
 
     
@@ -137,7 +134,7 @@
 
                     
 
-                            <p>***No hay conductores a esta cuenta***</p>
+                            <p>***No hay mantenimientos registrados***</p>
 
                     </div>
         

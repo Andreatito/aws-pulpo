@@ -258,7 +258,12 @@ router.get('/detConductor/:id', isLoggedIn, async(req,res) => {
 
   const {id}=req.params;
 
-  await pool.query('UPDATE Conductor SET Estatus= "3" WHERE id=?',[id]);
+
+
+    await pool.query('UPDATE Conductor SET Estatus= "3" WHERE id=?',[id]);
+
+  
+
 
   const detConductor= await pool.query(`SELECT conductor.*, vehiculo_tipo.tipo AS vh, cuentas.nombre as cta, estatus_conductor.tipo AS est
   FROM conductor
@@ -321,9 +326,38 @@ router.get('/detVehiculos/', isLoggedIn, async(req,res) => {
     
 });
 
+  //Detalle mantenimientos
+
+router.get('/detMantenimiento/', isLoggedIn, async(req,res) => {
+
+ 
+  const {id}=req.params;
+
+  const detMantenimiento= await pool.query(`SELECT mantenimientos.*, 
+
+  vehiculos.placa AS pl, 
+  cuentas.nombre as cta ,
+  conductor.licencia as lic,
+  mantenimiento_tipo.tipo as mnt
+  
+
+  FROM mantenimientos
+ 
+  LEFT JOIN users ON users.id = mantenimientos.user_id
+  LEFT JOIN cuentas ON cuentas.id =mantenimientos.cuentas
+  LEFT JOIN conductor ON conductor.id= mantenimientos.conductor
+  LEFT JOIN vehiculos ON vehiculos.id_vehiculo = mantenimientos.vehiculo
+  LEFT JOIN mantenimiento_tipo on mantenimiento_tipo.id = mantenimientos.mantenimiento_tipo
+
+  WHERE mantenimientos.user_id=?`,[req.user.id]);
 
 
+  console.log(detMantenimiento) 
+ 
+ 
+  res.render('./atributos/detMantenimiento', {detMantenimiento: detMantenimiento} );
 
+});
 
   //Agregar Mantenimiento
 
