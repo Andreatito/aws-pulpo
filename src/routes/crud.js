@@ -47,7 +47,7 @@ router.post('/add', isLoggedIn, async (req, res) => {
               errors.nombre="*El nombre es requerido"
 
             }else if(!nombrePattern.test(req.body.nombre)){
-              errors.nombre="*Ingrese un nombre válido"
+              errors.nombre="*Ingrese un nombre válido.Unicamente letras y espacios, no se permiten caracteres especiales."
           }
 
             if(!req.body.plan_id){
@@ -70,13 +70,13 @@ router.post('/add', isLoggedIn, async (req, res) => {
 
             if(!req.body.timezone_id){
 
-              errors.timezone_id="*La zona horaria es requerida"
+              errors.timezone_id="*La zona horaria es requerida.Considera la zona horaria en que se gestionará la cuenta."
 
             }
 
             if(!req.body.user_id){
 
-              errors.user_id="*El usuario es requerido"
+              errors.user_id="*El usuario es requerido. Ingresa el usuario que gestionará esta cuenta."
               
             }
             console.log ("andrea",Object.keys(errors).length)
@@ -380,7 +380,7 @@ router.post('/usuarios', isLoggedIn,  async (req, res) => {
                     errors.nombre="*El nombre es requerido"
       
                   }else if(!nombrePattern.test(req.body.nombre)){
-                    errors.nombre="*Ingrese un nombre válido"
+                    errors.nombre="*Ingrese un nombre válido. El usuario debe incluir solo caracteres y espacios"
                 }
       
                   if(!req.body.rol_id){
@@ -397,7 +397,7 @@ router.post('/usuarios', isLoggedIn,  async (req, res) => {
       
                   if(!req.body.timezone){
       
-                    errors.timezone="*La zona horaria es requerida"
+                    errors.timezone="*La zona horaria es requerida.Considere la zona horaria de manejo de cuenta."
       
                   }
       
@@ -411,7 +411,7 @@ router.post('/usuarios', isLoggedIn,  async (req, res) => {
                 
                 if(!req.body.cuenta_id){
       
-                  errors.cuenta_id="*La cuenta es requerida"
+                  errors.cuenta_id="*La cuenta es requerida. Selecciona la cuenta a la que será asociado el usuario."
     
                 }
 
