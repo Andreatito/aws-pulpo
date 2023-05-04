@@ -29,13 +29,15 @@ if ('NodeList' in window) {
 
           
 
-                <form  action="/signin" method="POST" id="loginForm">
+                <form method="POST" id="loginForm">
 
                        <label style="font-size: 20px; color: rgb(27, 73, 240);" >Ingresar</label>
                        <br>
                 <div >
 <br>
-                    <input type="text"  class=" border rounded" name="username" id="user_id" placeholder="usuario" autofocus >
+
+        
+                    <input type="text"  class=" border rounded" name="username" id="username_id" placeholder="Usuario" autofocus >
                 
                     <div class="message" id="usernameMessage"></div>
                 
@@ -44,7 +46,7 @@ if ('NodeList' in window) {
                  <div >
 
                 
-                    <input type="password"   class=" border rounded"  name="password" id="pass_id" placeholder="contrasena" autofocus>
+                    <input type="password"   class=" border rounded"  name="password" id="password_id" placeholder="Contraseña" autofocus>
 
                     <div class="message" id="passwordMessage"></div>
                 
@@ -86,20 +88,20 @@ if ('NodeList' in window) {
 
                     const account= {
 
-                        username: $("#user_id").val(),
-                        password:  $("#pass_id").val(),
+                        username: $("#username_id").val(),
+                        password:  $("#password_id").val(),
                       
                     }
                     
-                    $.post( "/auth/signin", account, function( data ) {
+                    $.post( "/signin", account, function( data ) {
 
                         if(data.status=="ok"){
 
-                            window.location.href = '/authentication';
+                            window.location.href = '/profile';
 
                         }else{
-                            
-                            $("#usernameMessage").text(data.errors.username || "")
+
+                           $("#usuarioMessage").text(data.errors.username || "" )
                             $("#passwordMessage").html(data.errors.password || "")
                           
                         }

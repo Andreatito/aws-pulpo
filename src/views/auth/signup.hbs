@@ -75,7 +75,7 @@
                       
                     <input type="text" class="form-label-lg border rounded" id= "apellido_id" name="apellido" placeholder="Apellido(s)" autofocus >
                       <br>
-                      <div class="message" id="apellidoMessage"></div>
+                      <div  class="message" id="apellidoMessage"></div>
                 </div>
 
                     <br>
@@ -177,6 +177,7 @@
 
                         if(data.status=="ok"){
 
+                            alert("Usuario creado correctamente");
                             window.location.href = '/profile';
 
                         }else{

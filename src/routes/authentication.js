@@ -8,13 +8,16 @@ const pool = require('../database');
 const { Passport } = require('passport');
 let alert = require('alert'); 
 const helpers = require('../lib/helpers');
+const { text } = require('body-parser');
 
 
     router.get('/signup',isLoggedIn, async(req, res)=>{
 
-
+   
       const userT= await pool.query('SELECT * FROM user_tipo');
       console.log (userT);
+
+      
 
         res.render('auth/signup',{userT});
 
@@ -23,14 +26,13 @@ const helpers = require('../lib/helpers');
 
  //formulario signup
 
-router.post('/signup',isLoggedIn
-
-,async (req, res, done) =>{
+router.post('/signup',isLoggedIn,async (req, res, done) =>{
 
 
 console.log("cuentas post add")
 
         const {id} = req.params;
+      
               
         var errors= {}
         var nombrePattern=new RegExp(/^[\w-6]{10,15}$/);
@@ -38,11 +40,13 @@ console.log("cuentas post add")
         var fullPattern= new RegExp(/^[ a-zA-ZñÑáéíóúÁÉÍÓÚ]+$/)
         var empleadoPattern=new RegExp(/^[\w-6]{5,15}$/);
 
+
         if(!req.body.username){
 
           errors.username="*Ingrese un nombre de usuario"
 
         }else if(!nombrePattern.test(req.body.username)){
+
           errors.username="*Ingrese un usuario válido. El nombre de usuario debe ser alfanúmerico y con una longitud de 10 a 15 caracteres. Puede incluir un guión"
 
         }if(!req.body.password){
@@ -176,21 +180,65 @@ done(null, rows[0]);
     });
 
 
-    router.post('/signin', (req, res, next) => {
+    router.post('/signin', async (req, res, done) => {
+     
+      const {id} = req.params;
 
-    /*   req.check('username', 'Username is Required').notEmpty();
-      req.check('password', 'Password is Required').notEmpty(); */
+      var errors= {}
+    
+      var userPattern=new RegExp(/^[\w-6]{10,15}$/);
+      var passPattern=new RegExp(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,16}$/)
+ 
 
-      // const errors = req.validationErrors();
-      // if (errors.length > 0) {
-      //   req.flash('message', errors[0].msg);
-      //   res.redirect('/signin');
-      // }
+      if(!req.body.username){
+
+        done(null, false, req.flash('message', '*Ingrese su usuario'));
+
+      }else if(!userPattern.test(req.body.username)){
+
+        //done(null, false, req.flash('message', '*Ingrese un usuario válido. El nombre de usuario debe ser alfanúmerico y con una longitud de 10 a 15 caracteres. Puede incluir un guión'));
+
+        alert("*Ingrese un usuario válido. El nombre de usuario debe ser alfanúmerico y con una longitud de 10 a 15 caracteres. Puede incluir un guión");
+
+
+      }if(!req.body.password){
+
+        done(null, false, req.flash('message', 'Ingrese su contraseña'));
+
+
+      }else if(!passPattern.test(req.body.password)){
+
+        alert("*La contraseña debe contener al menos una letra mayúscula, una minúscula, un número , un carácter especial y tener una longitud entre 8 y 16 caracteres.");
+      }
+ 
+      
+      if(Object.keys(errors).length !== 0){
+
+        res.json(
+          {
+            status:"error",
+            message:"*Error al crear el usuario",
+            errors: errors
+          }
+        )
+
+        }
+      
+      
+      
+      
+      else{
+
+    
       passport.authenticate('local.signin', {
         successRedirect: '/profile',
         failureRedirect: '/signin',
         failureFlash: true
-      })(req, res, next);
+      })(req, res);
+
+    }
+
+
     });
 
        
@@ -208,5 +256,17 @@ router.get('/logout',(req,res) =>{
         res.redirect('/signin');
     });
 });
+
+
+passport.serializeUser((user, done) => {
+  done(null, user.id);
+  });
+  
+  
+  
+  passport.deserializeUser(async (id, done) => {
+  const rows = await pool.query('SELECT * FROM users WHERE id = ?', [id]);
+  done(null, rows[0]);
+  });
 
 module.exports = router;

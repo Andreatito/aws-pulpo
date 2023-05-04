@@ -12,6 +12,8 @@ passport.use('local.signin', new LocalStrategy({
   passReqToCallback: true
 }, async (req, username, password, done) => {
   const rows = await pool.query('SELECT * FROM users WHERE username = ?', [username]);
+
+
   if (rows.length > 0) {
     const user = rows[0];
     const validPassword = await helpers.matchPassword(password, user.password)
@@ -23,7 +25,17 @@ passport.use('local.signin', new LocalStrategy({
   } else {
     return done(null, false, req.flash('message', 'El usuario ingresado no existe.'));
   }
+
 }));
+
+
+
+
+
+
+
+
+
 
 
 

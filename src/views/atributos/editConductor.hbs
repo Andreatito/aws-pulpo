@@ -44,7 +44,7 @@
                  <div class="row">   
                    
                      <label >Nombre:</label>
-                    <input type="text" class="form-label-lg border rounded" name="nombre" id="nameConductor" placeholder="Nombre" autofocus >
+                    <input type="text" class="form-label-lg border rounded" name="nombre" id="nameConductor" value="{{conductor.nombre}}" placeholder="Nombre" autofocus >
 
                 <div class="message" id="nombreCMessage"></div>
                 
@@ -56,7 +56,7 @@
                    
                     
                      <label >Apellido:</label>
-                    <input type="text" class="form-label-lg border rounded" name="apellido" id="apellido_id" placeholder="Apellido" autofocus >
+                    <input type="text" class="form-label-lg border rounded" name="apellido" value="{{conductor.apellido}}" id="apellido_id" placeholder="Apellido" autofocus >
 
                 <div class="message" id="apellidoMessage"></div>
 
@@ -68,7 +68,7 @@
                
                     <label >Licencia:</label>
 
-                   <input type="text" class="form-label-lg border rounded" name="licencia" id="licConductor" placeholder="No de licencia" autofocus >
+                   <input type="text" class="form-label-lg border rounded" name="licencia" value="{{conductor.licencia}}" id="licConductor" placeholder="No de licencia" autofocus >
                      
                 <div class="message" id="licenciaMessage"></div>
                 </div>
@@ -81,14 +81,14 @@
 
                     <label >Asociar a vehículo:</label>
                    
-                          <select class="form-select form-select-sm " style="width:auto" name="vehiculo_id" id="vehiculo_id">
+                      <select class="form-select form-select-sm " style="width:auto" name="vehiculo_id" id="vehiculo_id">
 
                              
                                 <option value="">-- vehiculo--</option>
 
                               {{#each vehiculos}} 
 
-                                <option value="{{id_vehiculo}}">{{placa}}</option>
+                                <option value="{{id_vehiculo}}" {{#if selected}}selected{{/if}}>{{placa}}</option>
                                 
                                  {{/each}}
                      </select>
@@ -107,7 +107,7 @@
 
                               {{#each estatus}} 
 
-                                <option value="{{id}}">{{tipo}}</option>
+                                <option value="{{id}}"  {{#if selected}}selected{{/if}}>{{tipo}}</option>
                                 
                                  {{/each}}
                      </select>
@@ -124,14 +124,14 @@
                      
                 
                     
-                       <select class="form-select form-select-sm " style="width:auto" name="Cuenta_id" id="conductor_id">
+                       <select class="form-select form-select-sm " style="width:auto" name="cuenta_id" id="conductor_id">
 
                             <option value="">-- Cuentas--</option>
 
                             {{#each cuentas2}} 
 
                                 
-                                <option value="{{id}}">{{nombre}}</option>
+                                <option value="{{id}}"  {{#if selected}}selected{{/if}}>{{nombre}}</option>
                           
                             {{/each}}
                      </select>  
@@ -201,13 +201,13 @@
                         apellido: $("#apellido_id").val(),
                         licencia:  $("#licConductor").val(),
                         vehiculo_id:  $("#vehiculo_id").val(),
-                        Cuenta_id:  $("#conductor_id").val(),
+                        cuenta_id:  $("#conductor_id").val(),
                         estatus:  $("#estatus_id").val(),
                         usuario_id:  $("#id_user").val(),
 
                     }
                     
-                    $.post( "/atributos/conductor", account, function( data ) {
+                    $.post( "/atributos/{{conductor.id}}/editConductor", account, function( data ) {
 
                         if(data.status=="ok"){
 
@@ -219,7 +219,7 @@
                             $("#apellidoMessage").text(data.errors.apellido || "")
                             $("#licenciaMessage").html(data.errors.licencia|| "")
                             $("#vehiculoMessage").html(data.errors.vehiculo_id || "")
-                             $("#conductorMessage").html(data.errors.Cuenta_id|| "")
+                             $("#conductorMessage").html(data.errors.cuenta_id|| "")
                             $("#estatusMessage").html(data.errors.estatus|| "")
                         }
                     });

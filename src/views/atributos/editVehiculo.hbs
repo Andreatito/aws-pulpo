@@ -1,0 +1,390 @@
+<html>
+<head>
+    
+ 
+
+<meta charset="UTF-8">
+<title>index</title>
+
+	<link rel="stylesheet" href="/css/styles.css">
+</head>
+
+<body>
+
+   
+  
+        
+            
+<div class= "add" >
+
+        <div class="formulario">
+
+                <form  >
+                    
+                <div class="row">
+                <div class="col">
+                      <br>
+                        <label style="font-size: 20px; color: rgb(27, 73, 240);" >Agregar un vehículo nuevo</label>
+                    <br>
+                    <br>
+                </div>
+                
+                     <div class="row ">   
+                   <div class="col "> 
+                     <label >Usuario: {{user.username}}</label>
+                    <input type="text" class="form-label-lg border rounded"  name="user_id" id="id_user" value=" {{user.id}} " autofocus readonly>
+                    </div>  
+                
+                    </div>
+                    <br>
+                <div class="row">
+                <div class="col">
+                    <br>
+                     <label>Tipo de vehículo:<Span class = "rojo"> * </span></label>
+
+                     <select class="form-select form-select-sm " style="width:auto" name="tipo" id="tipo_id">
+
+                             
+                                <option value="">-- Tipo--</option>
+
+                              {{#each tipo1_id}} 
+
+                                <option value="{{id}}" {{#if selected}}selected{{/if}}>{{tipo}}</option>
+                                
+                                 {{/each}}
+                     </select>
+
+                <div class="message" id="tipoMessage"></div>
+                </div>
+                     <div class="col">
+                        <br>
+                 <label > <Span class = "rojo"> * </span>Placas:</label>
+                   <br>
+                    <input type="text"  class=" border rounded"  name="placa" id="placa_id" value="{{vehiculos.placa}}"placeholder="LTD-1234" autofocus >
+                    
+                <div class="message" id="placaMessage"></div>
+                    </div>
+
+                </div>
+                <br>
+                <br>
+                <div class="row">
+                <div class="col">
+                    <br>
+                    <label ><Span class = "rojo"> * </span>Marca:</label>
+              
+                   <select class="form-select form-select-sm "  name="brand" id="brand_id">
+
+                             
+                                <option value="">--Marca-</option>
+
+                              {{#each brand}} 
+
+                                <option value="{{id}}" {{#if selected}}selected{{/if}}>{{nombre}}</option>
+                                
+                                 {{/each}}
+                     </select>
+                <div class="message" id="brandMessage"></div>
+                </div>
+
+                <br>
+                <br>
+
+                <div class="col">
+                    <br>
+                    
+                    <label > <Span class = "rojo"> * </span>Modelo:</label>
+                   
+                          <select class="form-select form-select-sm " style="width:auto" name="modelo" id="model_id">
+
+                             
+                                <option value="">-- Modelo--</option>
+
+                              {{#each modelo}} 
+
+                                <option value="{{id}}" {{#if selected}}selected{{/if}}>{{nombre}}</option>
+                                
+                                 {{/each}}
+                     </select>
+                 <div class="message" id="modelMessage"></div>
+
+                </div>
+
+                </div>
+                <br>
+                <br>
+               
+                <div class="row">
+                <div class="col">
+                    <br>
+                    <label > <Span class = "rojo"> * </span>Color:</label>
+                  <select class="form-select form-select-sm "  name="color" id="color_id">
+
+                            <option value="">-- Color--</option>
+
+                            {{#each color}} 
+
+                                
+                                <option value="{{id}}" {{#if selected}}selected{{/if}}>{{color}}</option>
+                          
+                            {{/each}}
+                     </select>
+                        <div class="message" id="colorMessage"></div> 
+                     
+                </div>
+                
+                 <br>
+                 <br>
+               
+                <div class="col">
+                    <br>
+                    <label > <Span class = "rojo"> * </span>Año:</label>
+
+                      <select class="form-select form-select-sm " style="width:auto" name="year" id="year_id">
+
+                            <option value="">--Año--</option>
+
+                            {{#each year}} 
+
+                                
+                                <option value="{{id}}" {{#if selected}}selected{{/if}}>{{nombre}}</option>
+                          
+                            {{/each}}
+                     </select>
+                 <div class="message" id="yearMessage"></div>
+                    
+                     
+                </div>
+
+                </div>
+
+                 <div class="row">
+                <div class="col">
+                    <br>
+                    <label > <Span class = "rojo"> * </span>Combustible:</label>
+                  <select class="form-select form-select-sm "  name="combustible" id="comb_id">
+
+                            <option value="">-- Combustible--</option>
+
+                            {{#each combustible}} 
+
+                                
+                                <option value="{{id}}" {{#if selected}}selected{{/if}}>{{tipo}}</option>
+                          
+                            {{/each}}
+                     </select>
+                        <div class="message" id="combMessage"></div> 
+                     
+                </div>
+                
+                 <br>
+                 <br>
+               
+                <div class="col">
+                    <br>
+                    <label > <Span class = "rojo"> * </span>Kilometraje:</label>
+
+                      <select class="form-select form-select-sm " style="width:auto" name="km_id" id="km_id">
+
+                            <option value="">--Kilometraje--</option>
+
+                            {{#each km_id}} 
+
+                                
+                                <option value="{{id}}" {{#if selected}}selected{{/if}}>{{rango}}</option>
+                          
+                            {{/each}}
+                     </select>
+                 <div class="message" id="kmMessage"></div>
+                    
+                     
+                </div>
+
+                </div>
+           
+                
+                <br>
+                <br>
+                <div class="row">
+                <div class="col">
+                    <br>
+                    <label > <Span class = "rojo"> * </span>Status del vehículo:</label>
+                    
+                       <select class="form-select form-select-sm "  name="vehiculo_status" id="status_id">
+
+                            <option value="">-- Status--</option>
+
+                            {{#each vehiculo_status}} 
+
+                                
+                                <option value="{{id}}" {{#if selected}}selected{{/if}}>{{vehiculo_status}}</option>
+                          
+                            {{/each}}
+                     </select>
+                        <div class="message" id="statusMessage"></div> 
+               
+
+                <br>
+                <br>
+
+                 </div>
+
+                <div class="col">
+                    <br>
+                    <label > <Span class = "rojo"> * </span>Asignar vehículo a cuenta:</label>
+                    <br>
+                
+                    
+                       <select class="form-select form-select-sm " style="width:auto" name="cuenta" id="cuenta_id">
+
+                            <option value="">-- Cuentas--</option>
+
+                            {{#each cuentas}} 
+
+                                
+                                <option value="{{id}}" {{#if selected}}selected{{/if}}>{{nombre}}</option>
+                          
+                            {{/each}}
+                     </select>
+
+                         <div class="message" id="cuentaMessage"></div>
+               </form>
+
+               
+                 <br>
+                </div>
+                </div>
+
+                <br>
+                    <div class="form-g">
+
+                    <button  class="btn btn-primary" id="btnSave">
+
+                        Guardar
+                    </button>
+
+                
+
+                
+
+                <button class="btn btn-primary" id="btnCancel">Cancelar</button>
+
+               
+
+
+
+                    <br>
+                    <br>
+                </div>
+           
+                    
+                    <label class="text-secondary" ><Span class = "rojo">* </span>Campos obligatorios</label>
+
+                    <br>
+                    <br>
+     
+            </div>
+        </div>
+       
+ <div class="imgAuto">
+
+                    <img src="/img/vehiculo.png" class="img-fluid ">
+
+    </div>
+            
+</div>
+    
+
+
+
+<script src="bootstrap-5.2.0-dist/js/jquery-3.6.1.min.js"></script>
+		<script src="popper/popper.min.js"></script>
+		<script src="bootstrap-5.2.0-dist/js/bootstrap.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+        <script>
+           
+
+
+            $( document ).ready(function() {
+
+                $( "#btnSave" ).click(function(e) {
+
+                    e.preventDefault();
+
+                    const account= {
+
+                        tipo1_id:  $("#tipo_id").val(),
+                        brand:  $("#brand_id").val(),
+                        model:  $("#model_id").val(),
+                        year:  $("#year_id").val(),
+                        color:  $("#color_id").val(),
+                        vehiculo_status: $("#status_id").val(),
+                        cuenta:  $("#cuenta_id").val(),
+                        placa:  $("#placa_id").val(),
+                        user_id:  $("#id_user").val(),
+                        km_id:  $("#km_id").val(),
+                        combustible:  $("#comb_id").val(),
+                        
+                        
+                        
+                    }
+                    
+                    $.post( "/atributos/{{vehiculos.id_vehiculo}}/editVehiculo", account, function( data ) {
+
+                        if(data.status=="ok"){
+
+                            window.location.href = '/atributos/detVehiculos/';
+
+                        }else{
+                            
+                            $("#tipoMessage").text(data.errors.tipo1_id|| "")
+                            $("#brandMessage").html(data.errors.brand || "")
+                            $("#modelMessage").html(data.errors.model || "")
+                            $("#yearMessage").html(data.errors.year || "")
+                            $("#colorMessage").html(data.errors.color || "")
+                            $("#statusMessage").html(data.errors.vehiculo_status || "")
+                            $("#cuentaMessage").html(data.errors.cuenta|| "")
+                            $("#placaMessage").html(data.errors.placa|| "")
+                            $("#kmMessage").html(data.errors.km_id|| "")
+                            $("#combMessage").html(data.errors.combustible|| "")
+                        }
+                    });
+                
+                });
+
+            });
+
+
+        </script>	
+
+
+                </script>	
+
+{{!-- botón cancelar --}}
+         <script>
+           
+            $( document ).ready(function() {
+
+                $( "#btnCancel" ).click(function(e) {
+
+                    e.preventDefault();
+                     
+        
+                   window.location.href = '/profile';
+                
+                });
+
+            });
+
+             
+
+        </script>	
+
+
+        <script>
+
+      
+        </script>
+</div>
+</body>
+</html>
